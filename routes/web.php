@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,20 @@ Route::group(['prefix' => 'admin'], function () {
         // Start User Controller
         Route::resource('users', UserController::class);
         // End User Controller
+
+
+         //post controller
+        Route::controller(PostController::class)->prefix('post')->name('post.')->group(function
+        (){
+            Route::get('/',         'index')->name('index');
+            Route::get('create',    'create')->name('create');
+            Route::post('store',    'store')->name('store');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::put('update',    'update')->name('update');
+            Route::delete('delete/{id}','delete')->name('delete');
+            Route::get('/subcategory','subcategory')->name('subcategory');
+        });
+         //end post controller
 
         // Start Settings Controller
         Route::controller(SettingsController::class)->group(function () {

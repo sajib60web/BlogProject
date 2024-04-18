@@ -176,6 +176,16 @@
                         <i class="fa fa-home"></i> <span>Dashboard</span>
                     </a>
                 </li>
+
+                @can('post-list')
+                <li class="{{ Request::is('admin/post*')?'active':''}}">
+                    <a href="{{ route('post.index') }}">
+                        <i class="fa fa-list"></i> <span>Posts</span>
+                    </a>
+                </li>
+                @endcan
+
+
                 @if(auth('admin')->user()->can('user-list') || auth('admin')->user()->can('role-list'))
                 <li class="treeview  {{ Request::is('admin/users') || Request::is('admin/users/*') || Request::is('admin/roles') || Request::is('admin/roles/*')?'active':'' }}">
                         <a href="#">
@@ -194,6 +204,7 @@
                         </ul>
                     </li>
                 @endif
+
                 @can('software-settings')
                 <li class="{{ Request::is('admin/settings')?'active':''}}">
                     <a href="{{ route('settings') }}">

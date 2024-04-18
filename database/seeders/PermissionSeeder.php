@@ -40,6 +40,16 @@ class PermissionSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Post',
+                'permissions' => [
+                    // post Permissions
+                    'post-list',
+                    'post-create',
+                    'post-edit',
+                    'post-delete',
+                ]
+            ],
+            [
                 'group_name' => 'Settings',
                 'permissions' => [
                     // Settings Permissions
@@ -54,7 +64,7 @@ class PermissionSeeder extends Seeder
             for ($j = 0; $j < count($permissions[$i]['permissions']); $j++) {
                 // Create Permission
                 $permission = Permission::create([
-                    'name' => $permissions[$i]['permissions'][$j], 
+                    'name' => $permissions[$i]['permissions'][$j],
                     'group_name' => $permissionGroup,
                     'guard_name' => 'admin'
                 ]);
