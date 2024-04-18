@@ -8,6 +8,19 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        return redirect()->route('login');
+        $data['page_name'] = 'Home';
+        return view('frontend.index', $data);
+    }
+
+    public function about()
+    {
+        $data['page_name'] = 'About';
+        return view('frontend.about', $data);
+    }
+
+    public function contact()
+    {
+        $data['page_name'] = 'Contact';
+        return view('frontend.contact', $data);
     }
 }
