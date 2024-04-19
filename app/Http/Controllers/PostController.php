@@ -71,7 +71,7 @@ class PostController extends Controller
             $request['video_url'] = null;
         endif;
 
-        $columns = ['treding_topic','stories','breaking','recommended'];
+        $columns = ['treding_topic','stories','breaking','recommended','slider','short_stories'];
         foreach ($columns as   $value) {
             if(!$request->$value):
                 $request[$value] = 0;

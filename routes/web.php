@@ -17,6 +17,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::controller(WelcomeController::class)->group(function () {
     Route::get('/', 'index')->name('main.index');
+    Route::get('/{id}/{slug}', 'postDetails')->name('post.details');
+    Route::get('/category/{id}', 'categoryPosts')->name('category.posts');
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
     Route::post('/contact/form', 'contactForm')->name('contact-form');

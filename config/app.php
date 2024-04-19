@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\ComposerServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -159,7 +160,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Yajra\DataTables\DataTablesServiceProvider::class, 
+        Yajra\DataTables\DataTablesServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -171,6 +172,7 @@ return [
         App\Providers\HelperServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        ComposerServiceProvider::class
     ])->toArray(),
 
     /*
