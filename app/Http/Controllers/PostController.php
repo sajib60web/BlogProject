@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PostType;
 use App\Http\Requests\Post\StoreRequest;
 use App\Models\Category;
+use App\Models\Post;
 use App\Repositories\Post\PostInterface;
 use Illuminate\Http\Request;
 
@@ -30,6 +32,9 @@ class PostController extends Controller
 
     public function store(StoreRequest $request){
         $request['user_id'] = auth()->user()->id;
+        if($request->post_type == PostType::ARTICLE):
+            $request['video_url'] = null;
+        endif;
 
         if($this->repo->store($request)):
             $notification = array(
@@ -45,7 +50,28 @@ class PostController extends Controller
         return redirect()->route('post.index')->with($notification);
     }
 
+    public function edit($id){
+        $data['page_name'] = 'Edit Post';
+        $data['post'] = Post::find($id);
+        $data['categories'] = Category::where('parent_id',0)->get();
+        $data['subcategories'] = Category::where('parent_id',$data['post']->category_id)->get();
+
+        return view('admin.post.edit', $data);
+    }
+
+
     public function update(StoreRequest $request){
+        if($request->post_type == PostType::ARTICLE):
+            $request['video_url'] = null;
+        endif;
+
+        $columns = ['treding_topic','stories','breaking','recommended'];
+        foreach ($columns as   $value) {
+            if(!$request->$value):
+                $request[$value] = 0;
+            endif;
+        }
+
         if($this->repo->update($request)):
             $notification = array(
                 'message' => 'Post Updated Successfully',

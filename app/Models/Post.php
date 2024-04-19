@@ -25,22 +25,30 @@ class Post extends Model
     public function image(){
         return $this->belongsTo(Upload::class,'image_id','id');
     }
-    public function getImageVideoAttribute(){
-        if($this->post_type == PostType::ARTICLE):
-            if($this->image && fileExists($this->image->original)):
-                return $this->image->original['original'];
-            else:
-                return '';
-            endif;
+    public function getImageUrlAttribute(){
+        if($this->image && fileExists($this->image->original)):
+            return asset($this->image->original['original']);
         else:
-            return $this->video_url;
+            return asset('default/default-730x400.png');
         endif;
+
     }
     public function getMyStatusAttribute(){
-        if($this->status == Status::ACTIVE):
-            return '<span class="badge badge-success">Active</span>';
-        else:
-            return '<span class="badge badge-danger">Inactive</span>';
+        if($this->status == Status::PUBLISH):
+            return '<span class="badge badge-success">Published</span>';
+        elseif($this->status == Status::UNPUBLISH):
+            return '<span class="badge badge-danger">Unpublished</span>';
         endif;
+    }
+
+    public function getMyVisibilityAttribute(){
+        $visibility = '';
+        $columns = ['treding_topic','stories','breaking','recommended'];
+        foreach ($columns as   $value) {
+            if($this->$value == 1):
+                $visibility .= '<span class="badge badge-info">'.\Str::headline($value) .'</span>';
+            endif;
+        }
+        return $visibility;
     }
 }

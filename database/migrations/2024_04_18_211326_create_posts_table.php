@@ -23,24 +23,30 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable();
             $table->foreignId('sub_category_id')->nullable();
             $table->unsignedTinyInteger('post_type')->default(PostType::ARTICLE);
-
             $table->bigInteger('image_id')->nullable();
-            $table->unsignedTinyInteger('slider')->default(0);
-            $table->integer('slider_order')->default(0);
-            $table->unsignedTinyInteger('featured')->default(0);
-            $table->integer('featured_order')->default(0);
-            $table->unsignedTinyInteger('breaking')->default(0);
-            $table->integer('breaking_order')->default(0);
-            $table->unsignedTinyInteger('recommended')->default(0);
-            $table->integer('recommended_order')->default(0);
             $table->text('video_url')->nullable();
+
+            //visibility
+
+            // $table->unsignedTinyInteger('slider')->default(0);
+            // $table->integer('slider_order')->default(0);
+            $table->unsignedTinyInteger('treding_topic')->default(0);
+            // $table->integer('treding_topic_order')->default(0);
+            $table->unsignedTinyInteger('stories')->default(0);
+            // $table->integer('stories_order')->default(0);
+            // $table->unsignedTinyInteger('featured')->default(0);
+            // $table->integer('featured_order')->default(0);
+            $table->unsignedTinyInteger('breaking')->default(0);
+            // $table->integer('breaking_order')->default(0);
+            $table->unsignedTinyInteger('recommended')->default(0);
+            // $table->integer('recommended_order')->default(0);
 
             $table->text('meta_title')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('tags')->nullable();
 
-            $table->unsignedBigInteger('status')->default(Status::ACTIVE);
+            $table->unsignedBigInteger('status')->default(Status::PUBLISH);
             $table->bigInteger('total_views')->default(0);
             $table->timestamps();
         });
