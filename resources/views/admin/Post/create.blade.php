@@ -26,8 +26,6 @@
                     @endcan
                 </div>
                 <hr>
-
-
                 <!-- /.box-header -->
                 <div class="box-body">
                     {!! Form::open(array('route' => 'post.store','method'=>'POST' ,'enctype'=>'multipart/form-data')) !!}
@@ -39,7 +37,6 @@
                                         {!! Form::text('title', old('title',null), array('placeholder' => 'Enter Title','class' => 'form-control','id'=>'post_title')) !!}
                                     </div>
                                 </div>
-
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Category:<span style="color: red;">*</span></label>
@@ -68,28 +65,22 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-6" id="image">
                                     <div class="form-group">
                                         <label>Image: </label>
                                          <input name="image" type="file" class="form-controll" />
                                     </div>
                                 </div>
-
                                 <div class="col-sm-12" id="video_url">
                                     <div class="form-group">
                                         <label>Youtube Video Url: </label>
                                         {!! Form::text('video_url', old('video_url',null), array('placeholder' => 'Enter youtube video url','class' => 'form-control' )) !!}
                                     </div>
                                 </div>
-
-
-
-
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Content: <span style="color: red;">*</span></label>
-                                        {!! Form::textarea('content', old('content',null), array('placeholder' => 'Enter content','class' => 'form-control')) !!}
+                                        {!! Form::textarea('content', old('content',null), array('placeholder' => 'Enter content','class' => 'form-control summernote')) !!}
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
@@ -143,7 +134,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-md-4 col-lg-2">
                                             <div  style="display: flex;justify-content:space-between">
@@ -154,7 +144,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-md-4 col-lg-2">
                                             <div  style="display: flex;justify-content:space-between">
@@ -187,7 +176,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Status:</label>
@@ -197,12 +185,9 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-primary pull-right">Save</button>
                                 </div>
-                                {!! Form::close() !!}
-                                <br>
                             </div>
                         </div>
                     {!! Form::close() !!}

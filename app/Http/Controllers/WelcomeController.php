@@ -50,15 +50,16 @@ class WelcomeController extends Controller
         if(!$post):
             abort(400);
         endif;
-        dd($id,$slug,$post->title);
-        return view('frontend.post_details',compact('post'));
+        $data['page_name'] = 'Post Details';
+        $data['post'] = $post;
+        return view('frontend.post_details',$data);
     }
 
     public function categoryPosts($id){
         $posts = Post::where('category_id',$id)->orWhere('sub_category_id',$id)->orderByDesc('id')->paginate(10);
-
-        dd($posts,$id);
-        return view('frontend.category_posts',compact('posts'));
+        $data['page_name'] = 'Post Details';
+        $data['post'] = $posts;
+        return view('frontend.category_posts',$data);
     }
     public function about()
     {

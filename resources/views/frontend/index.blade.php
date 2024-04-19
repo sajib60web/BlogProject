@@ -527,27 +527,27 @@
                             <div class="axil-social social-layout-1 size-small gap-12 justify-content-center">
                                 <ul>
                                     <li class="facebook">
-                                        <a href="https://facebook.com/" aria-label="Learn more from Facebook">
+                                        <a href="{{ setting()->facebook_link }}" aria-label="Learn more from Facebook">
                                             <i class="solid-facebook2"></i>
                                         </a>
                                     </li>
                                     <li class="instagram">
-                                        <a href="https://instagram.com/" aria-label="Learn more from Instagram">
+                                        <a href="{{ setting()->instagram_link }}" aria-label="Learn more from Instagram">
                                             <i class="regular-instagram"></i>
                                         </a>
                                     </li>
                                     <li class="mail-fast">
-                                        <a aria-label="Learn more from Mail fast" href="https://mail-fast.com/">
-                                            <i class="regular-mail-fast"></i>
+                                        <a aria-label="Learn more from twitter" href="{{ setting()->twitter_link }}">
+                                            <i class="regular-twitter"></i>
                                         </a>
                                     </li>
                                     <li class="pinterest">
-                                        <a href="https://pinterest.com/" aria-label="Learn more from Pinterest">
+                                        <a href="{{ setting()->pinter_est_link }}" aria-label="Learn more from Pinterest">
                                             <i class="solid-pinterest-01"></i>
                                         </a>
                                     </li>
                                     <li class="youtube">
-                                        <a href="https://youtube.com/" aria-label="Learn more from Youtube">
+                                        <a href="{{ setting()->youtube_link }}" aria-label="Learn more from Youtube">
                                             <i class="solid-youtube"></i>
                                         </a>
                                     </li>

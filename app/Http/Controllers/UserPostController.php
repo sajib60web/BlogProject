@@ -3,37 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PostType;
+use App\Enums\Status;
 use App\Http\Requests\Post\StoreRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Repositories\Post\PostInterface;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class UserPostController extends Controller
 {
-
     protected $repo;
     public function __construct(PostInterface $repo)
     {
         $this->repo = $repo;
-
-        $this->middleware('permission:post-list|post-create|post-edit|post-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:post-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:post-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:post-delete', ['only' => ['destroy']]);
     }
-    public function index()
+
+    public function postList()
     {
         $data['page_name'] = 'Post List';
-        $data['posts'] = $this->repo->get();
-        return view('admin.post.index', $data);
+        $data['posts'] = Post::where('user_id', auth()->id())->orderBy('id', 'DESC')->paginate(10);
+        return view('auth.posts.post_list', $data);
     }
 
-    public function create()
+    public function postCreate()
     {
-        $data['page_name'] = 'Create Post';
+        $data['page_name'] = 'Post Create';
         $data['categories'] = Category::where('parent_id', 0)->get();
-        return view('admin.post.create', $data);
+        return view('auth.posts.post_create', $data);
     }
 
     public function store(StoreRequest $request)
@@ -43,6 +39,7 @@ class PostController extends Controller
             $request['video_url'] = null;
         endif;
 
+        $request['status'] = Status::UNPUBLISH;
         if ($this->repo->store($request)) :
             $notification = array(
                 'message' => 'Post Create Successfully',
@@ -54,7 +51,7 @@ class PostController extends Controller
                 'alert-type' => 'error'
             );
         endif;
-        return redirect()->route('post.index')->with($notification);
+        return redirect()->route('post.list')->with($notification);
     }
 
     public function edit($id)
@@ -63,8 +60,7 @@ class PostController extends Controller
         $data['post'] = Post::find($id);
         $data['categories'] = Category::where('parent_id', 0)->get();
         $data['subcategories'] = Category::where('parent_id', $data['post']->category_id)->get();
-
-        return view('admin.post.edit', $data);
+        return view('auth.posts.post_edit', $data);
     }
 
 
@@ -74,7 +70,7 @@ class PostController extends Controller
             $request['video_url'] = null;
         endif;
 
-        $columns = ['treding_topic','stories','breaking','recommended','slider','short_stories'];
+        $columns = ['treding_topic', 'stories', 'breaking', 'recommended'];
         foreach ($columns as   $value) {
             if (!$request->$value) :
                 $request[$value] = 0;
@@ -92,7 +88,7 @@ class PostController extends Controller
                 'alert-type' => 'error'
             );
         endif;
-        return redirect()->route('post.index')->with($notification);
+        return redirect()->route('post.list')->with($notification);
     }
 
     public function delete($id)
@@ -108,20 +104,6 @@ class PostController extends Controller
                 'alert-type' => 'error'
             );
         endif;
-        return redirect()->route('post.index')->with($notification);
-    }
-
-    public function subcategory(Request $request)
-    {
-        if (request()->ajax()) :
-
-            $subcategories = Category::where('parent_id', $request->category_id)->get();
-            $options = '<option value="">Select Sub-Category</option>';
-            foreach ($subcategories as   $category) {
-                $options .= '<option value="' . $category->id . '">' . $category->name . '</option>';
-            }
-            return $options;
-        endif;
-        return '';
+        return redirect()->route('post.list')->with($notification);
     }
 }

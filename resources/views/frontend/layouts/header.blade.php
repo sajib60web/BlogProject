@@ -200,8 +200,8 @@
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="author.html">
-                                                                <div class="icon-holder"><i class="regular-activity"></i></div>Post
+                                                            <a href="{{ route('post.list') }}">
+                                                                <div class="icon-holder"><i class="regular-activity"></i></div>Posts
                                                             </a>
                                                         </li>
                                                     </ul>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -55,5 +56,19 @@ class ProfileController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
+    }
+
+    public function postList()
+    {
+        $data['page_name'] = 'Post List';
+        $data['posts'] = Post::where('user_id', auth()->id())->paginate(10);
+        return view('auth.posts.post_list', $data);
+    }
+
+    public function postCreate()
+    {
+        $data['page_name'] = 'Post Create';
+        $data['posts'] = Post::where('user_id', auth()->id())->paginate(10);
+        return view('auth.posts.post_create', $data);
     }
 }

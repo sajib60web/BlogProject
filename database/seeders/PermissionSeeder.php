@@ -40,6 +40,16 @@ class PermissionSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Category',
+                'permissions' => [
+                    // Category Permissions
+                    'category-list',
+                    'category-create',
+                    'category-edit',
+                    'category-delete',
+                ]
+            ],
+            [
                 'group_name' => 'Post',
                 'permissions' => [
                     // post Permissions
@@ -47,6 +57,32 @@ class PermissionSeeder extends Seeder
                     'post-create',
                     'post-edit',
                     'post-delete',
+                ]
+            ],
+            [
+                'group_name' => 'Faq',
+                'permissions' => [
+                    // faq Permissions
+                    'faq-list',
+                    'faq-create',
+                    'faq-edit',
+                    'faq-delete',
+                ]
+            ],
+            [
+                'group_name' => 'About',
+                'permissions' => [
+                    // about Permissions
+                    'about-view',
+                    'about-update',
+                ]
+            ],
+            [
+                'group_name' => 'Contact Message',
+                'permissions' => [
+                    // Contact Message Permissions
+                    'contact-message-list',
+                    'contact-message-delete',
                 ]
             ],
             [
