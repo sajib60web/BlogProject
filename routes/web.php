@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\AdminForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
@@ -77,6 +78,10 @@ Route::group(['prefix' => 'admin'], function () {
         // Start User Controller
         Route::resource('users', UserController::class);
         // End User Controller
+
+        // Start Category Controller
+        Route::resource('categories', CategoryController::class);
+        // End Category Controller
 
 
         //post controller

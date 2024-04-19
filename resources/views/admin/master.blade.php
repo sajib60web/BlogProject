@@ -177,6 +177,14 @@
                     </a>
                 </li>
 
+                @can('category-list')
+                    <li class="{{ Request::is('admin/categories*')?'active':''}}">
+                        <a href="{{ route('categories.index') }}">
+                            <i class="fa fa-list"></i> <span>Category</span>
+                        </a>
+                    </li>
+                @endcan
+                
                 @can('post-list')
                 <li class="{{ Request::is('admin/post*')?'active':''}}">
                     <a href="{{ route('post.index') }}">

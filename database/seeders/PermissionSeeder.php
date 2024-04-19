@@ -40,6 +40,16 @@ class PermissionSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Category',
+                'permissions' => [
+                    // Category Permissions
+                    'category-list',
+                    'category-create',
+                    'category-edit',
+                    'category-delete',
+                ]
+            ],
+            [
                 'group_name' => 'Post',
                 'permissions' => [
                     // post Permissions
