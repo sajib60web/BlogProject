@@ -12,4 +12,13 @@ class Setting extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function getLogoAttribute()
+    {
+        if (file_exists($this->app_logo)) {
+            return asset($this->app_logo);
+        } else {
+            return asset('assets/frontend/media/logo-dark.svg');
+        } 
+    }
 }

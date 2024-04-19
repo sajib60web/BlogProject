@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             SuperAdminUserSeeder::class,
             SettingSeeder::class,
             CategorySeeder::class,
+            FaqSeeder::class,
+            AboutSeeder::class,
         ]);
     }
 }
