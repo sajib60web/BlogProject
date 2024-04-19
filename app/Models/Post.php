@@ -50,12 +50,16 @@ class Post extends Model
     public function getMyVisibilityAttribute()
     {
         $visibility = '';
-        $columns = ['treding_topic', 'stories', 'breaking', 'recommended'];
+        $columns = ['treding_topic','stories','breaking','recommended','slider','short_stories'];
         foreach ($columns as   $value) {
             if ($this->$value == 1) :
                 $visibility .= '<span class="badge badge-info bg-info">' . Str::headline($value) . '</span>';
             endif;
         }
         return $visibility;
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
     }
 }

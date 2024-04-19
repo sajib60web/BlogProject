@@ -110,8 +110,23 @@
                                          <input class="form-control" name="tags" id="post_tags" data-role="tagsinput" placeholder="Enter Tags" value="{{old('tags')}}" />
                                     </div>
                                 </div>
+<<<<<<< HEAD
+=======
+
+ 
+>>>>>>> 12cc437ebccfc9405ee5350f6ffd13375fae2d6a
                                 <div class="col-sm-12">
                                     <h3>Visibility</h3>
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-2">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="slider">Add to slider </label>
+                                                <div>
+                                                    <input id="slider" name="slider" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-4 col-lg-2">
                                             <div  style="display: flex;justify-content:space-between">

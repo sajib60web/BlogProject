@@ -9,22 +9,18 @@
                     <div class="news-feed-wrap">
                         <div class="news-feed-label">BREAKING:</div>
                         <div id="news-feed-slider" class="news-feed-slider initially-none">
-                            <div class="single-slide">
-                                <a href="post-format-default.html" class="link-wrap">Underwater Exercise Is Used Weak Of Muscles Thats Good</a>
-                            </div>
-                            <div class="single-slide">
-                                <a href="post-format-default.html" class="link-wrap">Tesla’s Cooking Up A New Way To Wire</a>
-                            </div>
-                            <div class="single-slide">
-                                <a href="post-format-default.html" class="link-wrap">50 Years After The Moon Landing: How Close</a>
-                            </div>
-                            <div class="single-slide">
-                                <a href="post-format-default.html" class="link-wrap">Millions Of Manuscripts Are Written</a>
-                            </div>
+
+                            @foreach ($breaking_posts as $breaking_post)
+
+                                <div class="single-slide">
+                                    <a href="post-format-default.html" class="link-wrap">{{$breaking_post->title}}</a>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-4">
-                        <div class="current-date d-lg-block d-none">July 5, 2023</div>
+                        <div class="current-date d-lg-block d-none">{{date('M d,Y')}}</div>
                         <div class="d-flex align-items-center gap-2">
                             <div class="d-lg-block d-none">
                                 <div class="my_switcher">
@@ -144,27 +140,27 @@
                                 <a href="{{ route('about') }}">About</a>
                             </li>
                             <li class="menu-item menu-item-has-children">
-                                <a href="#">Pages</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item menu-item-has-children second-lavel">
-                                        <a href="#">Archive Pages</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item"><a href="archive-layout1.html">Archive Layout 1</a></li>
-                                            <li class="menu-item"><a href="archive-layout2.html">Archive Layout 2</a></li>
-                                            <li class="menu-item"><a href="archive-layout3.html">Archive Layout 3</a></li>
-                                            <li class="menu-item"><a href="archive-layout4.html">Archive Layout 4</a></li>
-                                            <li class="menu-item"><a href="archive-layout5.html">Archive Layout 5</a></li>
-                                            <li class="menu-item"><a href="archive-layout6.html">Archive Layout 6</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item menu-item-has-children second-lavel">
-                                        <a href="#">Other Pages</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item"><a href="author.html">Author</a></li>
-                                            <li class="menu-item"><a href="404.html">404</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <a href="#">Category</a>
+                                @php
+                                    $categories = \App\Models\Category::where('parent_id',0)->get();
+                                @endphp
+                                @if ($categories->count() > 0)
+                                    <ul class="sub-menu">
+                                        @foreach ($categories as $category)
+                                        @php
+                                            $subcategories = \App\Models\Category::where('parent_id',$category->id)->get()
+                                        @endphp
+                                            <li class="menu-item @if($subcategories->count() > 0) menu-item-has-children @endif second-lavel">
+                                                <a href="#">{{$category->name}}</a>
+                                                <ul class="sub-menu">
+                                                    @foreach ($subcategories as $subcategory)
+                                                        <li class="menu-item"><a href="archive-layout1.html">{{$subcategory->name}}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </li>
                             <li class="menu-item">
                                 <a href="{{ route('contact') }}">Contact</a>
@@ -183,7 +179,7 @@
                     </div>
                     @guest
                         <div class="d-lg-block d-none">
-                            <a href="{{ route('login') }}" title="Sign in" role="button" class="btn btn-success">Sign in</a> | 
+                            <a href="{{ route('login') }}" title="Sign in" role="button" class="btn btn-success">Sign in</a> |
                             <a href="{{ route('register') }}" title="Sign Up" role="button" class="btn btn-success">Sign Up</a>
                         </div>
                     @else
