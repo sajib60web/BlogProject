@@ -72,11 +72,11 @@
                                 <div class="col-sm-6" id="image">
                                     <div class="form-group">
                                         <label>Image: </label>
-                                         <input name="image_id" type="file" class="form-controll" />
+                                         <input name="image" type="file" class="form-controll" />
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6" id="video_url">
+                                <div class="col-sm-12" id="video_url">
                                     <div class="form-group">
                                         <label>Youtube Video Url: </label>
                                         {!! Form::text('video_url', old('video_url',null), array('placeholder' => 'Enter youtube video url','class' => 'form-control' )) !!}
@@ -117,6 +117,66 @@
                                     <div class="form-group">
                                         <label>Tags:  </label>
                                          <input class="form-control" name="tags" id="post_tags" data-role="tagsinput" placeholder="Enter Tags" value="{{old('tags')}}" />
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-sm-12">
+                                    <h3>Visibility</h3>
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-2">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="breaking">Add to breaking </label>
+                                                <div>
+                                                    <input id="breaking" name="breaking" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-2">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="treding_topic">Add to Treding Topic </label>
+                                                <div>
+                                                    <input id="treding_topic" name="treding_topic" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-2">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="stories">Add to stories </label>
+                                                <div>
+                                                    <input id="stories" name="stories" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-2">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="recommended">Add to recommended </label>
+                                                <div>
+                                                    <input id="recommended" name="recommended" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Status:</label>
+                                        <select name="status" class="form-control" >
+                                            <option value="{{\App\Enums\Status::PUBLISH}}">Publish</option>
+                                            <option value="{{\App\Enums\Status::UNPUBLISH}}">Unpublish</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -207,10 +267,10 @@
     posttype(1);
     function posttype(type){
         if(type == 1){
-            $('#image').show();
+            // $('#image').show();
             $('#video_url').hide();
         }else{
-            $('#image').hide();
+            // $('#image').hide();
             $('#video_url').show();
         }
     }

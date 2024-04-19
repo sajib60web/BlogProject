@@ -39,7 +39,9 @@
                                         <th scope="col">Category</th>
                                         <th scope="col">Sub-Category</th>
                                         <th scope="col">Type</th>
-                                        <th scope="col">Image / Video</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Video Url</th>
+                                        <th scope="col">Visibility</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Action</th>
 
@@ -54,15 +56,15 @@
                                         <td>{{ @$post->subcategory->name }}</td>
                                         <td>
                                             @if ($post->post_type == App\Enums\PostType::ARTICLE)
-                                             Article
+                                             <span class="badge badge-info">Article</span>
                                             @else
-                                             Video
+                                             <span class="badge badge-primary">Video</span>
                                             @endif
                                         </td>
 
-                                        <td>
-                                            {{@$post->image_video}}
-                                        </td>
+                                        <td>  <img  src="{{@$post->image_url}}" width="50" height="50"  /> </td>
+                                        <td> {{@$post->video_url}} </td>
+                                        <td> {!!@$post->my_visibility!!} </td>
                                         <td> {!!@$post->my_status!!} </td>
 
                                         <td class="text-center">
@@ -91,3 +93,15 @@
     </section>
     <!-- /.content -->
 @endsection
+@push('styles')
+    <style>
+        .badge-info{
+            background-color: #5969ff !important;
+            margin-right: 5px;
+        }
+        .badge-primary{
+            background-color: #00c0ef !important;
+            margin-right: 5px;
+        }
+        </style>
+@endpush

@@ -3,29 +3,24 @@
 namespace App\Repositories\Post;
 
 use App\Models\Post;
-use Image;
+use App\Models\Upload;
+use App\Traits\CommonTrait;
 class PostRepository implements PostInterface {
+    use CommonTrait;
     public function get(){
         return Post::orderbyDesc('id')->get();
     }
     public function getFind($id){
         return Post::find($id);
     }
+
     public function store($request){
-        // if($request->image_id):
-        //     $image = Image::make('public/'.$request->get('image_id')->getRealPath())->resize(300, 200);
+        if($request->image):
+            $image_id = $this->uploadFile('post',$request->image);
+            $request['image_id']  = $image_id;
+        endif;
 
-        //     $img = Image::make($request->get('image_id'));
-        //     $extension = $this->get_mime($img->mime());
-
-        //     $str_random = Str::random(8);
-        //     $imgpath = $str_random.time().$extension;
-        //     $img->save(storage_path('app/imagesfp').'/'.$imgpath);
-
-
-        // endif;
-
-        $post = Post::create($request->except(['_token']));
+        $post = Post::create($request->except(['_token','image']));
         if($post):
             return true;
         else:
@@ -33,7 +28,15 @@ class PostRepository implements PostInterface {
         endif;
     }
     public function update($request){
-        $post = Post::where('id',$request->id)->update($request->except(['_token','id','_method']));
+
+        $post = Post::find($request->id);
+
+        if($request->image):
+            $image_id = $this->uploadFile('post',$request->image,$post->image_id);
+            $request['image_id']  = $image_id;
+        endif;
+       $post->update($request->except(['_token','id','_method','image']));
+
         if($post):
             return true;
         else:
@@ -41,6 +44,11 @@ class PostRepository implements PostInterface {
         endif;
     }
     public function delete($id){
+        $post  = Post::find($id);
+        $upload = Upload::find($post->image_id);
+        if($upload && file_exists($upload->original)):
+            unlink($upload->original);
+        endif;
         return Post::destroy($id);
     }
 }

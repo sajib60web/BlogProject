@@ -11,6 +11,7 @@ if (!function_exists('setting')) {
         return Setting::find(1);
     }
 }
+ 
 
 if (!function_exists('send_sms')) {
     function send_sms($number, $massage)
