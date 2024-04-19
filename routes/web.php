@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
+// Welcome Route
 Route::controller(WelcomeController::class)->group(function () {
     Route::get('/', 'index')->name('main.index');
     Route::get('/{id}/{slug}', 'postDetails')->name('post.details');
