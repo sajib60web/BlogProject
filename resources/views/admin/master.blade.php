@@ -201,6 +201,22 @@
                     </li>
                 @endcan
 
+                @can('about-view')
+                    <li class="{{ Request::is('admin/about*')?'active':''}}">
+                        <a href="{{ route('about.index') }}">
+                            <i class="fa fa-list"></i> <span>About</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('contact-message-list')
+                    <li class="{{ Request::is('admin/contact_messages*')?'active':''}}">
+                        <a href="{{ route('contact_messages.index') }}">
+                            <i class="fa fa-list"></i> <span>Contact Message</span>
+                        </a>
+                    </li>
+                @endcan
+
                 @if(auth('admin')->user()->can('user-list') || auth('admin')->user()->can('role-list'))
                 <li class="treeview  {{ Request::is('admin/users') || Request::is('admin/users/*') || Request::is('admin/roles') || Request::is('admin/roles/*')?'active':'' }}">
                         <a href="#">

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\Auth\AdminForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -88,6 +90,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('faqs', FaqController::class);
         // End Faq Controller
 
+        // Start About Controller
+        Route::resource('about', AboutController::class);
+        // End About Controller
+
+        // Start Contact Message Controller
+        Route::resource('contact_messages', ContactMessageController::class);
+        // End Contact Message Controller
 
         //post controller
         Route::controller(PostController::class)->prefix('post')->name('post.')->group(function () {
