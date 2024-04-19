@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\VerificationController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController as UserProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
@@ -19,12 +19,15 @@ Route::controller(WelcomeController::class)->group(function () {
     Route::get('/', 'index')->name('main.index');
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
+    Route::post('/contact/form', 'contactForm')->name('contact-form');
 });
 
 Auth::routes(['verfiy' => true]);
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [UserProfileController::class, 'index'])->name('home');
+    Route::get('/profile', [UserProfileController::class, 'profile'])->name('user.profile');
+    Route::post('/profile/update', [UserProfileController::class, 'profileUpdate'])->name('user.profile.update');
 });
 
 Route::get('/email/verify', function () {
@@ -76,18 +79,17 @@ Route::group(['prefix' => 'admin'], function () {
         // End User Controller
 
 
-         //post controller
-        Route::controller(PostController::class)->prefix('post')->name('post.')->group(function
-        (){
+        //post controller
+        Route::controller(PostController::class)->prefix('post')->name('post.')->group(function () {
             Route::get('/',         'index')->name('index');
             Route::get('create',    'create')->name('create');
             Route::post('store',    'store')->name('store');
             Route::get('edit/{id}', 'edit')->name('edit');
             Route::put('update',    'update')->name('update');
-            Route::delete('delete/{id}','delete')->name('delete');
-            Route::get('/subcategory','subcategory')->name('subcategory');
+            Route::delete('delete/{id}', 'delete')->name('delete');
+            Route::get('/subcategory', 'subcategory')->name('subcategory');
         });
-         //end post controller
+        //end post controller
 
         // Start Settings Controller
         Route::controller(SettingsController::class)->group(function () {

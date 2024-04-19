@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
             SuperAdminUserSeeder::class,
             SettingSeeder::class,
             CategorySeeder::class,
-            PostSeeder::class
+            PostSeeder::class,
+            FaqSeeder::class,
+            AboutSeeder::class,
         ]);
     }
 }

@@ -121,17 +121,17 @@
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-md-block d-none">
-                    <a href="{{ route('main.index') }}" class="link-wrap desktop-logo img-height-100" aria-label="Site Logo"><img width="131" height="47" src="{{ asset('assets/frontend') }}/media/logo-dark.svg" alt="logo"></a>
+                    <a href="{{ route('main.index') }}" class="link-wrap desktop-logo img-height-100" aria-label="Site Logo"><img width="131" height="47" src="{{ setting()->logo }}" alt="logo"></a>
                 </div>
                 <div class="d-md-none d-block">
-                    <a href="{{ route('main.index') }}" class="link-wrap mobile-logo img-height-100" aria-label="Site Logo"><img width="86" height="31" src="{{ asset('assets/frontend') }}/media/mobile-logo.svg" alt="logo"></a>
+                    <a href="{{ route('main.index') }}" class="link-wrap mobile-logo img-height-100" aria-label="Site Logo"><img width="86" height="31" src="{{ setting()->logo }}" alt="logo"></a>
                 </div>
                 <!-- Start Mainmenu Nav -->
                 <div id="mobilemenu-popup" class="mobile-menu-wrap">
                     <div class="mobile-logo-wrap d-lg-none d-block">
                         <div class="logo-holder">
-                            <a href="{{ route('main.index') }}" class="link-wrap single-logo light-mode img-height-100" aria-label="Site Logo"><img width="131" height="47" src="{{ asset('assets/frontend') }}/media/logo-dark.svg" alt="logo"></a>
-                            <a href="{{ route('main.index') }}" class="link-wrap single-logo dark-mode img-height-100" aria-label="Site Logo"><img width="131" height="47" src="{{ asset('assets/frontend') }}/media/logo-light.svg" alt="logo" aria-label="Site Logo"></a>
+                            <a href="{{ route('main.index') }}" class="link-wrap single-logo light-mode img-height-100" aria-label="Site Logo"><img width="131" height="47" src="{{ setting()->logo }}" alt="logo"></a>
+                            <a href="{{ route('main.index') }}" class="link-wrap single-logo dark-mode img-height-100" aria-label="Site Logo"><img width="131" height="47" src="{{ setting()->logo }}" alt="logo" aria-label="Site Logo"></a>
                         </div>
                         <button aria-label="Offcanvas" type="button" class="mobile-close" data-bs-dismiss="offcanvas"><i class="regular-multiply-circle"></i></button>
                     </div>
@@ -199,27 +199,15 @@
                                                 <div class="profile-content with-icon">
                                                     <ul>
                                                         <li>
-                                                            <a href="author.html">
+                                                            <a href="{{ route('user.profile') }}">
                                                                 <div class="icon-holder"><i class="regular-user"></i></div>Profile
                                                             </a>
                                                         </li>
                                                         <li>
                                                             <a href="author.html">
-                                                                <div class="icon-holder"><i class="regular-activity"></i></div>Activity Log
+                                                                <div class="icon-holder"><i class="regular-activity"></i></div>Post
                                                             </a>
                                                         </li>
-                                                        <li>
-                                                            <a href="author.html">
-                                                                <div class="icon-holder"><i class="regular-plus-rectangle"></i></div>Library
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="profile-content">
-                                                    <ul>
-                                                        <li><a href="author.html">Become a Member</a></li>
-                                                        <li><a href="author.html">Apply for author verification</a></li>
-                                                        <li><a href="author.html">Settings</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="mt-3">
