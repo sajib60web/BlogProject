@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\PostType;
+use \Illuminate\Support\Str;
 use App\Enums\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -46,7 +46,7 @@ class Post extends Model
         $columns = ['treding_topic','stories','breaking','recommended'];
         foreach ($columns as   $value) {
             if($this->$value == 1):
-                $visibility .= '<span class="badge badge-info">'.\Str::headline($value) .'</span>';
+                $visibility .= '<span class="badge badge-info">'.Str::headline($value) .'</span>';
             endif;
         }
         return $visibility;
