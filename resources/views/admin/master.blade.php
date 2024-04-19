@@ -193,6 +193,13 @@
                 </li>
                 @endcan
 
+                @can('faq-list')
+                    <li class="{{ Request::is('admin/faqs*')?'active':''}}">
+                        <a href="{{ route('faqs.index') }}">
+                            <i class="fa fa-list"></i> <span>Faq</span>
+                        </a>
+                    </li>
+                @endcan
 
                 @if(auth('admin')->user()->can('user-list') || auth('admin')->user()->can('role-list'))
                 <li class="treeview  {{ Request::is('admin/users') || Request::is('admin/users/*') || Request::is('admin/roles') || Request::is('admin/roles/*')?'active':'' }}">

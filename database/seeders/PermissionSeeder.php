@@ -60,6 +60,16 @@ class PermissionSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Faq',
+                'permissions' => [
+                    // faq Permissions
+                    'faq-list',
+                    'faq-create',
+                    'faq-edit',
+                    'faq-delete',
+                ]
+            ],
+            [
                 'group_name' => 'Settings',
                 'permissions' => [
                     // Settings Permissions
