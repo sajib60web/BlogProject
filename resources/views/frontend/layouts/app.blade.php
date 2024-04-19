@@ -17,6 +17,7 @@
     <!-- Site Stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/app.css') }}">
     <link href="{{ asset('assets/admin') }}/css/toastr.min.css" rel="stylesheet" type="text/css">
+    @stack('styles')
 </head>
 
 <body class="mobilemenu-active">
@@ -88,6 +89,7 @@
     <!-- Site Scripts -->
     <script src="{{ asset('assets/frontend/js/app.js') }}"></script>
     <script src="{{ asset('assets/admin') }}/js/toastr.min.js"></script>
+    @stack('scripts')
     <script>
         @if(Session::has('message'))
         var type = "{{ Session::get('alert-type', 'info') }}";

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ProfileController as UserProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', [UserProfileController::class, 'index'])->name('home');
     Route::get('/profile', [UserProfileController::class, 'profile'])->name('user.profile');
     Route::post('/profile/update', [UserProfileController::class, 'profileUpdate'])->name('user.profile.update');
+    Route::controller(UserPostController::class)->group(function () {
+        Route::get('/post/list', 'postList')->name('post.list');
+        Route::get('/post/create', 'postCreate')->name('user.post.create');
+        Route::post('/post/store', 'store')->name('user.post.store');
+        Route::get('/post/edit/{id}', 'edit')->name('user.post.edit');
+        Route::put('/post/update/{id}', 'update')->name('user.post.update');
+        Route::delete('/post/delete/{id}', 'delete')->name('user.post.delete');
+    });
 });
 
 Route::get('/email/verify', function () {

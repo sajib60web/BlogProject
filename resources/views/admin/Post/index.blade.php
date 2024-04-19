@@ -22,7 +22,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">All {{ $page_name }}</h3>
-                        @can('user-create')
+                        @can('post-create')
                             <a href="{{ route('post.create') }}" style="float: right;" class="btn btn-success btn-sm">
                                 Create
                             </a>
