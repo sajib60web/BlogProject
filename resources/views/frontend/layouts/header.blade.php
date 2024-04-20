@@ -172,7 +172,7 @@
                                 <div class="navbar navbar-expand-md">
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Profile">
-                                            <span class="thumble-holder img-height-100"><img width="40" height="40" src="{{ asset('assets/frontend') }}/media/blog/profile4.webp" alt="Profile"></span>
+                                            <span class="thumble-holder img-height-100"><img width="40" height="40" src="{{ $profile->image?? asset('default/user.webp') }}" alt="Profile"></span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown2">
                                             <div class="dropdown-menu-inner">
