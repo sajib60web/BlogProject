@@ -28,7 +28,6 @@ Route::controller(WelcomeController::class)->group(function () {
 });
 
 Auth::routes(['verfiy' => true]);
-
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', [UserProfileController::class, 'index'])->name('home');
     Route::get('/profile', [UserProfileController::class, 'profile'])->name('user.profile');
