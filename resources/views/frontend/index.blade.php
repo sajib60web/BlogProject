@@ -23,74 +23,26 @@
                 </div>
                 <div class="col-lg-9 col-xxl-10">
                     <div id="category-slider-1" class="category-slider-1 initially-none">
-                        <div class="single-slide">
-                            <div class="category-box-layout1">
-                                <div class="figure-holder">
-                                    <a href="archive-layout1.html" class="link-wrap img-height-100"><img width="150" height="150" src="{{ asset('assets/frontend') }}/media/category/ctg1.webp" alt="Category"></a>
-                                </div>
-                                <div class="content-holder">
-                                    <div class="entry-category style-1 color-dark-1-fixed">
-                                        <ul>
-                                            <li>
-                                                <a href="archive-layout1.html">TECH</a>
-                                            </li>
-                                        </ul>
+
+                        @foreach ($treding_topic_posts as $treading_topic )
+                            <div class="single-slide">
+                                <div class="category-box-layout1">
+                                    <div class="figure-holder">
+                                        <a href="{{route('post.details',[$treading_topic->id,$treading_topic->title])}}" class="link-wrap img-height-100"><img width="150" height="150" src="{{ $treading_topic->image_url }} " alt="{{@$treading_topic->category->name}}"></a>
                                     </div>
-                                    <h3 class="entry-title h3-extra-small color-dark-1-fixed underline-animation"><a href="archive-layout1.html" class="link-wrap">Smarter Food 101 Tips For Health</a></h3>
+                                    <div class="content-holder">
+                                        <div class="entry-category style-1 color-dark-1-fixed">
+                                            <ul>
+                                                <li>
+                                                    <a href="{{route('category.posts',$treading_topic->category_id)}}">{{@$treading_topic->category->name}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="entry-title h3-extra-small color-dark-1-fixed underline-animation"><a href="archive-layout1.html" class="link-wrap">{{ \Str::limit(@$treading_topic->title, 50, ' ...') }}</a></h3>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="single-slide">
-                            <div class="category-box-layout1">
-                                <div class="figure-holder">
-                                    <a href="archive-layout1.html" class="link-wrap img-height-100"><img width="150" height="150" src="{{ asset('assets/frontend') }}/media/category/ctg2.webp" alt="Category"></a>
-                                </div>
-                                <div class="content-holder">
-                                    <div class="entry-category style-1 color-dark-1-fixed">
-                                        <ul>
-                                            <li>
-                                                <a href="archive-layout1.html">FASHION</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="entry-title h3-extra-small color-dark-1-fixed underline-animation"><a href="archive-layout1.html" class="link-wrap">Air Pods Pro With Wireless</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-slide">
-                            <div class="category-box-layout1">
-                                <div class="figure-holder">
-                                    <a href="archive-layout1.html" class="link-wrap img-height-100"><img width="150" height="150" src="{{ asset('assets/frontend') }}/media/category/ctg3.webp" alt="Category"></a>
-                                </div>
-                                <div class="content-holder">
-                                    <div class="entry-category style-1 color-dark-1-fixed">
-                                        <ul>
-                                            <li>
-                                                <a href="archive-layout1.html">FOOD</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="entry-title h3-extra-small color-dark-1-fixed underline-animation"><a href="archive-layout1.html" class="link-wrap">Millions Of Books Are Written</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-slide">
-                            <div class="category-box-layout1">
-                                <div class="figure-holder">
-                                    <a href="archive-layout1.html" class="link-wrap img-height-100"><img width="150" height="150" src="{{ asset('assets/frontend') }}/media/category/ctg11.webp" alt="Category"></a>
-                                </div>
-                                <div class="content-holder">
-                                    <div class="entry-category style-1 color-dark-1-fixed">
-                                        <ul>
-                                            <li>
-                                                <a href="archive-layout1.html">TRAVEL</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="entry-title h3-extra-small color-dark-1-fixed underline-animation"><a href="archive-layout1.html" class="link-wrap">The Science Behind Skin Care Products</a></h3>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -105,126 +57,70 @@
     <div class="container">
         <div class="row g-3">
             <div class="col-lg-7">
-                <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden">
-                    <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{ asset('assets/frontend') }}/media/blog/post1.webp');"></div>
-                    <div id="videoElement1" class="player" data-property="{
-                videoURL:'CHSnz0bCaUk',
-                containment:'#videoPlayer-1', 
-                showControls:true,
-                autoPlay:true, 
-                loop:false, 
-                mute:true, 
-                startAt:0, 
-                opacity:1, 
-                addRaster:true, 
-                quality:'default', 
-                opacity:1, 
-                showControls:false, 
-                optimizeDisplay:true,
-                anchor:'bottom, center'
-            }">
+                @foreach ($latest_posts->take(1) as $latestOne)
+                    <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden">
+                        <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{@$latestOne->image_url}}"></div>
+                        <div id="videoElement1" class="player" data-property="{
+                    videoURL:'{{@$latestOne->video_url}}',
+                    containment:'#videoPlayer-1',
+                    showControls:true,
+                    autoPlay:true,
+                    loop:false,
+                    mute:true,
+                    startAt:0,
+                    opacity:1,
+                    addRaster:true,
+                    quality:'default',
+                    opacity:1,
+                    showControls:false,
+                    optimizeDisplay:true,
+                    anchor:'bottom, center'
+                }">
+                        </div>
+                        <div class="content-holder">
+                            <h3 class="entry-title h3-large color-light-1-fixed underline-animation mb-0"><a href="{{route('post.details',[$latestOne->id,$latestOne->title])}}">{{@$latestOne->title}}</a></h3>
+                        </div>
                     </div>
-                    <div class="content-holder">
-                        <h3 class="entry-title h3-large color-light-1-fixed underline-animation mb-0"><a href="post-format-default.html">The Science Behind Skin-care Products Come A Long Way But There’s Still No</a></h3>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="col-lg-5">
                 <div class="position-relative">
                     <div id="post-slider-1" class="post-slider-1 gutter-6 initially-none">
-                        <div class="single-slide">
-                            <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default">
-                                <div class="figure-holder radius-default">
-                                    <a href="post-format-default.html" class="link-wrap img-height-100"><img width="635" height="365" src="{{ asset('assets/frontend') }}/media/blog/post2.webp" alt="Post"></a>
-                                </div>
-                                <div class="content-holder">
-                                    <div class="entry-category style-1 color-dark-1-fixed">
-                                        <ul>
+
+                        @foreach ($latest_posts as $latestPost)
+                            <div class="single-slide">
+                                <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default">
+                                    <div class="figure-holder radius-default">
+                                        <a href="{{route('post.details',[$latestPost->id,$latestPost->title])}}" class="link-wrap img-height-100"><img width="635" height="365" src="{{ @$latestPost->image_url}}" alt="Post"></a>
+                                    </div>
+                                    <div class="content-holder">
+                                        <div class="entry-category style-1 color-dark-1-fixed">
+                                            <ul>
+                                                <li>
+                                                    <a href="{{route('category.posts',@$latestPost->category_id)}}">{{@$latestPost->category->name}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[@$latestPost->id,@$latestPost->title])}}" class="link-wrap">{{\Str::limit(@$latestPost->title,60,' ...')}}</a></h3>
+                                        <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$latestPost->content), 250, ' ...') !!}</p>
+                                        <ul class="entry-meta color-dark-1-fixed">
+                                            <li class="post-author">
+                                                {{-- <a href="author.html"> --}}
+                                                    <img src="{{ $latestPost->user->image?? asset('default/user.webp') }}" alt="Author"/>{{@$latestPost->user->name}}
+                                                {{-- </a> --}}
+                                            </li>
                                             <li>
-                                                <a href="archive-layout1.html">TRAVEL</a>
+                                                <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
+                                            </li>
+                                            <li>
+                                                <i class="regular-eye"></i>{{@$latestPost->total_views}}
                                             </li>
                                         </ul>
                                     </div>
-                                    <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Underwater Exercise Is Used Weak Of Muscles Thats Good</a></h3>
-                                    <p class="entry-description color-dark-1-fixed">In 2028 schools will indeed sport fabulous gadgets, devices, and interfaces of learning. We are provide oue every day life style easily.</p>
-                                    <ul class="entry-meta color-dark-1-fixed">
-                                        <li class="post-author">
-                                            <a href="author.html">
-                                                <img src="{{ asset('assets/frontend') }}/media/blog/profile1.webp" alt="Author">John Philipe
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="regular-clock-circle"></i>3 min read
-                                        </li>
-                                        <li>
-                                            <i class="regular-eye"></i>4k
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
-                        </div>
-                        <div class="single-slide">
-                            <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-scandal box-shadow-large shadow-style-1 transition-default">
-                                <div class="figure-holder radius-default">
-                                    <a href="post-format-default.html" class="link-wrap img-height-100"><img width="635" height="365" src="{{ asset('assets/frontend') }}/media/blog/post92.webp" alt="Post"></a>
-                                </div>
-                                <div class="content-holder">
-                                    <div class="entry-category style-1 color-dark-1-fixed">
-                                        <ul>
-                                            <li>
-                                                <a href="archive-layout1.html">SPORTS</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">2 Years After The Moon Landing: How Close From You</a></h3>
-                                    <p class="entry-description color-dark-1-fixed">In 2028 schools will indeed sport fabulous gadgets, devices, and interfaces of learning. We are provide oue every day life style easily.</p>
-                                    <ul class="entry-meta color-dark-1-fixed">
-                                        <li class="post-author">
-                                            <a href="author.html">
-                                                <img src="{{ asset('assets/frontend') }}/media/blog/profile2.webp" alt="Author">Ashley Graham
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="regular-clock-circle"></i>5 min read
-                                        </li>
-                                        <li>
-                                            <i class="regular-eye"></i>8k
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-slide">
-                            <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-mimosa box-shadow-large shadow-style-1 transition-default">
-                                <div class="figure-holder radius-default">
-                                    <a href="post-format-default.html" class="link-wrap img-height-100"><img width="635" height="365" src="{{ asset('assets/frontend') }}/media/blog/post108.webp" alt="Post"></a>
-                                </div>
-                                <div class="content-holder">
-                                    <div class="entry-category style-1 color-dark-1-fixed">
-                                        <ul>
-                                            <li>
-                                                <a href="archive-layout1.html">FASHION</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">The Science Behind Skin Care Products Has Come On Monday</a></h3>
-                                    <p class="entry-description color-dark-1-fixed">In 2028 schools will indeed sport fabulous gadgets, devices, and interfaces of learning. We are provide oue every day life style easily.</p>
-                                    <ul class="entry-meta color-dark-1-fixed">
-                                        <li class="post-author">
-                                            <a href="author.html">
-                                                <img src="{{ asset('assets/frontend') }}/media/blog/profile2.webp" alt="Author">Sergio Pliego
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="regular-clock-circle"></i>9 min read
-                                        </li>
-                                        <li>
-                                            <i class="regular-eye"></i>8k
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                     <ul class="slider-navigation-layout1 color-light-1-fixed position-layout1 nav-size-medium item-gap-5">
                         <li id="post-prev-1" class="prev"><i class="regular-arrow-left"></i></li>
@@ -243,56 +139,21 @@
     <div class="container">
         <div class="position-relative">
             <div id="post-slider-2" class="post-slider-2 gutter-30 initially-none">
-                <div class="single-slide">
-                    <div class="post-box-layout3 box-border-dark-1 radius-default transition-default">
-                        <div class="figure-holder radius-medium">
-                            <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="540" height="540" src="{{ asset('assets/frontend') }}/media/blog/post3.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <h3 class="entry-title h3-medium color-light-1-fixed underline-animation"><a href="post-format-default.html">Tesla’s Cooking Up A New Way To Wire</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-slide">
-                    <div class="post-box-layout3 box-border-dark-1 radius-default transition-default">
-                        <div class="figure-holder radius-medium">
-                            <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="540" height="540" src="{{ asset('assets/frontend') }}/media/blog/post4.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <h3 class="entry-title h3-medium color-light-1-fixed underline-animation"><a href="post-format-default.html">2 Years After The Moon Landing: How Close</a></h3>
+
+                @foreach ($slider_posts as $sliderPost)
+                    
+                    <div class="single-slide">
+                        <div class="post-box-layout3 box-border-dark-1 radius-default transition-default">
+                            <div class="figure-holder radius-medium">
+                                <a href="{{route('post.details',[$sliderPost->id,$sliderPost->title])}}" class="link-wrap figure-overlay img-height-100"><img width="540" height="540" src="{{ @$sliderPost->image_url}}" alt="Post"></a>
+                            </div>
+                            <div class="content-holder">
+                                <h3 class="entry-title h3-medium color-light-1-fixed underline-animation"><a href="{{route('post.details',[$sliderPost->id,$sliderPost->title])}}">{{\Str::limit($sliderPost->title,60,'...')}}</a></h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="single-slide">
-                    <div class="post-box-layout3 box-border-dark-1 radius-default transition-default">
-                        <div class="figure-holder radius-medium">
-                            <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="540" height="540" src="{{ asset('assets/frontend') }}/media/blog/post5.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <h3 class="entry-title h3-medium color-light-1-fixed underline-animation"><a href="post-format-default.html">Millions Of Manuscripts Are Written</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-slide">
-                    <div class="post-box-layout3 box-border-dark-1 radius-default transition-default">
-                        <div class="figure-holder radius-medium">
-                            <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="540" height="540" src="{{ asset('assets/frontend') }}/media/blog/post6.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <h3 class="entry-title h3-medium color-light-1-fixed underline-animation"><a href="post-format-default.html">1 Year After The Moon Landing: How Close</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-slide">
-                    <div class="post-box-layout3 box-border-dark-1 radius-default transition-default">
-                        <div class="figure-holder radius-medium">
-                            <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="540" height="540" src="{{ asset('assets/frontend') }}/media/blog/post61.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <h3 class="entry-title h3-medium color-light-1-fixed underline-animation"><a href="post-format-default.html">2 Years After The Moon Landing: How Close</a></h3>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+      
             </div>
             <ul class="slider-navigation-layout1 color-light-1 position-layout2">
                 <li id="post-prev-2" class="prev"><i class="regular-arrow-left"></i></li>
@@ -312,105 +173,42 @@
             <a href="archive-layout1.html" class="link-wrap">Go to Stories <span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
         </div>
         <div class="row g-3">
-            <div class="col-lg-4">
-                <div class="post-box-layout4 box-border-dark-1 radius-default padding-20 bg-color-old-lace box-shadow-large shadow-style-2 transition-default">
-                    <div class="figure-holder radius-default">
-                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="660" height="470" src="{{ asset('assets/frontend') }}/media/blog/post7.webp" alt="Post"></a>
-                    </div>
-                    <div class="content-holder">
-                        <div class="entry-category style-2 color-dark-1-fixed">
-                            <ul>
+            
+            @foreach ($top_stories_posts as $topStoriesPost)
+                <div class="col-lg-4">
+                    <div class="post-box-layout4 box-border-dark-1 radius-default padding-20  @if($loop->index == 0) {{$color_classes[3]}} @else {{$color_classes[$loop->index]}} @endif  box-shadow-large shadow-style-2 transition-default">
+                        <div class="figure-holder radius-default">
+                            <a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->title])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{ $topStoriesPost->image_url }}" alt="Post"></a>
+                        </div>
+                        <div class="content-holder">
+                            <div class="entry-category style-2 color-dark-1-fixed">
+                                <ul>
+                                    <li>
+                                        <a href="{{route('category.posts',$topStoriesPost->id)}}">{{@$topStoriesPost->category->name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->title])}}" class="link-wrap">{{\Str::limit($topStoriesPost->title,60,'...')}}</a></h3>
+                            <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$latestPost->content), 150, ' ...') !!}</p>
+                            <ul class="entry-meta color-dark-1-fixed">
+                                <li class="post-author">
+                                    
+                                        <img  src="{{ $latestPost->user->image?? asset('default/user.webp') }}"   alt="Author">
+                                        {{@$latestPost->user->name}}
+                                     
+                                </li>
                                 <li>
-                                    <a href="archive-layout1.html">TRAVEL</a>
+                                    <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
+                                </li>
+                                <li>
+                                    <i class="regular-eye"></i>{{@$latestPost->total_views}}
                                 </li>
                             </ul>
+                            <a href="{{route('post.details',[$latestPost->id,$latestPost->title])}}" class="btn-text color-dark-1-fixed">See Details<span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
                         </div>
-                        <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">The Science Behind Skin Care Products Has Come</a></h3>
-                        <p class="entry-description color-dark-1-fixed">In 2028 schools will indeed sport fabulous gadgets, devices, and interfaces of learning.</p>
-                        <ul class="entry-meta color-dark-1-fixed">
-                            <li class="post-author">
-                                <a href="author.html">
-                                    <img src="{{ asset('assets/frontend') }}/media/blog/profile3.webp" alt="Author">
-                                    Kristin Watson
-                                </a>
-                            </li>
-                            <li>
-                                <i class="regular-clock-circle"></i>9 min read
-                            </li>
-                            <li>
-                                <i class="regular-eye"></i>1k
-                            </li>
-                        </ul>
-                        <a href="post-format-default.html" class="btn-text color-dark-1-fixed">See Details<span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="post-box-layout4 box-border-dark-1 radius-default padding-20 bg-color-mimosa box-shadow-large shadow-style-2 transition-default">
-                    <div class="figure-holder radius-default">
-                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="660" height="470" src="{{ asset('assets/frontend') }}/media/blog/post8.webp" alt="Post"></a>
-                    </div>
-                    <div class="content-holder">
-                        <div class="entry-category style-2 color-dark-1-fixed">
-                            <ul>
-                                <li>
-                                    <a href="archive-layout1.html">SPORTS</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Millions Of Manuscripts Are Written By You</a></h3>
-                        <p class="entry-description color-dark-1-fixed">In 2028 schools will indeed sport fabulous gadgets, devices, and interfaces of learning.</p>
-                        <ul class="entry-meta color-dark-1-fixed">
-                            <li class="post-author">
-                                <a href="author.html">
-                                    <img src="{{ asset('assets/frontend') }}/media/blog/profile4.webp" alt="Author">
-                                    Jenny Wilson
-                                </a>
-                            </li>
-                            <li>
-                                <i class="regular-clock-circle"></i>7 min read
-                            </li>
-                            <li>
-                                <i class="regular-eye"></i>5k
-                            </li>
-                        </ul>
-                        <a href="post-format-default.html" class="btn-text color-dark-1-fixed">See Details<span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="post-box-layout4 box-border-dark-1 radius-default padding-20 bg-color-selago box-shadow-large shadow-style-2 transition-default">
-                    <div class="figure-holder radius-default">
-                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="660" height="470" src="{{ asset('assets/frontend') }}/media/blog/post9.webp" alt="Post"></a>
-                    </div>
-                    <div class="content-holder">
-                        <div class="entry-category style-2 color-dark-1-fixed">
-                            <ul>
-                                <li>
-                                    <a href="archive-layout1.html">FOOD</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Underwater Exercise Is Used Strengthen Weak Muscles</a></h3>
-                        <p class="entry-description color-dark-1-fixed">In 2028 schools will indeed sport fabulous gadgets, devices, and interfaces of learning.</p>
-                        <ul class="entry-meta color-dark-1-fixed">
-                            <li class="post-author">
-                                <a href="author.html">
-                                    <img src="{{ asset('assets/frontend') }}/media/blog/profile5.webp" alt="Author">
-                                    Esther Howard
-                                </a>
-                            </li>
-                            <li>
-                                <i class="regular-clock-circle"></i>1 min read
-                            </li>
-                            <li>
-                                <i class="regular-eye"></i>7k
-                            </li>
-                        </ul>
-                        <a href="post-format-default.html" class="btn-text color-dark-1-fixed">See Details<span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
-                    </div>
-                </div>
-            </div>
+                </div> 
+            @endforeach
         </div>
     </div>
 </section>
@@ -418,7 +216,7 @@
 <!--=====================================-->
 <!--=         Banner Area Start         =-->
 <!--=====================================-->
-<section class="banner-wrap-layout-1 space-top-60 bg-color-light-1 transition-default">
+{{-- <section class="banner-wrap-layout-1 space-top-60 bg-color-light-1 transition-default">
     <div class="container">
         <div class="banner-box-layout1 box-border-dark-1 radius-default">
             <div class="figure-holder radius-medium">
@@ -426,7 +224,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 
 <!--=====================================-->
@@ -441,157 +239,104 @@
             <div class="col-lg-8">
                 <div class="row g-3">
                     <div class="col-lg-12">
-                        <div class="post-box-layout5 box-border-dark-1 radius-default">
-                            <div class="figure-holder radius-medium">
-                                <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="810" height="558" src="{{ asset('assets/frontend') }}/media/blog/post10.webp" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div class="entry-category style-2 color-dark-1-fixed">
-                                    <ul>
+                        @foreach ($latest_stories_posts->take(1) as $latest_stories_single_post)    
+                            <div class="post-box-layout5 box-border-dark-1 radius-default">
+                                <div class="figure-holder radius-medium">
+                                    <a href="{{route('post.details',[$latest_stories_single_post->id,$latest_stories_single_post->title])}}" class="link-wrap figure-overlay img-height-100"><img width="810" height="558" src="{{ @$latest_stories_single_post->image_url }}" alt="Post"></a>
+                                </div>
+                                <div class="content-holder">
+                                    <div class="entry-category style-2 color-dark-1-fixed">
+                                        <ul>
+                                            <li>
+                                                <a href="{{route('category.posts',$latest_stories_single_post->category_id)}}">{{@$latest_stories_single_post->category->name}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="entry-title h3-large color-light-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_single_post->id,$latest_stories_single_post->title])}}" class="link-wrap">{{\Str::limit($latest_stories_single_post->title,60,'...')}}</a></h3>
+                                    <ul class="entry-meta color-light-1-fixed">
+                                        <li class="post-author">
+                                            {{-- <a href="author.html"> --}}
+                                                <img  src="{{ $latestPost->user->image?? asset('default/user.webp') }}"   alt="Author">
+                                                {{@$latestPost->user->name}}
+                                            {{-- </a> --}}
+                                        </li>
                                         <li>
-                                            <a href="archive-layout1.html">TECH</a>
+                                            <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
+                                        </li>
+                                        <li>
+                                            <i class="regular-eye"></i>{{@$latestPost->total_views}}
                                         </li>
                                     </ul>
                                 </div>
-                                <h3 class="entry-title h3-large color-light-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">The Science Behind Skin Care Products Has Come From Other Country</a></h3>
-                                <ul class="entry-meta color-light-1-fixed">
-                                    <li class="post-author">
-                                        <a href="author.html">
-                                            <img src="{{ asset('assets/frontend') }}/media/blog/profile2.webp" alt="Author">
-                                            John Philipe
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <i class="regular-clock-circle"></i>7 min read
-                                    </li>
-                                    <li>
-                                        <i class="regular-eye"></i>9k
-                                    </li>
-                                </ul>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
+                    @foreach ($latest_stories_posts->skip(1)->take(2) as $latest_stories_two_post)    
+
                     <div class="col-lg-6">
-                        <div class="post-box-layout5 box-border-dark-1 radius-default padding-20 bg-color-selago box-shadow-large shadow-style-2 transition-default">
+                        <div class="post-box-layout5 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) {{$color_classes[2]}} @else {{$color_classes[3]}} @endif box-shadow-large shadow-style-2 transition-default">
                             <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="660" height="470" src="{{ asset('assets/frontend') }}/media/blog/post9.webp" alt="Post"></a>
+                                <a href="{{route('post.details',[$latest_stories_two_post->id,$latest_stories_two_post->title]) }}" class="link-wrap figure-overlay img-height-100"><img width="660" height="470" src="{{ $latest_stories_two_post->image_url }}" alt="Post"></a>
                             </div>
                             <div class="content-holder">
                                 <div class="entry-category style-3 color-light-1-fixed">
                                     <ul>
                                         <li>
-                                            <a href="archive-layout1.html">FOOD</a>
+                                            <a href="{{route('category.posts',$latest_stories_two_post->category_id)}}">{{$latest_stories_two_post->category->name}}</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <h3 class="entry-title h3-small color-light-1-fixed underline-animation mb-0"><a href="post-format-default.html" class="link-wrap">Underwater Exercise Is Used Strengthen Weak Muscles</a></h3>
+                                <h3 class="entry-title h3-small color-light-1-fixed underline-animation mb-0"><a href="{{route('post.details',[$latest_stories_two_post->id,$latest_stories_two_post->title])}}" class="link-wrap">{{\Str::limit($latest_stories_two_post->title,60,'...')}}</a></h3>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="post-box-layout5 box-border-dark-1 radius-default padding-20 bg-color-old-lace box-shadow-large shadow-style-2 transition-default">
-                            <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="660" height="470" src="{{ asset('assets/frontend') }}/media/blog/post11.webp" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div class="entry-category style-3 color-light-1-fixed">
-                                    <ul>
-                                        <li>
-                                            <a href="archive-layout1.html">FASHION</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="entry-title h3-small color-light-1-fixed underline-animation mb-0"><a href="post-format-default.html" class="link-wrap">The Science Behind Skin Care Products Has Come</a></h3>
-                            </div>
-                        </div>
-                    </div>
+                    </div> 
+                    @endforeach
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="post-box-layout7 box-border-dark-1 radius-default padding-20 bg-color-scandal">
-                    <div class="figure-holder radius-default">
-                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="660" height="470" src="{{ asset('assets/frontend') }}/media/blog/post12.webp" alt="Post"></a>
-                    </div>
-                    <div class="content-holder">
-                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Top 5 Travel Place You Have Visit</a></h3>
-                        <ul class="entry-meta color-dark-1-fixed">
-                            <li class="post-author">
-                                <a href="author.html">
-                                    Alisa Michaels
-                                </a>
-                            </li>
-                            <li>
-                                <i class="regular-clock-circle"></i>9 min read
-                            </li>
-                            <li>
-                                <i class="regular-eye"></i>4k
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="content-holder">
-                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Documents And Witness Reveal That Also Visited Around The World</a></h3>
-                        <ul class="entry-meta color-dark-1-fixed">
-                            <li class="post-author">
-                                <a href="author.html">
-                                    Ashley Graham
-                                </a>
-                            </li>
-                            <li>
-                                <i class="regular-clock-circle"></i>3 min read
-                            </li>
-                            <li>
-                                <i class="regular-eye"></i>3k
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="content-holder">
-                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">The Classic Foundation Is Vanishing</a></h3>
-                        <ul class="entry-meta color-dark-1-fixed">
-                            <li class="post-author">
-                                <a href="author.html">
-                                    Sergio Pliego
-                                </a>
-                            </li>
-                            <li>
-                                <i class="regular-clock-circle"></i>1 min read
-                            </li>
-                            <li>
-                                <i class="regular-eye"></i>3k
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="content-holder">
-                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Smarter Food Choices 101 Tips For Busy Women</a></h3>
-                        <ul class="entry-meta color-dark-1-fixed">
-                            <li class="post-author">
-                                <a href="author.html">
-                                    Kristin Watson
-                                </a>
-                            </li>
-                            <li>
-                                <i class="regular-clock-circle"></i>5 min read
-                            </li>
-                            <li>
-                                <i class="regular-eye"></i>12k
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="content-holder">
-                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Documents And Witness Reveal That Also</a></h3>
-                        <ul class="entry-meta color-dark-1-fixed">
-                            <li class="post-author">
-                                <a href="author.html">
-                                    Jenny Wilson
-                                </a>
-                            </li>
-                            <li>
-                                <i class="regular-clock-circle"></i>6 min read
-                            </li>
-                            <li>
-                                <i class="regular-eye"></i>8k
-                            </li>
-                        </ul>
-                    </div>
+
+                    @foreach ($latest_stories_posts->skip(3) as $latest_stories_post) 
+                        @if ($loop->index == 0) 
+                        <div class="figure-holder radius-default">
+                            <a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->title])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{$latest_stories_post->image_url}}" alt="Post"></a>
+                        </div>
+                        <div class="content-holder">
+                            <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->title])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
+                            <ul class="entry-meta color-dark-1-fixed">
+                                <li class="post-author">
+                                    {{-- <a href="author.html"> --}}
+                                       {{@$latest_stories_post->user->name}}
+                                    {{-- </a> --}}
+                                </li>
+                                <li>
+                                    <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
+                                </li>
+                                <li>
+                                    <i class="regular-eye"></i>{{@$latestPost->total_views}}
+                                </li>
+                            </ul>
+                        </div> 
+                        @else 
+                            <div class="content-holder">
+                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->title])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
+                                <ul class="entry-meta color-dark-1-fixed">
+                                    <li class="post-author">
+                                        {{-- <a href="author.html"> --}}
+                                            {{@$latest_stories_post->user->name}}
+                                        {{-- </a> --}}
+                                    </li>
+                                    <li>
+                                        <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
+                                    </li>
+                                    <li>
+                                        <i class="regular-eye"></i>{{@$latestPost->total_views}}
+                                    </li>
+                                </ul>
+                            </div>
+                        @endif
+                    @endforeach
+                  
                 </div>
             </div>
         </div>
@@ -607,10 +352,12 @@
             <h2 class="title">Top Videos</h2>
         </div>
         <div class="padding-40 pxy-md-30 pxy-sm-20 bg-color-mimosa box-border-dark-1 radius-default">
-            <div class="figure-holder position-relative radius-default">
-                <a href="https://www.youtube.com/watch?v=1iIZeIy7TqM" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>
-                <a href="post-format-default.html" class="link-wrap img-height-100"><img width="1150" height="660" src="{{ asset('assets/frontend') }}/media/blog/post13.webp" alt="Post"></a>
-            </div>
+            @if ($top_video_post)
+                <div class="figure-holder position-relative radius-default">
+                    <a href="{{@$top_video_post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>
+                    <a href="{{route('post.details',[$top_video_post->id,$top_video_post->title])}}" class="link-wrap img-height-100"><img width="1150" height="660" src="{{$top_video_post->image_url}}" alt="Post"></a>
+                </div>
+            @endif
             <div class="multi-posts-layout1">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
@@ -623,217 +370,64 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="one">
                         <div class="row g-3 row-cols-1 row-cols-lg-2 row-cols-xl-3">
-                            <div class="col">
-                                <div class="post-box-layout8 radius-default">
-                                    <div class="figure-holder radius-default">
-                                        <a href="https://www.youtube.com/watch?v=1iIZeIy7TqM" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post14.webp" alt="Post"></a>
-                                    </div>
-                                    <div class="content-holder">
-                                        <div class="entry-category style-3 color-dark-1-fixed">
-                                            <ul>
+
+                            @foreach ($top_video_recc_posts as $recommended_post)    
+                                <div class="col">
+                                    <div class="post-box-layout8 radius-default">
+                                        <div class="figure-holder radius-default">
+                                            <a href="{{$recommended_post->video_url}}" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
+                                            <a href="{{route('post.details',[$recommended_post->id,$recommended_post->title])}}" class="link-wrap img-height-100"><img width="140" height="140" src="{{ $recommended_post->image_url }}" alt="Post"></a>
+                                        </div>
+                                        <div class="content-holder">
+                                            <div class="entry-category style-3 color-dark-1-fixed">
+                                                <ul>
+                                                    <li>
+                                                        <a href="{{route('category.posts',$recommended_post->category_id)}}">{{@$recommended_post->category->name}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$recommended_post->id,$recommended_post->title])}}" class="link-wrap">{{\Str::limit($recommended_post->title,60,'...')}}</a></h3>
+                                            <ul class="entry-meta color-dark-1-fixed">
                                                 <li>
-                                                    <a href="archive-layout1.html">TRAVEL</a>
+                                                    <i class="regular-calendar"></i>{{\Carbon\Carbon::parse($recommended_post->crated_at)->format('M,d Y')}}
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Millions Of Manuscripts Are</a></h3>
-                                        <ul class="entry-meta color-dark-1-fixed">
-                                            <li>
-                                                <i class="regular-calendar"></i>August 29, 2023
-                                            </li>
-                                        </ul>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="post-box-layout8 radius-default">
-                                    <div class="figure-holder radius-default">
-                                        <a href="https://www.youtube.com/watch?v=1iIZeIy7TqM" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post15.webp" alt="Post"></a>
-                                    </div>
-                                    <div class="content-holder">
-                                        <div class="entry-category style-3 color-dark-1-fixed">
-                                            <ul>
-                                                <li>
-                                                    <a href="archive-layout1.html">FOOD</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Smarter Food Choices 101 Tips</a></h3>
-                                        <ul class="entry-meta color-dark-1-fixed">
-                                            <li>
-                                                <i class="regular-calendar"></i>August 29, 2023
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="post-box-layout8 radius-default">
-                                    <div class="figure-holder radius-default">
-                                        <a href="https://www.youtube.com/watch?v=1iIZeIy7TqM" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post16.webp" alt="Post"></a>
-                                    </div>
-                                    <div class="content-holder">
-                                        <div class="entry-category style-3 color-dark-1-fixed">
-                                            <ul>
-                                                <li>
-                                                    <a href="archive-layout1.html">FASHION</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Traveling Through Hyper</a></h3>
-                                        <ul class="entry-meta color-dark-1-fixed">
-                                            <li>
-                                                <i class="regular-calendar"></i>August 29, 2023
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                                </div> 
+                            @endforeach
+                             
                         </div>
                     </div>
                     <div class="tab-pane fade" id="two">
                         <div class="row g-4 row-cols-1 row-cols-lg-2 row-cols-xl-3">
+                           
+                            @foreach ($top_video_latest_posts as $top_video_latest_post)    
                             <div class="col">
                                 <div class="post-box-layout8 radius-default">
                                     <div class="figure-holder radius-default">
-                                        <a href="https://www.youtube.com/watch?v=1iIZeIy7TqM" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post14.webp" alt="Post"></a>
+                                        <a href="{{$top_video_latest_post->video_url}}" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
+                                        <a href="{{route('post.details',[$top_video_latest_post->id,$top_video_latest_post->title])}}" class="link-wrap img-height-100"><img width="140" height="140" src="{{ $top_video_latest_post->image_url }}" alt="Post"></a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-3 color-dark-1-fixed">
                                             <ul>
                                                 <li>
-                                                    <a href="archive-layout1.html">CITY LIFE</a>
+                                                    <a href="{{route('category.posts',$top_video_latest_post->category_id)}}">{{@$top_video_latest_post->category->name}}</a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Smarter Food Choices 101 Tips</a></h3>
+                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$top_video_latest_post->id,$top_video_latest_post->title])}}" class="link-wrap">{{\Str::limit($top_video_latest_post->title,60,'...')}}</a></h3>
                                         <ul class="entry-meta color-dark-1-fixed">
                                             <li>
-                                                <i class="regular-calendar"></i>August 29, 2023
+                                                <i class="regular-calendar"></i>{{\Carbon\Carbon::parse($top_video_latest_post->crated_at)->format('M,d Y')}}
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="post-box-layout8 radius-default">
-                                    <div class="figure-holder radius-default">
-                                        <a href="https://www.youtube.com/watch?v=1iIZeIy7TqM" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post15.webp" alt="Post"></a>
-                                    </div>
-                                    <div class="content-holder">
-                                        <div class="entry-category style-3 color-dark-1-fixed">
-                                            <ul>
-                                                <li>
-                                                    <a href="archive-layout1.html">TECH</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Genghis Khan’s Guide To Trave</a></h3>
-                                        <ul class="entry-meta color-dark-1-fixed">
-                                            <li>
-                                                <i class="regular-calendar"></i>1 min read
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="post-box-layout8 radius-default">
-                                    <div class="figure-holder radius-default">
-                                        <a href="https://www.youtube.com/watch?v=1iIZeIy7TqM" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post16.webp" alt="Post"></a>
-                                    </div>
-                                    <div class="content-holder">
-                                        <div class="entry-category style-3 color-dark-1-fixed">
-                                            <ul>
-                                                <li>
-                                                    <a href="archive-layout1.html">HEALTH</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Get Over 500 Name Ideas For Your Travel</a></h3>
-                                        <ul class="entry-meta color-dark-1-fixed">
-                                            <li>
-                                                <i class="regular-calendar"></i>9 min read
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="post-box-layout8 radius-default">
-                                    <div class="figure-holder radius-default">
-                                        <a href="https://www.youtube.com/watch?v=1iIZeIy7TqM" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post15.webp" alt="Post"></a>
-                                    </div>
-                                    <div class="content-holder">
-                                        <div class="entry-category style-3 color-dark-1-fixed">
-                                            <ul>
-                                                <li>
-                                                    <a href="archive-layout1.html">FOOD</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Reality Hosting, The Use Computer</a></h3>
-                                        <ul class="entry-meta color-dark-1-fixed">
-                                            <li>
-                                                <i class="regular-calendar"></i>8 min read
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="post-box-layout8 radius-default">
-                                    <div class="figure-holder radius-default">
-                                        <a href="https://www.youtube.com/watch?v=1iIZeIy7TqM" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post16.webp" alt="Post"></a>
-                                    </div>
-                                    <div class="content-holder">
-                                        <div class="entry-category style-3 color-dark-1-fixed">
-                                            <ul>
-                                                <li>
-                                                    <a href="archive-layout1.html">CLOTH</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Air Pods Pro With Wireless Charging</a></h3>
-                                        <ul class="entry-meta color-dark-1-fixed">
-                                            <li>
-                                                <i class="regular-calendar"></i>5 min read
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="post-box-layout8 radius-default">
-                                    <div class="figure-holder radius-default">
-                                        <a href="https://www.youtube.com/watch?v=1iIZeIy7TqM" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                        <a href="post-format-default.html" class="link-wrap img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post14.webp" alt="Post"></a>
-                                    </div>
-                                    <div class="content-holder">
-                                        <div class="entry-category style-3 color-dark-1-fixed">
-                                            <ul>
-                                                <li>
-                                                    <a href="archive-layout1.html">MEDICAL</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Evangelical Christians Are Sizing</a></h3>
-                                        <ul class="entry-meta color-dark-1-fixed">
-                                            <li>
-                                                <i class="regular-calendar"></i>7 min read
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            </div> 
+                        @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -853,210 +447,44 @@
         <div class="row sticky-coloum-wrap">
             <div class="col-lg-8 col-12 sticky-coloum-item">
                 <div class="row g-3 pe-lg-4">
-                    <div class="col-12">
-                        <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation bg-color-scandal box-shadow-large shadow-style-2 transition-default">
-                            <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap img-height-100"><img width="500" height="500" src="{{ asset('assets/frontend') }}/media/blog/post17.webp" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div>
-                                    <div class="entry-category style-2 color-dark-1-fixed">
-                                        <ul>
+
+                    @foreach ($recent_article_posts as $recentArticlePost)         
+                        <div class="col-12">
+                            <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation {{$color_classes[$loop->index]}} box-shadow-large shadow-style-2 transition-default">
+                                <div class="figure-holder radius-default">
+                                    <a href="{{route('post.details',[$recentArticlePost->id,$recentArticlePost->title])}}" class="link-wrap img-height-100"><img width="500" height="500" src="{{$recentArticlePost->image_url}}" alt="Post"></a>
+                                </div>
+                                <div class="content-holder">
+                                    <div>
+                                        <div class="entry-category style-2 color-dark-1-fixed">
+                                            <ul>
+                                                <li>
+                                                    <a href="{{route('category.posts',$recentArticlePost->category_id)}}">{{@$recentArticlePost->category->name}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$recentArticlePost->id,$recentArticlePost->title])}}" class="link-wrap">{{\Str::limit($recentArticlePost->title,60,'...')}}</a></h3>
+                                        <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$recentArticlePost->content), 250, ' ...') !!}</p>
+                                        <ul class="entry-meta color-dark-1-fixed">
+                                            <li class="post-author">
+                                                <a href="author.html">
+                                                    <img  src="{{ $recentArticlePost->user->image?? asset('default/user.webp') }}"  alt="Author">
+                                                    {{@$recentArticlePost->user->name}}
+                                                </a>
+                                            </li>
                                             <li>
-                                                <a href="archive-layout1.html">TECH</a>
+                                                <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($recentArticlePost->created_at)->diffForHumans()}}
+                                            </li>
+                                            <li>
+                                                <i class="regular-eye"></i>{{$recentArticlePost->total_views}}
                                             </li>
                                         </ul>
                                     </div>
-                                    <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">The Science Behind Skin Care Products Has Come</a></h3>
-                                    <p class="entry-description color-dark-1-fixed">Nam eget lorem mattis, consequat felis quis, luctus augue. Aenean ac iaculis enim.</p>
-                                    <ul class="entry-meta color-dark-1-fixed">
-                                        <li class="post-author">
-                                            <a href="author.html">
-                                                <img src="{{ asset('assets/frontend') }}/media/blog/profile1.webp" alt="Author">
-                                                Esther Howard
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="regular-clock-circle"></i>3 min read
-                                        </li>
-                                        <li>
-                                            <i class="regular-eye"></i>4k
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation bg-color-mimosa box-shadow-large shadow-style-2 transition-default">
-                            <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap img-height-100"><img width="500" height="500" src="{{ asset('assets/frontend') }}/media/blog/post18.webp" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div>
-                                    <div class="entry-category style-2 color-dark-1-fixed">
-                                        <ul>
-                                            <li>
-                                                <a href="archive-layout1.html">EDUCATION</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Millions Of Manuscripts Are Written Aenean Ac Iaculis</a></h3>
-                                    <p class="entry-description color-dark-1-fixed">Nam eget lorem mattis, consequat felis quis, luctus augue. Aenean ac iaculis enim.</p>
-                                    <ul class="entry-meta color-dark-1-fixed">
-                                        <li class="post-author">
-                                            <a href="author.html">
-                                                <img src="{{ asset('assets/frontend') }}/media/blog/profile2.webp" alt="Author">
-                                                John Philipe
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="regular-clock-circle"></i>4 min read
-                                        </li>
-                                        <li>
-                                            <i class="regular-eye"></i>2k
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation bg-color-selago box-shadow-large shadow-style-2 transition-default">
-                            <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap img-height-100"><img width="500" height="500" src="{{ asset('assets/frontend') }}/media/blog/post19.webp" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div>
-                                    <div class="entry-category style-2 color-dark-1-fixed">
-                                        <ul>
-                                            <li>
-                                                <a href="archive-layout1.html">HISTORY</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Underwater Exercise Is Used Strengthen Weak Muscles</a></h3>
-                                    <p class="entry-description color-dark-1-fixed">Nam eget lorem mattis, consequat felis quis, luctus augue. Aenean ac iaculis enim.</p>
-                                    <ul class="entry-meta color-dark-1-fixed">
-                                        <li class="post-author">
-                                            <a href="author.html">
-                                                <img src="{{ asset('assets/frontend') }}/media/blog/profile3.webp" alt="Author">
-                                                Alisa Michaels
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="regular-clock-circle"></i>6 min read
-                                        </li>
-                                        <li>
-                                            <i class="regular-eye"></i>7k
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation bg-color-old-lace box-shadow-large shadow-style-2 transition-default">
-                            <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap img-height-100"><img width="500" height="500" src="{{ asset('assets/frontend') }}/media/blog/post20.webp" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div>
-                                    <div class="entry-category style-2 color-dark-1-fixed">
-                                        <ul>
-                                            <li>
-                                                <a href="archive-layout1.html">FOOD</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Smarter Food Choices 101 Tips For Busy Women</a></h3>
-                                    <p class="entry-description color-dark-1-fixed">Nam eget lorem mattis, consequat felis quis, luctus augue. Aenean ac iaculis enim.</p>
-                                    <ul class="entry-meta color-dark-1-fixed">
-                                        <li class="post-author">
-                                            <a href="author.html">
-                                                <img src="{{ asset('assets/frontend') }}/media/blog/profile4.webp" alt="Author">
-                                                Ashley Graham
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="regular-clock-circle"></i>9 min read
-                                        </li>
-                                        <li>
-                                            <i class="regular-eye"></i>1k
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation bg-color-scandal box-shadow-large shadow-style-2 transition-default">
-                            <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap img-height-100"><img width="500" height="500" src="{{ asset('assets/frontend') }}/media/blog/post21.webp" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div>
-                                    <div class="entry-category style-2 color-dark-1-fixed">
-                                        <ul>
-                                            <li>
-                                                <a href="archive-layout1.html">FASHION</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Virtual Reality (VR), The Use Computer Modeling</a></h3>
-                                    <p class="entry-description color-dark-1-fixed">Nam eget lorem mattis, consequat felis quis, luctus augue. Aenean ac iaculis enim.</p>
-                                    <ul class="entry-meta color-dark-1-fixed">
-                                        <li class="post-author">
-                                            <a href="author.html">
-                                                <img src="{{ asset('assets/frontend') }}/media/blog/profile5.webp" alt="Author">
-                                                Sergio Pliego
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="regular-clock-circle"></i>1 min read
-                                        </li>
-                                        <li>
-                                            <i class="regular-eye"></i>3k
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation bg-color-mimosa box-shadow-large shadow-style-2 transition-default">
-                            <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap img-height-100"><img width="500" height="500" src="{{ asset('assets/frontend') }}/media/blog/post22.webp" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div>
-                                    <div class="entry-category style-2 color-dark-1-fixed">
-                                        <ul>
-                                            <li>
-                                                <a href="archive-layout1.html">WORLD</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Reality Hosting, The Use Computer Modeling</a></h3>
-                                    <p class="entry-description color-dark-1-fixed">Nam eget lorem mattis, consequat felis quis, luctus augue. Aenean ac iaculis enim.</p>
-                                    <ul class="entry-meta color-dark-1-fixed">
-                                        <li class="post-author">
-                                            <a href="author.html">
-                                                <img src="{{ asset('assets/frontend') }}/media/blog/profile1.webp" alt="Author">
-                                                Kristin Watson
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="regular-clock-circle"></i>16 min read
-                                        </li>
-                                        <li>
-                                            <i class="regular-eye"></i>15k
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+               
                 </div>
             </div>
             <div class="col-lg-4 col-12 sticky-coloum-item">
@@ -1079,18 +507,13 @@
                         </div>
                         <div class="widget-category category-layout1 bg-color-tidal radius-default box-border-dark-1">
                             <ul class="category-list">
-                                <li>
-                                    <a href="archive-layout1.html">Culture</a>(2)
-                                </li>
-                                <li>
-                                    <a href="archive-layout1.html">Travel</a>(1)
-                                </li>
-                                <li>
-                                    <a href="archive-layout1.html">Business</a>(5)
-                                </li>
-                                <li>
-                                    <a href="archive-layout1.html">Trending</a>(4)
-                                </li>
+                                @foreach (App\Models\Category::where('parent_id',0)->get() as $explodeCategory) 
+                                    @if ($explodeCategory->posts->count() > 0)
+                                        <li>
+                                            <a href="{{route('category.posts',$explodeCategory->id)}}">{{@$explodeCategory->name}}</a>({{@$explodeCategory->posts->count()}})
+                                        </li> 
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -1104,27 +527,27 @@
                             <div class="axil-social social-layout-1 size-small gap-12 justify-content-center">
                                 <ul>
                                     <li class="facebook">
-                                        <a href="https://facebook.com/" aria-label="Learn more from Facebook">
+                                        <a href="{{ setting()->facebook_link }}" aria-label="Learn more from Facebook">
                                             <i class="solid-facebook2"></i>
                                         </a>
                                     </li>
                                     <li class="instagram">
-                                        <a href="https://instagram.com/" aria-label="Learn more from Instagram">
+                                        <a href="{{ setting()->instagram_link }}" aria-label="Learn more from Instagram">
                                             <i class="regular-instagram"></i>
                                         </a>
                                     </li>
                                     <li class="mail-fast">
-                                        <a aria-label="Learn more from Mail fast" href="https://mail-fast.com/">
-                                            <i class="regular-mail-fast"></i>
+                                        <a aria-label="Learn more from twitter" href="{{ setting()->twitter_link }}">
+                                            <i class="regular-twitter"></i>
                                         </a>
                                     </li>
                                     <li class="pinterest">
-                                        <a href="https://pinterest.com/" aria-label="Learn more from Pinterest">
+                                        <a href="{{ setting()->pinter_est_link }}" aria-label="Learn more from Pinterest">
                                             <i class="solid-pinterest-01"></i>
                                         </a>
                                     </li>
                                     <li class="youtube">
-                                        <a href="https://youtube.com/" aria-label="Learn more from Youtube">
+                                        <a href="{{ setting()->youtube_link }}" aria-label="Learn more from Youtube">
                                             <i class="solid-youtube"></i>
                                         </a>
                                     </li>
@@ -1140,118 +563,41 @@
                             <h3 class="title">Short Stories</h3>
                         </div>
                         <div class="widget-post post-layout1">
-                            <div class="post-box">
-                                <div class="figure-holder radius-default">
-                                    <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="700" height="470" src="{{ asset('assets/frontend') }}/media/blog/post23.webp" alt="Post"></a>
+                            @foreach ($latest_short_stories_posts as $short_stories_post)
+                                
+                            @if ($loop->index == 0) 
+                                <div class="post-box">
+                                    <div class="figure-holder radius-default">
+                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap figure-overlay img-height-100"><img width="700" height="470" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
+                                    </div>
+                                    <div class="content-holder">
+                                        <h3 class="entry-title color-light-1-fixed h3-small underline-animation"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
+                                        <ul class="entry-meta color-light-1-fixed">
+                                            <li>
+                                                <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($short_stories_post->created_at)->diffForHumans()}}
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="content-holder">
-                                    <h3 class="entry-title color-light-1-fixed h3-small underline-animation"><a href="post-format-default.html" class="link-wrap">Top 5 Street Tacos In Usa Top 5 Street Tacos
-                                            In Usa</a></h3>
-                                    <ul class="entry-meta color-light-1-fixed">
-                                        <li>
-                                            <i class="regular-clock-circle"></i>2 min read
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="post-box">
-                                <div class="figure-holder radius-default">
-                                    <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post14.webp" alt="Post"></a>
-                                </div>
-                                <div class="content-holder">
-                                    <h3 class="entry-title color-dark-1 underline-animation h3-extra-small"><a href="post-format-default.html" class="link-wrap">Smarter Food 101 Tips For Your Health</a></h3>
-                                    <ul class="entry-meta color-dark-1">
-                                        <li>
-                                            <i class="regular-clock-circle"></i>2 min read
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="post-box">
-                                <div class="figure-holder radius-default">
-                                    <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post15.webp" alt="Post"></a>
-                                </div>
-                                <div class="content-holder">
-                                    <h3 class="entry-title color-dark-1 underline-animation h3-extra-small"><a href="post-format-default.html" class="link-wrap">Virtual Reality (VR), The Use Computer
-                                            Modeling</a></h3>
-                                    <ul class="entry-meta color-dark-1">
-                                        <li>
-                                            <i class="regular-clock-circle"></i>8 min read
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="post-box">
-                                <div class="figure-holder radius-default">
-                                    <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="140" height="140" src="{{ asset('assets/frontend') }}/media/blog/post16.webp" alt="Post"></a>
-                                </div>
-                                <div class="content-holder">
-                                    <h3 class="entry-title color-dark-1 underline-animation h3-extra-small"><a href="post-format-default.html" class="link-wrap">Reality Hosting, The Use Computer Modeling</a>
-                                    </h3>
-                                    <ul class="entry-meta color-dark-1">
-                                        <li>
-                                            <i class="regular-clock-circle"></i>5 min read
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @else
+                                <div class="post-box">
+                                    <div class="figure-holder radius-default">
+                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap figure-overlay img-height-100"><img width="140" height="140" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
+                                    </div>
+                                    <div class="content-holder">
+                                        <h3 class="entry-title color-dark-1 underline-animation h3-extra-small"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
+                                        <ul class="entry-meta color-dark-1">
+                                            <li>
+                                                <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($short_stories_post->created_at)->diffForHumans()}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div> 
+                            @endif
+                            @endforeach
                         </div>
                     </div>
-                    <div class="sidebar-widget">
-                        <div class="section-heading heading-style-2">
-                            <h3 class="title">Recommended topics</h3>
-                        </div>
-                        <div class="widget-tagcloud tagcloud-layout1">
-                            <a href="archive-layout1.html" class="tag-cloud-link box-shadow-small shadow-style-2 box-border-dark-1">
-                                <span class="icon-holder">
-                                    <i class="regular-medical-service"></i>
-                                </span>Healthcare
-                            </a>
-                            <a href="archive-layout1.html" class="tag-cloud-link box-shadow-small shadow-style-2 box-border-dark-1">
-                                <span class="icon-holder">
-                                    <i class="regular-shopping-basket2"></i>
-                                </span>Fashion
-                            </a>
-                            <a href="archive-layout1.html" class="tag-cloud-link box-shadow-small shadow-style-2 box-border-dark-1">
-                                <span class="icon-holder">
-                                    <i class="solid-interactive"></i>
-                                </span>History
-                            </a>
-                            <a href="archive-layout1.html" class="tag-cloud-link box-shadow-small shadow-style-2 box-border-dark-1">
-                                <span class="icon-holder">
-                                    <i class="regular-graduation-cap1"></i>
-                                </span>Education
-                            </a>
-                            <a href="archive-layout1.html" class="tag-cloud-link box-shadow-small shadow-style-2 box-border-dark-1">
-                                <span class="icon-holder">
-                                    <i class="regular-globe-stand"></i>
-                                </span>World
-                            </a>
-                            <a href="archive-layout1.html" class="tag-cloud-link box-shadow-small shadow-style-2 box-border-dark-1">
-                                <span class="icon-holder">
-                                    <i class="solid-interactive"></i>
-                                </span>History
-                            </a>
-                            <a href="archive-layout1.html" class="tag-cloud-link box-shadow-small shadow-style-2 box-border-dark-1">
-                                <span class="icon-holder">
-                                    <i class="regular-graduation-cap1"></i>
-                                </span>Education
-                            </a>
-                            <a href="archive-layout1.html" class="tag-cloud-link box-shadow-small shadow-style-2 box-border-dark-1">
-                                <span class="icon-holder">
-                                    <i class="solid-interactive"></i>
-                                </span>History
-                            </a>
-                            <a href="archive-layout1.html" class="tag-cloud-link box-shadow-small shadow-style-2 box-border-dark-1">
-                                <span class="icon-holder">
-                                    <i class="regular-shopping-basket2"></i>
-                                </span>Fashion
-                            </a>
-                        </div>
-                    </div>
-
-
-
+                  
                 </div>
 
 
@@ -1272,92 +618,45 @@
         </div>
         <div class="row g-3">
             <div class="col-lg-6">
-                <div class="post-box-layout10 box-border-dark-1 radius-default both-side-equal">
-                    <div class="figure-holder radius-medium">
-                        <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="630" height="500" src="{{ asset('assets/frontend') }}/media/blog/post109.webp" alt="Post"></a>
-                    </div>
-                    <div class="content-holder">
-                        <div class="entry-category style-2 color-dark-1-fixed">
-                            <ul>
-                                <li>
-                                    <a href="archive-layout1.html">HEALTH</a>
-                                </li>
-                            </ul>
+                @foreach ($recent_stories_article_posts->take(1) as  $recentStoriesSingleArticle)   
+                    <div class="post-box-layout10 box-border-dark-1 radius-default both-side-equal">
+                        <div class="figure-holder radius-medium">
+                            <a href="{{route('post.details',[$recentStoriesSingleArticle->id,$recentStoriesSingleArticle->title])}}" class="link-wrap figure-overlay img-height-100"><img width="630" height="500" src="{{ $recentStoriesSingleArticle->image_url }}" alt="Post"></a>
                         </div>
-                        <h3 class="entry-title h3-large color-light-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Underwater Exercise Is Used Strengthen Weak Muscles</a></h3>
+                        <div class="content-holder">
+                            <div class="entry-category style-2 color-dark-1-fixed">
+                                <ul>
+                                    <li>
+                                        <a href="{{route('category.posts',$recentStoriesSingleArticle->category_id)}}">{{$recentStoriesSingleArticle->category->name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3 class="entry-title h3-large color-light-1-fixed underline-animation"><a href="{{route('post.details',[$recentStoriesSingleArticle->id,$recentStoriesSingleArticle->title])}}" class="link-wrap">{{\Str::limit($recentStoriesSingleArticle->title,60,'...')}}</a></h3>
+                        </div>
                     </div>
-                </div>
+                @endforeach
             </div>
             <div class="col-lg-6">
                 <div class="row g-3">
+                    @foreach ($recent_stories_article_posts->skip(1) as  $recentStoriesArticle)  
                     <div class="col-md-6 col-12">
-                        <div class="post-box-layout11 box-border-dark-1 radius-default padding-20 bg-color-scandal box-shadow-small shadow-style-2 transition-default">
+                        <div class="post-box-layout11 box-border-dark-1 radius-default padding-20 {{$color_classes[$loop->index]}} box-shadow-small shadow-style-2 transition-default">
                             <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap img-height-100"><img width="480" height="344" src="{{ asset('assets/frontend') }}/media/blog/post29.webp" alt="Post"></a>
+                                <a href="{{route('post.details',[$recentStoriesArticle->id,$recentStoriesArticle->title])}}" class="link-wrap img-height-100"><img width="480" height="344" src="{{ $recentStoriesArticle->image_url }}" alt="Post"></a>
                             </div>
                             <div class="content-holder">
                                 <div class="entry-category style-2 color-dark-1-fixed">
                                     <ul>
                                         <li>
-                                            <a href="archive-layout1.html">FOOD</a>
+                                            <a href="{{route('category.posts',$recentStoriesArticle->category_id)}}">{{@$recentStoriesArticle->category->name}}</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Smarter Food Choices 101 Tips For Busy Women</a></h3>
+                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$recentStoriesArticle->id,$recentStoriesArticle->title])}}" class="link-wrap">{{\Str::limit(@$recentStoriesArticle->title,60,'...')}}</a></h3>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-12">
-                        <div class="post-box-layout11 box-border-dark-1 radius-default padding-20 bg-color-mimosa box-shadow-small shadow-style-2 transition-default">
-                            <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap img-height-100"><img width="480" height="344" src="{{ asset('assets/frontend') }}/media/blog/post30.webp" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div class="entry-category style-2 color-dark-1-fixed">
-                                    <ul>
-                                        <li>
-                                            <a href="archive-layout1.html">TECH</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Air Pods Pro With Wireless Charging Case</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="post-box-layout11 box-border-dark-1 radius-default padding-20 bg-color-selago box-shadow-small shadow-style-2 transition-default">
-                            <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap img-height-100"><img width="480" height="344" src="{{ asset('assets/frontend') }}/media/blog/post31.webp" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div class="entry-category style-2 color-dark-1-fixed">
-                                    <ul>
-                                        <li>
-                                            <a href="archive-layout1.html">SPORTS</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Virtual Reality (VR), The Use Computer Modeling</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="post-box-layout11 box-border-dark-1 radius-default padding-20 bg-color-old-lace box-shadow-small shadow-style-2 transition-default">
-                            <div class="figure-holder radius-default">
-                                <a href="post-format-default.html" class="link-wrap img-height-100"><img width="480" height="344" src="{{ asset('assets/frontend') }}/media/blog/post32.webp" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div class="entry-category style-2 color-dark-1-fixed">
-                                    <ul>
-                                        <li>
-                                            <a href="archive-layout1.html">TRAVEL</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Reality Hosting, The Use Computer Modeling</a></h3>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -1452,195 +751,64 @@
 <section class="post-wrap-layout8 space-top-50 bg-color-light-1 transition-default">
     <div class="container">
         <div class="row g-3">
-            <div class="col-lg-4">
-                <div class="post-box-layout12 box-border-dark-1 radius-default padding-20 bg-color-scandal box-shadow-large shadow-style-2 transition-default">
-                    <div class="single-item">
-                        <div class="figure-holder radius-default">
-                            <a href="post-format-default.html" class="link-wrap img-height-100"><img width="660" height="440" src="{{ asset('assets/frontend') }}/media/blog/post33.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <div class="entry-category style-2 color-dark-1-fixed">
-                                <ul>
-                                    <li>
-                                        <a href="archive-layout1.html">FOOD</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">The Science Behind Skin Care Products Has Come</a></h3>
-                            <ul class="entry-meta color-dark-1-fixed">
-                                <li class="post-author">
-                                    <a href="author.html">
-                                        <img src="{{ asset('assets/frontend') }}/media/blog/profile1.webp" alt="Author">
-                                        Jenny Wilson
-                                    </a>
-                                </li>
-                                <li>
-                                    <i class="regular-clock-circle"></i>1 min read
-                                </li>
-                                <li>
-                                    <i class="regular-eye"></i>9k
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="single-item">
-                        <div class="figure-holder radius-default">
-                            <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="250" height="168" src="{{ asset('assets/frontend') }}/media/blog/post34.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <div class="entry-category style-3 color-dark-1-fixed">
-                                <ul>
-                                    <li>
-                                        <a href="archive-layout1.html">TECH</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="entry-title color-dark-1-fixed h3-small underline-animation"><a href="post-format-default.html" class="link-wrap">Manuscripts Are Written Ac Iaculis</a></h3>
-                        </div>
-                    </div>
-                    <div class="single-item">
-                        <div class="figure-holder radius-default">
-                            <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="250" height="168" src="{{ asset('assets/frontend') }}/media/blog/post35.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <div class="entry-category style-3 color-dark-1-fixed">
-                                <ul>
-                                    <li>
-                                        <a href="archive-layout1.html">HEALTH</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="entry-title color-dark-1-fixed h3-small underline-animation"><a href="post-format-default.html" class="link-wrap">Choices 101 Tips For Busy Women</a></h3>
-                        </div>
+
+            @foreach ($category_latest_posts as  $groupcategory)
+                <div class="col-lg-4">
+                    <div class="post-box-layout12 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) bg-color-scandal @elseif($loop->index == 1) bg-color-mimosa @else bg-color-old-lace  @endif box-shadow-large shadow-style-2 transition-default">
+                        @foreach ($groupcategory as $categoryPost)
+                            @if ($loop->index == 0)
+                                <div class="single-item">
+                                    <div class="figure-holder radius-default">
+                                        <a href="{{route('post.details',[$categoryPost->id,$categoryPost->title])}}" class="link-wrap img-height-100"><img width="660" height="440" src="{{ @$categoryPost->image_url }}" alt="Post"></a>
+                                    </div>
+                                    <div class="content-holder">
+                                        <div class="entry-category style-2 color-dark-1-fixed">
+                                            <ul>
+                                                <li>
+                                                    <a href="{{route('category.posts',$categoryPost->category_id)}}">{{@$categoryPost->category->name}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$categoryPost->id,$categoryPost->title])}}" class="link-wrap">{{\Str::limit($categoryPost->title,60,'...')}}</a></h3>
+                                        <ul class="entry-meta color-dark-1-fixed">
+                                            <li class="post-author">
+                                                <a href="author.html">
+                                                    <img src="{{ $categoryPost->user->image ?? asset('default/user.webp') }}" alt="Author">
+                                                    {{@$categoryPost->user->name}}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($categoryPost->created_at)->diffForHumans()}}
+                                            </li>
+                                            <li>
+                                                <i class="regular-eye"></i>{{$categoryPost->total_views}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="single-item">
+                                    <div class="figure-holder radius-default">
+                                        <a href="{{route('post.details',[$categoryPost->id,$categoryPost->title])}}" class="link-wrap figure-overlay img-height-100"><img width="250" height="168" src="{{ @$categoryPost->image_url }}" alt="Post"></a>
+                                    </div>
+                                    <div class="content-holder">
+                                        <div class="entry-category style-3 color-dark-1-fixed">
+                                            <ul>
+                                                <li>
+                                                    <a href="{{route('category.posts',$categoryPost->category_id)}}">{{@$categoryPost->category->name}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="entry-title color-dark-1-fixed h3-small underline-animation"><a href="{{route('post.details',[$categoryPost->id,$categoryPost->title])}}" class="link-wrap">{{\Str::limit($categoryPost->title,30,'...')}}</a></h3>
+                                    </div>
+                                </div>
+                            @endif    
+                        
+                        @endforeach
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="post-box-layout12 box-border-dark-1 radius-default padding-20 bg-color-mimosa box-shadow-large shadow-style-2 transition-default">
-                    <div class="single-item">
-                        <div class="figure-holder radius-default">
-                            <a href="post-format-default.html" class="link-wrap img-height-100"><img width="660" height="440" src="{{ asset('assets/frontend') }}/media/blog/post36.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <div class="entry-category style-2 color-dark-1-fixed">
-                                <ul>
-                                    <li>
-                                        <a href="archive-layout1.html">HISTORY</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Underwater Exercise Is Used Strengthen Weak Muscles</a></h3>
-                            <ul class="entry-meta color-dark-1-fixed">
-                                <li class="post-author">
-                                    <a href="author.html">
-                                        <img src="{{ asset('assets/frontend') }}/media/blog/profile2.webp" alt="Author">
-                                        Esther Howard
-                                    </a>
-                                </li>
-                                <li>
-                                    <i class="regular-clock-circle"></i>3 min read
-                                </li>
-                                <li>
-                                    <i class="regular-eye"></i>9k
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="single-item">
-                        <div class="figure-holder radius-default">
-                            <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="250" height="168" src="{{ asset('assets/frontend') }}/media/blog/post37.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <div class="entry-category style-3 color-dark-1-fixed">
-                                <ul>
-                                    <li>
-                                        <a href="archive-layout1.html">WORLD</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="entry-title color-dark-1-fixed h3-small underline-animation"><a href="post-format-default.html" class="link-wrap">Smarter Food Choices 20 Tips</a></h3>
-                        </div>
-                    </div>
-                    <div class="single-item">
-                        <div class="figure-holder radius-default">
-                            <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="250" height="168" src="{{ asset('assets/frontend') }}/media/blog/post38.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <div class="entry-category style-3 color-dark-1-fixed">
-                                <ul>
-                                    <li>
-                                        <a href="archive-layout1.html">MEDICAL</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="entry-title color-dark-1-fixed h3-small underline-animation"><a href="post-format-default.html" class="link-wrap">Choices 101 Tips For Busy Women</a></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="post-box-layout12 box-border-dark-1 radius-default padding-20 bg-color-old-lace box-shadow-large shadow-style-2 transition-default">
-                    <div class="single-item">
-                        <div class="figure-holder radius-default">
-                            <a href="post-format-default.html" class="link-wrap img-height-100"><img width="660" height="440" src="{{ asset('assets/frontend') }}/media/blog/post39.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <div class="entry-category style-2 color-dark-1-fixed">
-                                <ul>
-                                    <li>
-                                        <a href="archive-layout1.html">SPORTS</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="post-format-default.html" class="link-wrap">Virtual Reality (VR), The Use Computer Modeling</a></h3>
-                            <ul class="entry-meta color-dark-1-fixed">
-                                <li class="post-author">
-                                    <a href="author.html">
-                                        <img src="{{ asset('assets/frontend') }}/media/blog/profile5.webp" alt="Author">
-                                        John Philipe
-                                    </a>
-                                </li>
-                                <li>
-                                    <i class="regular-clock-circle"></i>9 min read
-                                </li>
-                                <li>
-                                    <i class="regular-eye"></i>9k
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="single-item">
-                        <div class="figure-holder radius-default">
-                            <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="250" height="168" src="{{ asset('assets/frontend') }}/media/blog/post40.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <div class="entry-category style-3 color-dark-1-fixed">
-                                <ul>
-                                    <li>
-                                        <a href="archive-layout1.html">FOOD</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="entry-title color-dark-1-fixed h3-small underline-animation"><a href="post-format-default.html" class="link-wrap">Reality Hosting, The Use Computer</a></h3>
-                        </div>
-                    </div>
-                    <div class="single-item">
-                        <div class="figure-holder radius-default">
-                            <a href="post-format-default.html" class="link-wrap figure-overlay img-height-100"><img width="250" height="168" src="{{ asset('assets/frontend') }}/media/blog/post41.webp" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <div class="entry-category style-3 color-dark-1-fixed">
-                                <ul>
-                                    <li>
-                                        <a href="archive-layout1.html">EDUCATION</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="entry-title color-dark-1-fixed h3-small underline-animation"><a href="post-format-default.html" class="link-wrap">Choices 101 Tips For Busy Women</a></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+           
         </div>
     </div>
 </section>
