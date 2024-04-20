@@ -55,14 +55,14 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-6 mb-2">
+                            {{-- <div class="col-sm-6 mb-2">
                                 <div class="form-group">
                                     <label>Sub-Category:</label>
                                     <select name="sub_category_id" class="form-control " id="sub_category_id">
                                         <option value="">Select Sub-Category</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-sm-6 mb-2">
                                 <div class="form-group">
                                     <label>Post Type:</label>
