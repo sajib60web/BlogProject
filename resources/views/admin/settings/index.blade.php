@@ -52,6 +52,12 @@
                                     {!! Form::text('address', null, array('placeholder' => 'Address','class' => 'form-control')) !!}
                                 </div>
                             </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>About: <span style="color: red;">*</span></label>
+                                    {!! Form::text('about', null, array('placeholder' => 'About','class' => 'form-control')) !!}
+                                </div>
+                            </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Phone Number: <span style="color: red;">*</span></label>
