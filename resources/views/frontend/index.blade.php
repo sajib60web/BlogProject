@@ -141,7 +141,7 @@
             <div id="post-slider-2" class="post-slider-2 gutter-30 initially-none">
 
                 @foreach ($slider_posts as $sliderPost)
-                    
+
                     <div class="single-slide">
                         <div class="post-box-layout3 box-border-dark-1 radius-default transition-default">
                             <div class="figure-holder radius-medium">
@@ -153,7 +153,7 @@
                         </div>
                     </div>
                 @endforeach
-      
+
             </div>
             <ul class="slider-navigation-layout1 color-light-1 position-layout2">
                 <li id="post-prev-2" class="prev"><i class="regular-arrow-left"></i></li>
@@ -173,7 +173,7 @@
             <a href="archive-layout1.html" class="link-wrap">Go to Stories <span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
         </div>
         <div class="row g-3">
-            
+
             @foreach ($top_stories_posts as $topStoriesPost)
                 <div class="col-lg-4">
                     <div class="post-box-layout4 box-border-dark-1 radius-default padding-20  @if($loop->index == 0) {{$color_classes[3]}} @else {{$color_classes[$loop->index]}} @endif  box-shadow-large shadow-style-2 transition-default">
@@ -192,10 +192,10 @@
                             <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$latestPost->content), 150, ' ...') !!}</p>
                             <ul class="entry-meta color-dark-1-fixed">
                                 <li class="post-author">
-                                    
+
                                         <img  src="{{ $latestPost->user->image?? asset('default/user.webp') }}"   alt="Author">
                                         {{@$latestPost->user->name}}
-                                     
+
                                 </li>
                                 <li>
                                     <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
@@ -207,7 +207,7 @@
                             <a href="{{route('post.details',[$latestPost->id,$latestPost->title])}}" class="btn-text color-dark-1-fixed">See Details<span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
                         </div>
                     </div>
-                </div> 
+                </div>
             @endforeach
         </div>
     </div>
@@ -239,7 +239,7 @@
             <div class="col-lg-8">
                 <div class="row g-3">
                     <div class="col-lg-12">
-                        @foreach ($latest_stories_posts->take(1) as $latest_stories_single_post)    
+                        @foreach ($latest_stories_posts->take(1) as $latest_stories_single_post)
                             <div class="post-box-layout5 box-border-dark-1 radius-default">
                                 <div class="figure-holder radius-medium">
                                     <a href="{{route('post.details',[$latest_stories_single_post->id,$latest_stories_single_post->title])}}" class="link-wrap figure-overlay img-height-100"><img width="810" height="558" src="{{ @$latest_stories_single_post->image_url }}" alt="Post"></a>
@@ -271,7 +271,7 @@
                             </div>
                         @endforeach
                     </div>
-                    @foreach ($latest_stories_posts->skip(1)->take(2) as $latest_stories_two_post)    
+                    @foreach ($latest_stories_posts->skip(1)->take(2) as $latest_stories_two_post)
 
                     <div class="col-lg-6">
                         <div class="post-box-layout5 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) {{$color_classes[2]}} @else {{$color_classes[3]}} @endif box-shadow-large shadow-style-2 transition-default">
@@ -289,15 +289,15 @@
                                 <h3 class="entry-title h3-small color-light-1-fixed underline-animation mb-0"><a href="{{route('post.details',[$latest_stories_two_post->id,$latest_stories_two_post->title])}}" class="link-wrap">{{\Str::limit($latest_stories_two_post->title,60,'...')}}</a></h3>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     @endforeach
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="post-box-layout7 box-border-dark-1 radius-default padding-20 bg-color-scandal">
 
-                    @foreach ($latest_stories_posts->skip(3) as $latest_stories_post) 
-                        @if ($loop->index == 0) 
+                    @foreach ($latest_stories_posts->skip(3) as $latest_stories_post)
+                        @if ($loop->index == 0)
                         <div class="figure-holder radius-default">
                             <a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->title])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{$latest_stories_post->image_url}}" alt="Post"></a>
                         </div>
@@ -316,8 +316,8 @@
                                     <i class="regular-eye"></i>{{@$latestPost->total_views}}
                                 </li>
                             </ul>
-                        </div> 
-                        @else 
+                        </div>
+                        @else
                             <div class="content-holder">
                                 <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->title])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
                                 <ul class="entry-meta color-dark-1-fixed">
@@ -336,7 +336,7 @@
                             </div>
                         @endif
                     @endforeach
-                  
+
                 </div>
             </div>
         </div>
@@ -371,7 +371,7 @@
                     <div class="tab-pane fade active show" id="one">
                         <div class="row g-3 row-cols-1 row-cols-lg-2 row-cols-xl-3">
 
-                            @foreach ($top_video_recc_posts as $recommended_post)    
+                            @foreach ($top_video_recc_posts as $recommended_post)
                                 <div class="col">
                                     <div class="post-box-layout8 radius-default">
                                         <div class="figure-holder radius-default">
@@ -394,15 +394,15 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             @endforeach
-                             
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="two">
                         <div class="row g-4 row-cols-1 row-cols-lg-2 row-cols-xl-3">
-                           
-                            @foreach ($top_video_latest_posts as $top_video_latest_post)    
+
+                            @foreach ($top_video_latest_posts as $top_video_latest_post)
                             <div class="col">
                                 <div class="post-box-layout8 radius-default">
                                     <div class="figure-holder radius-default">
@@ -425,7 +425,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         @endforeach
 
                         </div>
@@ -448,7 +448,7 @@
             <div class="col-lg-8 col-12 sticky-coloum-item">
                 <div class="row g-3 pe-lg-4">
 
-                    @foreach ($recent_article_posts as $recentArticlePost)         
+                    @foreach ($recent_article_posts->take(6) as $recentArticlePost)
                         <div class="col-12">
                             <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation {{$color_classes[$loop->index]}} box-shadow-large shadow-style-2 transition-default">
                                 <div class="figure-holder radius-default">
@@ -484,88 +484,52 @@
                             </div>
                         </div>
                     @endforeach
-               
+
                 </div>
             </div>
             <div class="col-lg-4 col-12 sticky-coloum-item">
                 <div class="sidebar-global sidebar-layout1">
-                    <div class="sidebar-widget">
-                        <div class="widget-banner banner-layout1">
-                            <div class="radius-default box-border-dark-1 img-height-100">
-                                <div class="figure-holder radius-medium">
-                                    <img width="700" height="294" src="{{ asset('assets/frontend') }}/media/banner/banner2.webp" alt="Banner">
+
+                    @foreach ($recent_article_posts->skip(6) as $recentArticlePostt)
+                        <div class="col-12 mb-3">
+                            <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation {{$color_classes[$loop->index]}} box-shadow-large shadow-style-2 transition-default">
+                                <div class="figure-holder radius-default">
+                                    <a href="{{route('post.details',[$recentArticlePostt->id,$recentArticlePostt->title])}}" class="link-wrap img-height-100"><img width="500" height="500" src="{{$recentArticlePostt->image_url}}" alt="Post"></a>
+                                </div>
+                                <div class="content-holder">
+                                    <div>
+                                        <div class="entry-category style-2 color-dark-1-fixed">
+                                            <ul>
+                                                <li>
+                                                    <a href="{{route('category.posts',$recentArticlePostt->category_id)}}">{{@$recentArticlePostt->category->name}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="entry-title color-dark-1-fixed underline-animation h3-small"><a href="{{route('post.details',[$recentArticlePostt->id,$recentArticlePostt->title])}}" class="link-wrap">{{\Str::limit($recentArticlePostt->title,60,'...')}}</a></h3>
+                                        <ul class="entry-meta color-dark-1-fixed">
+
+                                            <li>
+                                                <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($recentArticlePostt->created_at)->diffForHumans()}}
+                                            </li>
+                                            <li>
+                                                <i class="regular-eye"></i>{{$recentArticlePostt->total_views}}
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
 
 
-
-                    <div class="sidebar-widget">
-                        <div class="section-heading heading-style-2">
-                            <h3 class="title">Explore Topics</h3>
-                        </div>
-                        <div class="widget-category category-layout1 bg-color-tidal radius-default box-border-dark-1">
-                            <ul class="category-list">
-                                @foreach (App\Models\Category::where('parent_id',0)->get() as $explodeCategory) 
-                                    @if ($explodeCategory->posts->count() > 0)
-                                        <li>
-                                            <a href="{{route('category.posts',$explodeCategory->id)}}">{{@$explodeCategory->name}}</a>({{@$explodeCategory->posts->count()}})
-                                        </li> 
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-
-
-
-                    <div class="sidebar-widget">
-                        <div class="widget-follow follow-layout1 radius-default padding-40 box-border-dark-1">
-                            <h3 class="title h3-medium">Follow Us</h3>
-                            <p class="description">Follow us on Social Network</p>
-                            <div class="axil-social social-layout-1 size-small gap-12 justify-content-center">
-                                <ul>
-                                    <li class="facebook">
-                                        <a href="{{ setting()->facebook_link }}" aria-label="Learn more from Facebook">
-                                            <i class="solid-facebook2"></i>
-                                        </a>
-                                    </li>
-                                    <li class="instagram">
-                                        <a href="{{ setting()->instagram_link }}" aria-label="Learn more from Instagram">
-                                            <i class="regular-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li class="mail-fast">
-                                        <a aria-label="Learn more from twitter" href="{{ setting()->twitter_link }}">
-                                            <i class="regular-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li class="pinterest">
-                                        <a href="{{ setting()->pinter_est_link }}" aria-label="Learn more from Pinterest">
-                                            <i class="solid-pinterest-01"></i>
-                                        </a>
-                                    </li>
-                                    <li class="youtube">
-                                        <a href="{{ setting()->youtube_link }}" aria-label="Learn more from Youtube">
-                                            <i class="solid-youtube"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="sidebar-widget">
+                    <div class="sidebar-widget mt-3">
                         <div class="section-heading heading-style-2">
                             <h3 class="title">Short Stories</h3>
                         </div>
                         <div class="widget-post post-layout1">
                             @foreach ($latest_short_stories_posts as $short_stories_post)
-                                
-                            @if ($loop->index == 0) 
+
+                            @if ($loop->index == 0)
                                 <div class="post-box">
                                     <div class="figure-holder radius-default">
                                         <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap figure-overlay img-height-100"><img width="700" height="470" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
@@ -592,12 +556,12 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div> 
+                                </div>
                             @endif
                             @endforeach
                         </div>
                     </div>
-                  
+
                 </div>
 
 
@@ -618,7 +582,7 @@
         </div>
         <div class="row g-3">
             <div class="col-lg-6">
-                @foreach ($recent_stories_article_posts->take(1) as  $recentStoriesSingleArticle)   
+                @foreach ($recent_stories_article_posts->take(1) as  $recentStoriesSingleArticle)
                     <div class="post-box-layout10 box-border-dark-1 radius-default both-side-equal">
                         <div class="figure-holder radius-medium">
                             <a href="{{route('post.details',[$recentStoriesSingleArticle->id,$recentStoriesSingleArticle->title])}}" class="link-wrap figure-overlay img-height-100"><img width="630" height="500" src="{{ $recentStoriesSingleArticle->image_url }}" alt="Post"></a>
@@ -638,7 +602,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="row g-3">
-                    @foreach ($recent_stories_article_posts->skip(1) as  $recentStoriesArticle)  
+                    @foreach ($recent_stories_article_posts->skip(1) as  $recentStoriesArticle)
                     <div class="col-md-6 col-12">
                         <div class="post-box-layout11 box-border-dark-1 radius-default padding-20 {{$color_classes[$loop->index]}} box-shadow-small shadow-style-2 transition-default">
                             <div class="figure-holder radius-default">
@@ -755,7 +719,7 @@
             @foreach ($category_latest_posts as  $groupcategory)
                 <div class="col-lg-4">
                     <div class="post-box-layout12 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) bg-color-scandal @elseif($loop->index == 1) bg-color-mimosa @else bg-color-old-lace  @endif box-shadow-large shadow-style-2 transition-default">
-                        @foreach ($groupcategory as $categoryPost)
+                        @foreach ($groupcategory->take(4) as $categoryPost)
                             @if ($loop->index == 0)
                                 <div class="single-item">
                                     <div class="figure-holder radius-default">
@@ -802,13 +766,13 @@
                                         <h3 class="entry-title color-dark-1-fixed h3-small underline-animation"><a href="{{route('post.details',[$categoryPost->id,$categoryPost->title])}}" class="link-wrap">{{\Str::limit($categoryPost->title,30,'...')}}</a></h3>
                                     </div>
                                 </div>
-                            @endif    
-                        
+                            @endif
+
                         @endforeach
                     </div>
                 </div>
             @endforeach
-           
+
         </div>
     </div>
 </section>

@@ -28,6 +28,7 @@ Route::controller(WelcomeController::class)->group(function () {
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
     Route::post('/contact/form', 'contactForm')->name('contact-form');
+    Route::post('/comment', 'comment')->name('comment.submit');
 });
 
 Auth::routes(['verfiy' => true]);

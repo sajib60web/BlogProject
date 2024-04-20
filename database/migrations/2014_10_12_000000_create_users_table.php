@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('role_id', 50)->nullable();
             $table->string('picture')->nullable();
+            $table->string('designation')->nullable();
+            $table->text('about')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
