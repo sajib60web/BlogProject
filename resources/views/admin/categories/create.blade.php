@@ -36,7 +36,7 @@
                                         {!! Form::text('name', null, array('placeholder' => 'Enter Name','class' => 'form-control')) !!}
                                     </div>
                                 </div>
-                                <div class="col-sm-7">
+                                {{-- <div class="col-sm-7">
                                     <div class="form-group">
                                         <label>Category:<span style="color: red;">*</span></label>
                                         <select name="parent_id" class="form-control select2" id="parent_id">
@@ -46,7 +46,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label>Description:</label>

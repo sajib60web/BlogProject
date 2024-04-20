@@ -25,6 +25,8 @@ Route::controller(WelcomeController::class)->group(function () {
     Route::get('/', 'index')->name('main.index');
     Route::get('/post/{id}/{slug}', 'postDetails')->name('post.details');
     Route::get('/category/{id}', 'categoryPosts')->name('category.posts');
+    Route::get('/author/posts/{id}', 'postAuthor')->name('post.author');
+    Route::get('/search/posts/', 'searchPosts')->name('search.posts');
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
     Route::post('/contact/form', 'contactForm')->name('contact-form');

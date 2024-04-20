@@ -64,8 +64,8 @@
     <div id="search-trigger" class="search-input-wrap">
         <div class="container">
             <button type="button" class="close">×</button>
-            <form class="search-form">
-                <input type="search" value="" placeholder="Search" />
+            <form class="search-form" action="{{ route('search.posts') }}" method="get">
+                <input type="search" name="search" value="{{ old('search') }}" placeholder="Search" />
                 <button type="submit" class="search-btn">
                     <i class="regular-search-02"></i>
                 </button>
