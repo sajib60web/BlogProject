@@ -8,7 +8,7 @@
     <meta name="description" content="Author: AxilTheme, Template: HTML, Category: Blog, Price: $13.00, Length: 23 pages">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/frontend/media/favicon.svg') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ setting()->icon }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/fonts/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/slick/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/slick/slick-theme.css') }}">

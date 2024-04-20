@@ -21,4 +21,12 @@ class Setting extends Model
             return asset('assets/frontend/media/logo-dark.svg');
         } 
     }
+    public function getIconAttribute()
+    {
+        if (file_exists($this->app_favicon)) {
+            return asset($this->app_favicon);
+        } else {
+            return asset('assets/frontend/media/favicon.svg');
+        } 
+    }
 }
