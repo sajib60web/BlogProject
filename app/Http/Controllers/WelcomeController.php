@@ -56,9 +56,8 @@ class WelcomeController extends Controller
     }
 
     public function categoryPosts($id){
-        $posts = Post::where('category_id',$id)->orWhere('sub_category_id',$id)->orderByDesc('id')->paginate(10);
         $data['page_name'] = 'Post Details';
-        $data['post'] = $posts;
+        $data['posts'] = Post::where('category_id',$id)->orWhere('sub_category_id',$id)->orderByDesc('id')->paginate(10);
         return view('frontend.category_posts',$data);
     }
     public function about()

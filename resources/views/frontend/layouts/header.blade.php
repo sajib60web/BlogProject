@@ -9,14 +9,11 @@
                     <div class="news-feed-wrap">
                         <div class="news-feed-label">BREAKING:</div>
                         <div id="news-feed-slider" class="news-feed-slider initially-none">
-
                             @foreach ($breaking_posts as $breaking_post)
-
                                 <div class="single-slide">
-                                    <a href="post-format-default.html" class="link-wrap">{{$breaking_post->title}}</a>
+                                    <a href="{{route('post.details',[$breaking_post->id,$breaking_post->title])}}" class="link-wrap">{{$breaking_post->title}}</a>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-4">
@@ -38,7 +35,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="d-lg-block d-none">
+                            {{-- <div class="d-lg-block d-none">
                                 <div class="notification-wrap dropdown-item-wrap">
                                     <div class="navbar navbar-expand-md">
                                         <div class="dropdown">
@@ -64,36 +61,6 @@
                                                                 </div>
                                                             </div>
                                                         </a>
-                                                        <a href="post-format-default.html" class="notification-item">
-                                                            <div class="post-box">
-                                                                <div class="figure-holder radius-default img-height-100">
-                                                                    <img width="540" height="600" src="{{ asset('assets/frontend') }}/media/blog/post94.webp" alt="Post">
-                                                                </div>
-                                                                <div class="content-holder">
-                                                                    <h3 class="entry-title color-dark-1 h3-extra-small">On August 15th, an alarming email popped.</h3>
-                                                                    <ul class="entry-meta color-dark-1">
-                                                                        <li>
-                                                                            <i class="regular-clock-circle"></i>8 min read
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <a href="post-format-default.html" class="notification-item">
-                                                            <div class="post-box">
-                                                                <div class="figure-holder radius-default img-height-100">
-                                                                    <img width="540" height="600" src="{{ asset('assets/frontend') }}/media/blog/post95.webp" alt="Post">
-                                                                </div>
-                                                                <div class="content-holder">
-                                                                    <h3 class="entry-title color-dark-1 h3-extra-small">Nam eget lorem mattis, consequat felis quis, luctus augue.</h3>
-                                                                    <ul class="entry-meta color-dark-1">
-                                                                        <li>
-                                                                            <i class="regular-clock-circle"></i>3 min read
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </a>
                                                     </div>
                                                     <div class="notification-btn-wrap">
                                                         <a href="archive.html" class="w-100 axil-btn axil-btn-ghost btn-color-alter axil-btn-small">View All
@@ -105,7 +72,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -139,11 +106,28 @@
                             <li class="menu-item">
                                 <a href="{{ route('about') }}">About</a>
                             </li>
-                            <li class="menu-item menu-item-has-children">
+                            @php
+                                $categories = \App\Models\Category::where('parent_id',0)->get();
+                            @endphp
+                            @foreach ($categories as $category)
+                            @php
+                                $subcategories = \App\Models\Category::where('parent_id',$category->id)->get()
+                            @endphp
+                            <li class="menu-item @if($subcategories->count() > 0) menu-item-has-children @endif">
+                                @if ($subcategories->count() > 0)
+                                    <a href="#">{{ $category->name }}</a>
+                                @else
+                                    <a href="{{ route('category.posts',$category->id) }}">{{ $category->name }}</a>
+                                @endif
+                                <ul class="sub-menu">
+                                    @foreach ($subcategories as $subcategory)
+                                    <li class="menu-item"><a href="{{ route('category.posts',$subcategory->id) }}">{{ $subcategory->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            @endforeach
+                            {{-- <li class="menu-item menu-item-has-children">
                                 <a href="#">Category</a>
-                                @php
-                                    $categories = \App\Models\Category::where('parent_id',0)->get();
-                                @endphp
                                 @if ($categories->count() > 0)
                                     <ul class="sub-menu">
                                         @foreach ($categories as $category)
@@ -154,14 +138,14 @@
                                                 <a href="#">{{$category->name}}</a>
                                                 <ul class="sub-menu">
                                                     @foreach ($subcategories as $subcategory)
-                                                        <li class="menu-item"><a href="archive-layout1.html">{{$subcategory->name}}</a></li>
+                                                        <li class="menu-item"><a href="{{ route('category.posts',$subcategory->id) }}">{{$subcategory->name}}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @endforeach
                                     </ul>
                                 @endif
-                            </li>
+                            </li> --}}
                             <li class="menu-item">
                                 <a href="{{ route('contact') }}">Contact</a>
                             </li>
