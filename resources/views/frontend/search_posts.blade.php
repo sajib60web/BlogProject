@@ -36,7 +36,7 @@
                         <div class="entry-category style-2 color-light-1-fixed">
                             <ul>
                                 <li>
-                                    <a href="{{route('category.posts',@$post->category_id)}}">{{@$post->category->name}}</a>
+                                    <a href="{{route('category.posts',[@$post->category_id,$post->category->slug])}}">{{@$post->category->name}}</a>
                                 </li>
                             </ul>
                         </div>

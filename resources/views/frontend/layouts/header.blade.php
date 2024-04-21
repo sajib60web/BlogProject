@@ -11,7 +11,7 @@
                         <div id="news-feed-slider" class="news-feed-slider initially-none">
                             @foreach ($breaking_posts as $breaking_post)
                                 <div class="single-slide">
-                                    <a href="{{route('post.details',[$breaking_post->id,$breaking_post->title])}}" class="link-wrap">{{$breaking_post->title}}</a>
+                                    <a href="{{route('post.details',[$breaking_post->id,$breaking_post->slug])}}" class="link-wrap">{{$breaking_post->title}}</a>
                                 </div>
                             @endforeach
                         </div>
@@ -127,12 +127,12 @@
                                 @if ($subcategories->count() > 0)
                                     <a href="#">{{ $category->name }}</a>
                                 @else
-                                    <a href="{{ route('category.posts',$category->id) }}">{{ $category->name }}</a>
+                                    <a href="{{ route('category.posts',[$category->id,$category->slug]) }}">{{ $category->name }}</a>
                                 @endif
                                 <ul class="sub-menu">
                                     @foreach ($subcategories as $subcategory)
                                         <li class="menu-item">
-                                            <a href="{{ route('category.posts',$subcategory->id) }}">{{ $subcategory->name }}</a>
+                                            <a href="{{ route('category.posts',[$subcategory->id,$category->slug]) }}">{{ $subcategory->name }}</a>
                                         </li>
                                     @endforeach
                                 </ul>

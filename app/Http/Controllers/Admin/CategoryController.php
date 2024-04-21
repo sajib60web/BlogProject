@@ -51,6 +51,7 @@ class CategoryController extends Controller
         ]);
 
         $input = $request->all();
+        $input['slug']  = \Str::slug($request->name);
         Category::create($input);
         $notification = array(
             'message' => 'Category Create Successfully',

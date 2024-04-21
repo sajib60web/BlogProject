@@ -28,17 +28,17 @@
                             <div class="single-slide">
                                 <div class="category-box-layout1">
                                     <div class="figure-holder">
-                                        <a href="{{route('post.details',[$treading_topic->id,$treading_topic->title])}}" class="link-wrap img-height-100"><img width="150" height="150" src="{{ $treading_topic->image_url }} " alt="{{@$treading_topic->category->name}}"></a>
+                                        <a href="{{route('post.details',[$treading_topic->id,$treading_topic->slug])}}" class="link-wrap img-height-100"><img width="150" height="150" src="{{ $treading_topic->image_url }} " alt="{{@$treading_topic->category->name}}"></a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-1 color-dark-1-fixed">
                                             <ul>
                                                 <li>
-                                                    <a href="{{route('category.posts',$treading_topic->category_id)}}">{{@$treading_topic->category->name}}</a>
+                                                    <a href="{{route('category.posts',[$treading_topic->category_id,$treading_topic->category->slug])}}">{{@$treading_topic->category->name}}</a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3 class="entry-title h3-extra-small color-dark-1-fixed underline-animation"><a href="archive-layout1.html" class="link-wrap">{{ \Str::limit(@$treading_topic->title, 50, ' ...') }}</a></h3>
+                                        <h3 class="entry-title h3-extra-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$treading_topic->id,$treading_topic->slug])}}" class="link-wrap">{{ \Str::limit(@$treading_topic->title, 50, ' ...') }}</a></h3>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                 }">
                         </div>
                         <div class="content-holder">
-                            <h3 class="entry-title h3-large color-light-1-fixed underline-animation mb-0"><a href="{{route('post.details',[$latestOne->id,$latestOne->title])}}">{{@$latestOne->title}}</a></h3>
+                            <h3 class="entry-title h3-large color-light-1-fixed underline-animation mb-0"><a href="{{route('post.details',[$latestOne->id,$latestOne->slug])}}">{{@$latestOne->title}}</a></h3>
                         </div>
                     </div>
                 @endforeach
@@ -91,17 +91,17 @@
                             <div class="single-slide">
                                 <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$latestPost->id,$latestPost->title])}}" class="link-wrap img-height-100"><img width="635" height="365" src="{{ @$latestPost->image_url}}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$latestPost->id,$latestPost->slug])}}" class="link-wrap img-height-100"><img width="635" height="365" src="{{ @$latestPost->image_url}}" alt="Post"></a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-1 color-dark-1-fixed">
                                             <ul>
                                                 <li>
-                                                    <a href="{{route('category.posts',@$latestPost->category_id)}}">{{@$latestPost->category->name}}</a>
+                                                    <a href="{{route('category.posts',[@$latestPost->category_id,$latestPost->category->slug])}}">{{@$latestPost->category->name}}</a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[@$latestPost->id,@$latestPost->title])}}" class="link-wrap">{{\Str::limit(@$latestPost->title,60,' ...')}}</a></h3>
+                                        <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[@$latestPost->id,@$latestPost->slug])}}" class="link-wrap">{{\Str::limit(@$latestPost->title,60,' ...')}}</a></h3>
                                         <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$latestPost->content), 250, ' ...') !!}</p>
                                         <ul class="entry-meta color-dark-1-fixed">
                                             <li class="post-author">
@@ -145,10 +145,10 @@
                     <div class="single-slide">
                         <div class="post-box-layout3 box-border-dark-1 radius-default transition-default">
                             <div class="figure-holder radius-medium">
-                                <a href="{{route('post.details',[$sliderPost->id,$sliderPost->title])}}" class="link-wrap figure-overlay img-height-100"><img width="540" height="540" src="{{ @$sliderPost->image_url}}" alt="Post"></a>
+                                <a href="{{route('post.details',[$sliderPost->id,$sliderPost->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="540" height="540" src="{{ @$sliderPost->image_url}}" alt="Post"></a>
                             </div>
                             <div class="content-holder">
-                                <h3 class="entry-title h3-medium color-light-1-fixed underline-animation"><a href="{{route('post.details',[$sliderPost->id,$sliderPost->title])}}">{{\Str::limit($sliderPost->title,60,'...')}}</a></h3>
+                                <h3 class="entry-title h3-medium color-light-1-fixed underline-animation"><a href="{{route('post.details',[$sliderPost->id,$sliderPost->slug])}}">{{\Str::limit($sliderPost->title,60,'...')}}</a></h3>
                             </div>
                         </div>
                     </div>
@@ -178,17 +178,17 @@
                 <div class="col-lg-4">
                     <div class="post-box-layout4 box-border-dark-1 radius-default padding-20  @if($loop->index == 0) {{$color_classes[3]}} @else {{$color_classes[$loop->index]}} @endif  box-shadow-large shadow-style-2 transition-default">
                         <div class="figure-holder radius-default">
-                            <a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->title])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{ $topStoriesPost->image_url }}" alt="Post"></a>
+                            <a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->slug])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{ $topStoriesPost->image_url }}" alt="Post"></a>
                         </div>
                         <div class="content-holder">
                             <div class="entry-category style-2 color-dark-1-fixed">
                                 <ul>
                                     <li>
-                                        <a href="{{route('category.posts',$topStoriesPost->id)}}">{{@$topStoriesPost->category->name}}</a>
+                                        <a href="{{route('category.posts',[$topStoriesPost->id,$topStoriesPost->category->slug])}}">{{@$topStoriesPost->category->name}}</a>
                                     </li>
                                 </ul>
                             </div>
-                            <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->title])}}" class="link-wrap">{{\Str::limit($topStoriesPost->title,60,'...')}}</a></h3>
+                            <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->slug])}}" class="link-wrap">{{\Str::limit($topStoriesPost->title,60,'...')}}</a></h3>
                             <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$latestPost->content), 150, ' ...') !!}</p>
                             <ul class="entry-meta color-dark-1-fixed">
                                 <li class="post-author">
@@ -204,7 +204,7 @@
                                     <i class="regular-eye"></i>{{@$latestPost->total_views}}
                                 </li>
                             </ul>
-                            <a href="{{route('post.details',[$latestPost->id,$latestPost->title])}}" class="btn-text color-dark-1-fixed">See Details<span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
+                            <a href="{{route('post.details',[$latestPost->id,$latestPost->slug])}}" class="btn-text color-dark-1-fixed">See Details<span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
                         </div>
                     </div>
                 </div>
@@ -242,17 +242,17 @@
                         @foreach ($latest_stories_posts->take(1) as $latest_stories_single_post)
                             <div class="post-box-layout5 box-border-dark-1 radius-default">
                                 <div class="figure-holder radius-medium">
-                                    <a href="{{route('post.details',[$latest_stories_single_post->id,$latest_stories_single_post->title])}}" class="link-wrap figure-overlay img-height-100"><img width="810" height="558" src="{{ @$latest_stories_single_post->image_url }}" alt="Post"></a>
+                                    <a href="{{route('post.details',[$latest_stories_single_post->id,$latest_stories_single_post->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="810" height="558" src="{{ @$latest_stories_single_post->image_url }}" alt="Post"></a>
                                 </div>
                                 <div class="content-holder">
                                     <div class="entry-category style-2 color-dark-1-fixed">
                                         <ul>
                                             <li>
-                                                <a href="{{route('category.posts',$latest_stories_single_post->category_id)}}">{{@$latest_stories_single_post->category->name}}</a>
+                                                <a href="{{route('category.posts',[$latest_stories_single_post->category_id,$latest_stories_single_post->category->slug])}}">{{@$latest_stories_single_post->category->name}}</a>
                                             </li>
                                         </ul>
                                     </div>
-                                    <h3 class="entry-title h3-large color-light-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_single_post->id,$latest_stories_single_post->title])}}" class="link-wrap">{{\Str::limit($latest_stories_single_post->title,60,'...')}}</a></h3>
+                                    <h3 class="entry-title h3-large color-light-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_single_post->id,$latest_stories_single_post->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_single_post->title,60,'...')}}</a></h3>
                                     <ul class="entry-meta color-light-1-fixed">
                                         <li class="post-author">
                                             {{-- <a href="author.html"> --}}
@@ -276,17 +276,17 @@
                     <div class="col-lg-6">
                         <div class="post-box-layout5 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) {{$color_classes[2]}} @else {{$color_classes[3]}} @endif box-shadow-large shadow-style-2 transition-default">
                             <div class="figure-holder radius-default">
-                                <a href="{{route('post.details',[$latest_stories_two_post->id,$latest_stories_two_post->title]) }}" class="link-wrap figure-overlay img-height-100"><img width="660" height="470" src="{{ $latest_stories_two_post->image_url }}" alt="Post"></a>
+                                <a href="{{route('post.details',[$latest_stories_two_post->id,$latest_stories_two_post->slug]) }}" class="link-wrap figure-overlay img-height-100"><img width="660" height="470" src="{{ $latest_stories_two_post->image_url }}" alt="Post"></a>
                             </div>
                             <div class="content-holder">
                                 <div class="entry-category style-3 color-light-1-fixed">
                                     <ul>
                                         <li>
-                                            <a href="{{route('category.posts',$latest_stories_two_post->category_id)}}">{{$latest_stories_two_post->category->name}}</a>
+                                            <a href="{{route('category.posts',[$latest_stories_two_post->category_id,$latest_stories_two_post->category->slug])}}">{{$latest_stories_two_post->category->name}}</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <h3 class="entry-title h3-small color-light-1-fixed underline-animation mb-0"><a href="{{route('post.details',[$latest_stories_two_post->id,$latest_stories_two_post->title])}}" class="link-wrap">{{\Str::limit($latest_stories_two_post->title,60,'...')}}</a></h3>
+                                <h3 class="entry-title h3-small color-light-1-fixed underline-animation mb-0"><a href="{{route('post.details',[$latest_stories_two_post->id,$latest_stories_two_post->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_two_post->title,60,'...')}}</a></h3>
                             </div>
                         </div>
                     </div>
@@ -299,10 +299,10 @@
                     @foreach ($latest_stories_posts->skip(3) as $latest_stories_post)
                         @if ($loop->index == 0)
                         <div class="figure-holder radius-default">
-                            <a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->title])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{$latest_stories_post->image_url}}" alt="Post"></a>
+                            <a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{$latest_stories_post->image_url}}" alt="Post"></a>
                         </div>
                         <div class="content-holder">
-                            <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->title])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
+                            <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
                             <ul class="entry-meta color-dark-1-fixed">
                                 <li class="post-author">
                                     {{-- <a href="author.html"> --}}
@@ -319,7 +319,7 @@
                         </div>
                         @else
                             <div class="content-holder">
-                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->title])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
+                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
                                 <ul class="entry-meta color-dark-1-fixed">
                                     <li class="post-author">
                                         {{-- <a href="author.html"> --}}
@@ -355,7 +355,7 @@
             @if ($top_video_post)
                 <div class="figure-holder position-relative radius-default">
                     <a href="{{@$top_video_post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>
-                    <a href="{{route('post.details',[$top_video_post->id,$top_video_post->title])}}" class="link-wrap img-height-100"><img width="1150" height="660" src="{{$top_video_post->image_url}}" alt="Post"></a>
+                    <a href="{{route('post.details',[$top_video_post->id,$top_video_post->slug])}}" class="link-wrap img-height-100"><img width="1150" height="660" src="{{$top_video_post->image_url}}" alt="Post"></a>
                 </div>
             @endif
             <div class="multi-posts-layout1">
@@ -376,17 +376,17 @@
                                     <div class="post-box-layout8 radius-default">
                                         <div class="figure-holder radius-default">
                                             <a href="{{$recommended_post->video_url}}" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                            <a href="{{route('post.details',[$recommended_post->id,$recommended_post->title])}}" class="link-wrap img-height-100"><img width="140" height="140" src="{{ $recommended_post->image_url }}" alt="Post"></a>
+                                            <a href="{{route('post.details',[$recommended_post->id,$recommended_post->slug])}}" class="link-wrap img-height-100"><img width="140" height="140" src="{{ $recommended_post->image_url }}" alt="Post"></a>
                                         </div>
                                         <div class="content-holder">
                                             <div class="entry-category style-3 color-dark-1-fixed">
                                                 <ul>
                                                     <li>
-                                                        <a href="{{route('category.posts',$recommended_post->category_id)}}">{{@$recommended_post->category->name}}</a>
+                                                        <a href="{{route('category.posts',[$recommended_post->category_id,$recommended_post->category->slug])}}">{{@$recommended_post->category->name}}</a>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$recommended_post->id,$recommended_post->title])}}" class="link-wrap">{{\Str::limit($recommended_post->title,60,'...')}}</a></h3>
+                                            <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$recommended_post->id,$recommended_post->slug])}}" class="link-wrap">{{\Str::limit($recommended_post->title,60,'...')}}</a></h3>
                                             <ul class="entry-meta color-dark-1-fixed">
                                                 <li>
                                                     <i class="regular-calendar"></i>{{\Carbon\Carbon::parse($recommended_post->crated_at)->format('M,d Y')}}
@@ -407,17 +407,17 @@
                                 <div class="post-box-layout8 radius-default">
                                     <div class="figure-holder radius-default">
                                         <a href="{{$top_video_latest_post->video_url}}" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                        <a href="{{route('post.details',[$top_video_latest_post->id,$top_video_latest_post->title])}}" class="link-wrap img-height-100"><img width="140" height="140" src="{{ $top_video_latest_post->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$top_video_latest_post->id,$top_video_latest_post->slug])}}" class="link-wrap img-height-100"><img width="140" height="140" src="{{ $top_video_latest_post->image_url }}" alt="Post"></a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-3 color-dark-1-fixed">
                                             <ul>
                                                 <li>
-                                                    <a href="{{route('category.posts',$top_video_latest_post->category_id)}}">{{@$top_video_latest_post->category->name}}</a>
+                                                    <a href="{{route('category.posts',[$top_video_latest_post->category_id,$top_video_latest_post->category->slug])}}">{{@$top_video_latest_post->category->name}}</a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$top_video_latest_post->id,$top_video_latest_post->title])}}" class="link-wrap">{{\Str::limit($top_video_latest_post->title,60,'...')}}</a></h3>
+                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$top_video_latest_post->id,$top_video_latest_post->slug])}}" class="link-wrap">{{\Str::limit($top_video_latest_post->title,60,'...')}}</a></h3>
                                         <ul class="entry-meta color-dark-1-fixed">
                                             <li>
                                                 <i class="regular-calendar"></i>{{\Carbon\Carbon::parse($top_video_latest_post->crated_at)->format('M,d Y')}}
@@ -452,18 +452,18 @@
                         <div class="col-12">
                             <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation {{$color_classes[$loop->index]}} box-shadow-large shadow-style-2 transition-default">
                                 <div class="figure-holder radius-default">
-                                    <a href="{{route('post.details',[$recentArticlePost->id,$recentArticlePost->title])}}" class="link-wrap img-height-100"><img width="500" height="500" src="{{$recentArticlePost->image_url}}" alt="Post"></a>
+                                    <a href="{{route('post.details',[$recentArticlePost->id,$recentArticlePost->slug])}}" class="link-wrap img-height-100"><img width="500" height="500" src="{{$recentArticlePost->image_url}}" alt="Post"></a>
                                 </div>
                                 <div class="content-holder">
                                     <div>
                                         <div class="entry-category style-2 color-dark-1-fixed">
                                             <ul>
                                                 <li>
-                                                    <a href="{{route('category.posts',$recentArticlePost->category_id)}}">{{@$recentArticlePost->category->name}}</a>
+                                                    <a href="{{route('category.posts',[$recentArticlePost->category_id,$recentArticlePost->category->slug])}}">{{@$recentArticlePost->category->name}}</a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$recentArticlePost->id,$recentArticlePost->title])}}" class="link-wrap">{{\Str::limit($recentArticlePost->title,60,'...')}}</a></h3>
+                                        <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$recentArticlePost->id,$recentArticlePost->slug])}}" class="link-wrap">{{\Str::limit($recentArticlePost->title,60,'...')}}</a></h3>
                                         <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$recentArticlePost->content), 250, ' ...') !!}</p>
                                         <ul class="entry-meta color-dark-1-fixed">
                                             <li class="post-author">
@@ -494,18 +494,18 @@
                         <div class="col-12 mb-3">
                             <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation {{$color_classes[$loop->index]}} box-shadow-large shadow-style-2 transition-default">
                                 <div class="figure-holder radius-default">
-                                    <a href="{{route('post.details',[$recentArticlePostt->id,$recentArticlePostt->title])}}" class="link-wrap img-height-100"><img width="500" height="500" src="{{$recentArticlePostt->image_url}}" alt="Post"></a>
+                                    <a href="{{route('post.details',[$recentArticlePostt->id,$recentArticlePostt->slug])}}" class="link-wrap img-height-100"><img width="500" height="500" src="{{$recentArticlePostt->image_url}}" alt="Post"></a>
                                 </div>
                                 <div class="content-holder">
                                     <div>
                                         <div class="entry-category style-2 color-dark-1-fixed">
                                             <ul>
                                                 <li>
-                                                    <a href="{{route('category.posts',$recentArticlePostt->category_id)}}">{{@$recentArticlePostt->category->name}}</a>
+                                                    <a href="{{route('category.posts',[$recentArticlePostt->category_id,$recentArticlePostt->category->slug])}}">{{@$recentArticlePostt->category->name}}</a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3 class="entry-title color-dark-1-fixed underline-animation h3-small"><a href="{{route('post.details',[$recentArticlePostt->id,$recentArticlePostt->title])}}" class="link-wrap">{{\Str::limit($recentArticlePostt->title,60,'...')}}</a></h3>
+                                        <h3 class="entry-title color-dark-1-fixed underline-animation h3-small"><a href="{{route('post.details',[$recentArticlePostt->id,$recentArticlePostt->slug])}}" class="link-wrap">{{\Str::limit($recentArticlePostt->title,60,'...')}}</a></h3>
                                         <ul class="entry-meta color-dark-1-fixed">
 
                                             <li>
@@ -532,10 +532,10 @@
                             @if ($loop->index == 0)
                                 <div class="post-box">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap figure-overlay img-height-100"><img width="700" height="470" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="700" height="470" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
                                     </div>
                                     <div class="content-holder">
-                                        <h3 class="entry-title color-light-1-fixed h3-small underline-animation"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
+                                        <h3 class="entry-title color-light-1-fixed h3-small underline-animation"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
                                         <ul class="entry-meta color-light-1-fixed">
                                             <li>
                                                 <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($short_stories_post->created_at)->diffForHumans()}}
@@ -546,10 +546,10 @@
                             @else
                                 <div class="post-box">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap figure-overlay img-height-100"><img width="140" height="140" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="140" height="140" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
                                     </div>
                                     <div class="content-holder">
-                                        <h3 class="entry-title color-dark-1 underline-animation h3-extra-small"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
+                                        <h3 class="entry-title color-dark-1 underline-animation h3-extra-small"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
                                         <ul class="entry-meta color-dark-1">
                                             <li>
                                                 <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($short_stories_post->created_at)->diffForHumans()}}
@@ -585,17 +585,17 @@
                 @foreach ($recent_stories_article_posts->take(1) as  $recentStoriesSingleArticle)
                     <div class="post-box-layout10 box-border-dark-1 radius-default both-side-equal">
                         <div class="figure-holder radius-medium">
-                            <a href="{{route('post.details',[$recentStoriesSingleArticle->id,$recentStoriesSingleArticle->title])}}" class="link-wrap figure-overlay img-height-100"><img width="630" height="500" src="{{ $recentStoriesSingleArticle->image_url }}" alt="Post"></a>
+                            <a href="{{route('post.details',[$recentStoriesSingleArticle->id,$recentStoriesSingleArticle->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="630" height="500" src="{{ $recentStoriesSingleArticle->image_url }}" alt="Post"></a>
                         </div>
                         <div class="content-holder">
                             <div class="entry-category style-2 color-dark-1-fixed">
                                 <ul>
                                     <li>
-                                        <a href="{{route('category.posts',$recentStoriesSingleArticle->category_id)}}">{{$recentStoriesSingleArticle->category->name}}</a>
+                                        <a href="{{route('category.posts',[$recentStoriesSingleArticle->category_id,$recentStoriesSingleArticle->category->slug])}}">{{$recentStoriesSingleArticle->category->name}}</a>
                                     </li>
                                 </ul>
                             </div>
-                            <h3 class="entry-title h3-large color-light-1-fixed underline-animation"><a href="{{route('post.details',[$recentStoriesSingleArticle->id,$recentStoriesSingleArticle->title])}}" class="link-wrap">{{\Str::limit($recentStoriesSingleArticle->title,60,'...')}}</a></h3>
+                            <h3 class="entry-title h3-large color-light-1-fixed underline-animation"><a href="{{route('post.details',[$recentStoriesSingleArticle->id,$recentStoriesSingleArticle->slug])}}" class="link-wrap">{{\Str::limit($recentStoriesSingleArticle->title,60,'...')}}</a></h3>
                         </div>
                     </div>
                 @endforeach
@@ -606,17 +606,17 @@
                     <div class="col-md-6 col-12">
                         <div class="post-box-layout11 box-border-dark-1 radius-default padding-20 {{$color_classes[$loop->index]}} box-shadow-small shadow-style-2 transition-default">
                             <div class="figure-holder radius-default">
-                                <a href="{{route('post.details',[$recentStoriesArticle->id,$recentStoriesArticle->title])}}" class="link-wrap img-height-100"><img width="480" height="344" src="{{ $recentStoriesArticle->image_url }}" alt="Post"></a>
+                                <a href="{{route('post.details',[$recentStoriesArticle->id,$recentStoriesArticle->slug])}}" class="link-wrap img-height-100"><img width="480" height="344" src="{{ $recentStoriesArticle->image_url }}" alt="Post"></a>
                             </div>
                             <div class="content-holder">
                                 <div class="entry-category style-2 color-dark-1-fixed">
                                     <ul>
                                         <li>
-                                            <a href="{{route('category.posts',$recentStoriesArticle->category_id)}}">{{@$recentStoriesArticle->category->name}}</a>
+                                            <a href="{{route('category.posts',[$recentStoriesArticle->category_id,$recentStoriesArticle->category->slug])}}">{{@$recentStoriesArticle->category->name}}</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$recentStoriesArticle->id,$recentStoriesArticle->title])}}" class="link-wrap">{{\Str::limit(@$recentStoriesArticle->title,60,'...')}}</a></h3>
+                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$recentStoriesArticle->id,$recentStoriesArticle->slug])}}" class="link-wrap">{{\Str::limit(@$recentStoriesArticle->title,60,'...')}}</a></h3>
                             </div>
                         </div>
                     </div>
@@ -723,17 +723,17 @@
                             @if ($loop->index == 0)
                                 <div class="single-item">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$categoryPost->id,$categoryPost->title])}}" class="link-wrap img-height-100"><img width="660" height="440" src="{{ @$categoryPost->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap img-height-100"><img width="660" height="440" src="{{ @$categoryPost->image_url }}" alt="Post"></a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-2 color-dark-1-fixed">
                                             <ul>
                                                 <li>
-                                                    <a href="{{route('category.posts',$categoryPost->category_id)}}">{{@$categoryPost->category->name}}</a>
+                                                    <a href="{{route('category.posts',[$categoryPost->category_id,$categoryPost->category->slug])}}">{{@$categoryPost->category->name}}</a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$categoryPost->id,$categoryPost->title])}}" class="link-wrap">{{\Str::limit($categoryPost->title,60,'...')}}</a></h3>
+                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap">{{\Str::limit($categoryPost->title,60,'...')}}</a></h3>
                                         <ul class="entry-meta color-dark-1-fixed">
                                             <li class="post-author">
                                                 <a href="author.html">
@@ -753,17 +753,17 @@
                             @else
                                 <div class="single-item">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$categoryPost->id,$categoryPost->title])}}" class="link-wrap figure-overlay img-height-100"><img width="250" height="168" src="{{ @$categoryPost->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="250" height="168" src="{{ @$categoryPost->image_url }}" alt="Post"></a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-3 color-dark-1-fixed">
                                             <ul>
                                                 <li>
-                                                    <a href="{{route('category.posts',$categoryPost->category_id)}}">{{@$categoryPost->category->name}}</a>
+                                                    <a href="{{route('category.posts',[$categoryPost->category_id,$categoryPost->category->slug])}}">{{@$categoryPost->category->name}}</a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3 class="entry-title color-dark-1-fixed h3-small underline-animation"><a href="{{route('post.details',[$categoryPost->id,$categoryPost->title])}}" class="link-wrap">{{\Str::limit($categoryPost->title,30,'...')}}</a></h3>
+                                        <h3 class="entry-title color-dark-1-fixed h3-small underline-animation"><a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap">{{\Str::limit($categoryPost->title,30,'...')}}</a></h3>
                                     </div>
                                 </div>
                             @endif

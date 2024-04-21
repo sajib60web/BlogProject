@@ -24,8 +24,9 @@ class PostController extends Controller
     }
     public function index()
     {
+
         $data['page_name'] = 'Post List';
-        $data['posts'] = $this->repo->get();
+        $data['posts'] = $this->repo->get(); 
         return view('admin.post.index', $data);
     }
 

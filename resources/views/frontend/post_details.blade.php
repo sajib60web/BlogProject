@@ -32,7 +32,7 @@
                             <div class="entry-category style-2 color-dark-1">
                                 <ul>
                                     <li>
-                                        <a href="{{route('category.posts',$post->category_id)}}">{{@$post->category->name}}</a>
+                                        <a href="{{route('category.posts',[$post->category_id,$post->category->slug])}}">{{@$post->category->name}}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -87,17 +87,17 @@
                                 </ul>
                             </div> --}}
                             <div class="mb-4 box-border-dark-1 radius-default transition-default">
-                                 
+
                                 <div class="figure-holder position-relative radius-default">
                                     @if ($post->post_type == App\Enums\PostType::VIDEO)
                                         <a href="{{@$post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>
                                     @endif
-                                    <a href="{{route('post.details',[$post->id,$post->title])}}" class="link-wrap img-height-100"><img width="1150" height="660" src="{{$post->image_url}}" alt="Post"></a>
+                                    <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100"><img width="1150" height="660" src="{{$post->image_url}}" alt="Post"></a>
                                  </div>
 
                             </div>
-                            
-                          
+
+
                              <div>
                                 {!! $post->content !!}
                              </div>
@@ -105,12 +105,12 @@
                                 <div class="tagcloud-wrap">
                                     <h4 class="mb-2 h4-small">Tags:</h4>
                                     <div class="tagcloud">
-                                        @foreach (explode(',',$post->tags) as $tag) 
+                                        @foreach (explode(',',$post->tags) as $tag)
                                             <a href="#" class="tag-cloud-link">
                                                 <span class="icon-holder">
                                                     <i class="regular-taxi-1"></i>
                                                 </span>{{$tag}}
-                                            </a> 
+                                            </a>
                                         @endforeach
                                     </div>
                                 </div>
@@ -188,22 +188,22 @@
                                             <a href="post-format-default.html" class="link-wrap img-height-100"><img width="540" height="540" src="{{$prevous_post->image_url}}" alt="Post"></a>
                                         </div>
                                         <div class="content-holder">
-                                            <a href="{{route('post.details',[$prevous_post->id,$prevous_post->title])}}" class="text-box prev-text">
+                                            <a href="{{route('post.details',[$prevous_post->id,$prevous_post->slug])}}" class="text-box prev-text">
                                                 <div class="icon-holder"><i class="regular-arrow-left"></i></div>Previous Post
                                             </a>
-                                            <h3 class="entry-title h3-small color-dark-1 underline-animation"><a href="{{route('post.details',[$prevous_post->id,$prevous_post->title])}}" class="link-wrap">{{\Str::limit($prevous_post->title,20,'...')}}</a></h3>
+                                            <h3 class="entry-title h3-small color-dark-1 underline-animation"><a href="{{route('post.details',[$prevous_post->id,$prevous_post->slug])}}" class="link-wrap">{{\Str::limit($prevous_post->title,20,'...')}}</a></h3>
                                         </div>
                                     @endif
                                 </div>
                                 <div class="post-box next-post">
                                     @if ($next_post)
-                                        
+
                                         <div class="figure-holder">
-                                            <a href="{{route('post.details',[$next_post->id,$next_post->title])}}" class="link-wrap img-height-100"><img width="540" height="540" src="{{$next_post->image_url}} " alt="Post"></a>
+                                            <a href="{{route('post.details',[$next_post->id,$next_post->slug])}}" class="link-wrap img-height-100"><img width="540" height="540" src="{{$next_post->image_url}} " alt="Post"></a>
                                         </div>
                                         <div class="content-holder">
-                                            <a href="{{route('post.details',[$next_post->id,$next_post->title])}}" class="text-box next-text">Next Post<div class="icon-holder"><i class="regular-arrow-right"></i></div></a>
-                                            <h3 class="entry-title h3-small color-dark-1 underline-animation"><a href="{{route('post.details',[$next_post->id,$next_post->title])}}" class="link-wrap">{{\Str::limit($next_post->title,20,'...')}}</a></h3>
+                                            <a href="{{route('post.details',[$next_post->id,$next_post->slug])}}" class="text-box next-text">Next Post<div class="icon-holder"><i class="regular-arrow-right"></i></div></a>
+                                            <h3 class="entry-title h3-small color-dark-1 underline-animation"><a href="{{route('post.details',[$next_post->id,$next_post->slug])}}" class="link-wrap">{{\Str::limit($next_post->title,20,'...')}}</a></h3>
                                         </div>
                                     @endif
                                 </div>
@@ -214,7 +214,7 @@
                                 </div>
                                 <ul class="comment-list">
                                     @foreach ($post->comments as $comment)
-                                        
+
                                         <li>
                                             <div class="each-comment">
                                                 <div class="comment-figure img-height-100">
@@ -224,12 +224,16 @@
                                                     <h4 class="comment-title">{{$comment->user->name ?? 'Guest'}}</h4>
                                                     <div class="comment-meta"><span class="post-date">{{\Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}</span></div>
                                                     <p class="comment-comment">{{$comment->message}}</p>
-                                                    {{-- <a href="#" class="item-btn" data-bs-toggle="collapse" href="#comment{{$comment->id}}" role="button" aria-expanded="false" aria-controls="comment{{$comment->id}}">Reply</a> --}}
+                                                    @if (auth()->user())
+                                                    <a href="#" class="item-btn replay-btn" data-commentid="{{$comment->id}}" href="#comment{{$comment->id}}">Reply</a>
+                                                    @else
+                                                    <a  class="item-btn"  href="{{route('login')}}">Login</a>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <ul class="children">
                                                 @foreach ($comment->childrenComments as $childComment)
-                                                    
+
                                                     <li>
                                                         <div class="each-comment">
                                                             <div class="comment-figure img-height-100">
@@ -239,39 +243,40 @@
                                                                 <h4 class="comment-title">{{$childComment->user->name?? 'guest'}}</h4>
                                                                 <div class="comment-meta"><span class="post-date">{{\Carbon\Carbon::parse($childComment->created_at)->diffForHumans()}}</span></div>
                                                                 <p class="comment-comment">{{$childComment->message}}</p>
-                                                                
+
                                                             </div>
                                                         </div>
                                                     </li>
                                                 @endforeach
                                             </ul>
 
-                                            {{-- <div class="collapse" id="comment{{$comment->id}}">
-                                               
-                                                <div class="leave-comment">
-                                                    <div class="section-heading heading-style-7">
+                                            @if (auth()->user())
+                                            <div id="comment{{$comment->id}}" style="display: none">
+
+                                                <div class="leave-comment mb-3">
+                                                    {{-- <div class="section-heading heading-style-7">
                                                         <h3 class="title h3-regular">Reply</h3>
-                                                    </div>
-                                                    <p class="mb-4">Your email address will not be published. Required fields are marked *</p>
-                                                    <form class="leave-form-box" method="post" action="{{route('comment.submit')}}">
+                                                    </div>  --}}
+                                                    <form class="leave-form-box" method="post" action="{{route('comment.replay.submit')}}">
                                                         @csrf
+                                                        <input type="hidden" name="comment_id" value="{{$comment->id}}"/>
                                                         <input type="hidden" name="post_id" value="{{$post->id}}"/>
                                                         <div class="row g-2">
                                                             <div class="col-md-6 form-group">
-                                                                <input type="text" name="name" placeholder="Name" class="form-control" name="name" id="name" data-error="Name field is required" required>
+                                                                <input type="hidden" name="name" placeholder="Name" class="form-control" name="name" value="{{auth()->user()->name}}" id="name" data-error="Name field is required" required>
                                                                 <div class="help-block with-errors"></div>
                                                                 @error('name')
                                                                     <p class="text-danger mt-2">{{$message}}</p>
                                                                 @enderror
                                                             </div>
                                                             <div class="col-md-6 form-group">
-                                                                <input type="email" name="email" placeholder="Your E-mail*" class="form-control" name="email" id="leave-email" data-error="E-mail field is required" required>
+                                                                <input type="hidden" name="email" placeholder="Your E-mail*" class="form-control" name="email" id="leave-email" value="{{auth()->user()->email}}" data-error="E-mail field is required" required>
                                                                 <div class="help-block with-errors"></div>
                                                                 @error('email')
                                                                     <p class="text-danger mt-2">{{$message}}</p>
                                                                 @enderror
                                                             </div>
-                    
+
                                                             <div class="col-12 form-group">
                                                                 <div class="section-heading heading-style-7">
                                                                     <h3 class="title h3-regular">Leave a Reply</h3>
@@ -284,69 +289,81 @@
                                                             </div>
                                                             <div class="col-12 form-group mt-2">
                                                                 <button type="submit"   class="axil-btn axil-btn-fill btn-color-alter axil-btn-large">
-                                                                <span><span>Post Comment</span></span></button>
+                                                                <span><span>Reply Comment</span></span></button>
+                                                                <button type="button"   class="axil-btn axil-btn-fill btn-color-alter axil-btn-large close" data-commentid="{{$comment->id}}">
+                                                                <span><span>Close</span></span></button>
                                                             </div>
                                                         </div>
                                                     </form>
                                                 </div>
-                                              </div> --}}
+                                              </div>
+
+                                            @endif
 
 
                                         </li>
                                     @endforeach
-                                 
+
                                 </ul>
                             </div>
-                            <div class="leave-comment">
-                                <div class="section-heading heading-style-7">
-                                    <h3 class="title h3-regular">Post A Comment</h3>
-                                </div>
-                                <p class="mb-4">Your email address will not be published. Required fields are marked *</p>
-                                <form class="leave-form-box" method="post" action="{{route('comment.submit')}}">
-                                    @csrf
-                                    <input type="hidden" name="post_id" value="{{$post->id}}"/>
-                                    <div class="row g-2">
-                                        <div class="col-md-6 form-group">
-                                            <input type="text" name="name" placeholder="Name" class="form-control" name="name" id="name" data-error="Name field is required" required>
-                                            <div class="help-block with-errors"></div>
-                                            @error('name')
-                                                <p class="text-danger mt-2">{{$message}}</p>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <input type="email" name="email" placeholder="Your E-mail*" class="form-control" name="email" id="leave-email" data-error="E-mail field is required" required>
-                                            <div class="help-block with-errors"></div>
-                                            @error('email')
-                                                <p class="text-danger mt-2">{{$message}}</p>
-                                            @enderror
-                                        </div>
 
-                                        {{-- <div class="col-12 form-group">
-                                            <input type="checkbox" id="show-message" name="show-message" value="Bike">
-                                            <label class="show-message-label" for="show-message">Don’t show this message again</label>
-                                        </div> --}}
-                                        <div class="col-12 form-group">
-                                            <div class="section-heading heading-style-7">
-                                                <h3 class="title h3-regular">Leave a Reply</h3>
-                                            </div>
-                                            <textarea name="message" class="textarea form-control" placeholder="Message" name="message" id="leave-message" rows="5" cols="20" data-error="Message field is required" required></textarea>
-                                            <div class="help-block with-errors"></div>
-                                            @error('message')
-                                                <p class="text-danger mt-2">{{$message}}</p>
-                                            @enderror
-                                        </div>
-                                        <div class="col-12 form-group mt-2">
-                                            <button type="submit"   class="axil-btn axil-btn-fill btn-color-alter axil-btn-large">
-                                            <span><span>Post Comment</span></span></button>
-                                        </div>
+                            @if (auth()->user())
+                                <div class="leave-comment">
+                                    <div class="section-heading heading-style-7">
+                                        <h3 class="title h3-regular">Post A Comment</h3>
                                     </div>
-                                </form>
-                            </div>
+                                    <p class="mb-4">Your email address will not be published. Required fields are marked *</p>
+                                    <form class="leave-form-box" method="post" action="{{route('comment.submit')}}">
+                                        @csrf
+                                        <input type="hidden" name="post_id" value="{{$post->id}}"/>
+                                        <div class="row g-2">
+                                            <div class="col-md-6 form-group">
+                                                <input type="text" name="name" placeholder="Name" class="form-control" name="name" id="name" data-error="Name field is required" required>
+                                                <div class="help-block with-errors"></div>
+                                                @error('name')
+                                                    <p class="text-danger mt-2">{{$message}}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <input type="email" name="email" placeholder="Your E-mail*" class="form-control" name="email" id="leave-email" data-error="E-mail field is required" required>
+                                                <div class="help-block with-errors"></div>
+                                                @error('email')
+                                                    <p class="text-danger mt-2">{{$message}}</p>
+                                                @enderror
+                                            </div>
+
+                                            {{-- <div class="col-12 form-group">
+                                                <input type="checkbox" id="show-message" name="show-message" value="Bike">
+                                                <label class="show-message-label" for="show-message">Don’t show this message again</label>
+                                            </div> --}}
+                                            <div class="col-12 form-group">
+                                                <div class="section-heading heading-style-7">
+                                                    <h3 class="title h3-regular">Leave a Reply</h3>
+                                                </div>
+                                                <textarea name="message" class="textarea form-control" placeholder="Message" name="message" id="leave-message" rows="5" cols="20" data-error="Message field is required" required></textarea>
+                                                <div class="help-block with-errors"></div>
+                                                @error('message')
+                                                    <p class="text-danger mt-2">{{$message}}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="col-12 form-group mt-2">
+                                                <button type="submit"   class="axil-btn axil-btn-fill btn-color-alter axil-btn-large">
+                                                <span><span>Post Comment</span></span></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            @else
+                                <div class="col-12 form-group mt-2">
+                                    <a  href="{{route('login')}}" class="axil-btn axil-btn-fill btn-color-alter axil-btn-large">
+                                    <span><span>Login</span></span></a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-4 sticky-coloum-item">
                         <div class="sidebar-global sidebar-layout4">
-                           
+
 
                             <div class="sidebar-widget mb-3">
                                 <div class="section-heading heading-style-2">
@@ -354,14 +371,14 @@
                                 </div>
                                 <div class="widget-post post-layout1">
                                     @foreach ($latest_short_stories_posts as $short_stories_post)
-        
+
                                     @if ($loop->index == 0)
                                         <div class="post-box">
                                             <div class="figure-holder radius-default">
-                                                <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap figure-overlay img-height-100"><img width="700" height="470" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
+                                                <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="700" height="470" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
                                             </div>
                                             <div class="content-holder">
-                                                <h3 class="entry-title color-light-1-fixed h3-small underline-animation"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
+                                                <h3 class="entry-title color-light-1-fixed h3-small underline-animation"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
                                                 <ul class="entry-meta color-light-1-fixed">
                                                     <li>
                                                         <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($short_stories_post->created_at)->diffForHumans()}}
@@ -372,10 +389,10 @@
                                     @else
                                         <div class="post-box">
                                             <div class="figure-holder radius-default">
-                                                <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap figure-overlay img-height-100"><img width="140" height="140" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
+                                                <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="140" height="140" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
                                             </div>
                                             <div class="content-holder">
-                                                <h3 class="entry-title color-dark-1 underline-animation h3-extra-small"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->title])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
+                                                <h3 class="entry-title color-dark-1 underline-animation h3-extra-small"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
                                                 <ul class="entry-meta color-dark-1">
                                                     <li>
                                                         <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($short_stories_post->created_at)->diffForHumans()}}
@@ -387,7 +404,7 @@
                                     @endforeach
                                 </div>
                             </div>
-          
+
 
                         </div>
 
@@ -405,21 +422,21 @@
                 <div class="position-relative">
                     <div id="post-slider-3" class="post-slider-3 gutter-30 outer-top-5 initially-none">
                         @foreach ($related_posts as $rel_post)
-                            
+
                         <div class="single-slide">
                             <div class="post-box-layout6 box-border-dark-1 radius-default padding-20 bg-color-scandal box-shadow-large shadow-style-2 transition-default">
                                 <div class="figure-holder radius-default">
-                                    <a href="{{route('post.details',[$rel_post->id,$rel_post->title])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{ $rel_post->image_url}}" alt="Post"></a>
+                                    <a href="{{route('post.details',[$rel_post->id,$rel_post->slug])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{ $rel_post->image_url}}" alt="Post"></a>
                                 </div>
                                 <div class="content-holder">
                                     <div class="entry-category style-2 color-dark-1-fixed">
                                         <ul>
                                             <li>
-                                                <a href="{{route('category.posts',$rel_post->id)}}">{{@$rel_post->category->name}}</a>
+                                                <a href="{{route('category.posts',[$rel_post->category_id,$rel_post->category->slug])}}">{{@$rel_post->category->name}}</a>
                                             </li>
                                         </ul>
                                     </div>
-                                    <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$rel_post->id,$rel_post->title])}}" class="link-wrap">{{\Str::limit($rel_post->title,30,'...')}}</a></h3>
+                                    <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$rel_post->id,$rel_post->slug])}}" class="link-wrap">{{\Str::limit($rel_post->title,30,'...')}}</a></h3>
                                     <ul class="entry-meta color-dark-1-fixed">
                                         <li class="post-author">
                                             <a href="author.html">
@@ -437,9 +454,9 @@
                                 </div>
                             </div>
                         </div>
-                       
+
                         @endforeach
-                      
+
                     </div>
                     <ul class="slider-navigation-layout1 position-layout2 color-light-1 nav-size-large">
                         <li id="post-prev-3" class="prev"><i class="regular-arrow-left"></i></li>
@@ -450,31 +467,20 @@
         </section>
 
 
-                <!--=====================================-->
-        <!--=        Newsletter Area Start      =-->
-        <!--=====================================-->
-        {{-- <section class="newsletter-wrap-layout1 space-top-60 space-bottom-60 bg-color-light-1 transition-default">
-            <div class="container">
-                <div class="newsletter-box-layout1 box-border-dark-1 radius-default bg-color-perano">
-                    <h2 class="entry-title h2-medium f-w-700 color-dark-1-fixed">SUBSCRIBE TO OUR NEWSLETTER</h2>
-                    <p class="entry-description color-dark-1-fixed">Kurihara Harumi, born March 5, 1947, Shimoda, Shizuoka prefecture, Japan</p>
-                    <form action="#" class="newsletter-form box-border-dark-1 box-shadow-large shadow-style-2 shadow-fixed transition-default radius-default">
-                        <input type="email" class="email-input" placeholder="Email Address">
-                        <button type="submit" class="axil-btn">
-                            Subscribe<i class="solid-navigation"></i>
-                        </button>
-                    </form>
-                    <ul class="elements-wrap img-height-100">
-                        <li><img width="57" height="53" src="{{asset('/')}}assets/frontend/media/elements/element1.webp" alt="Element"></li>
-                        <li><img width="120" height="186" src="{{asset('/')}}assets/frontend/media/elements/element2.webp" alt="Element"></li>
-                    </ul>
-                </div>
-            </div>
-        </section> --}}
-        
+
+
 @endsection
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    $('.replay-btn').on('click',function(){
+        $('#comment'+$(this).data('commentid')).show();
+    });
+    $('.close').on('click',function(){
+        $('#comment'+$(this).data('commentid')).hide();
+    });
+</script>
 @endpush

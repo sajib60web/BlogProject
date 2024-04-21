@@ -20,6 +20,8 @@ class PostRepository implements PostInterface {
             $request['image_id']  = $image_id;
         endif;
 
+        $request['slug'] = \Str::slug($request->title);
+
         $post = Post::create($request->except(['_token','image']));
         if($post):
             return true;
