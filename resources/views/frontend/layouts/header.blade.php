@@ -9,14 +9,11 @@
                     <div class="news-feed-wrap">
                         <div class="news-feed-label">BREAKING:</div>
                         <div id="news-feed-slider" class="news-feed-slider initially-none">
-
                             @foreach ($breaking_posts as $breaking_post)
-
                                 <div class="single-slide">
-                                    <a href="post-format-default.html" class="link-wrap">{{$breaking_post->title}}</a>
+                                    <a href="{{route('post.details',[$breaking_post->id,$breaking_post->title])}}" class="link-wrap">{{$breaking_post->title}}</a>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-4">
@@ -38,7 +35,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="d-lg-block d-none">
+                            {{-- <div class="d-lg-block d-none">
                                 <div class="notification-wrap dropdown-item-wrap">
                                     <div class="navbar navbar-expand-md">
                                         <div class="dropdown">
@@ -64,36 +61,6 @@
                                                                 </div>
                                                             </div>
                                                         </a>
-                                                        <a href="post-format-default.html" class="notification-item">
-                                                            <div class="post-box">
-                                                                <div class="figure-holder radius-default img-height-100">
-                                                                    <img width="540" height="600" src="{{ asset('assets/frontend') }}/media/blog/post94.webp" alt="Post">
-                                                                </div>
-                                                                <div class="content-holder">
-                                                                    <h3 class="entry-title color-dark-1 h3-extra-small">On August 15th, an alarming email popped.</h3>
-                                                                    <ul class="entry-meta color-dark-1">
-                                                                        <li>
-                                                                            <i class="regular-clock-circle"></i>8 min read
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <a href="post-format-default.html" class="notification-item">
-                                                            <div class="post-box">
-                                                                <div class="figure-holder radius-default img-height-100">
-                                                                    <img width="540" height="600" src="{{ asset('assets/frontend') }}/media/blog/post95.webp" alt="Post">
-                                                                </div>
-                                                                <div class="content-holder">
-                                                                    <h3 class="entry-title color-dark-1 h3-extra-small">Nam eget lorem mattis, consequat felis quis, luctus augue.</h3>
-                                                                    <ul class="entry-meta color-dark-1">
-                                                                        <li>
-                                                                            <i class="regular-clock-circle"></i>3 min read
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </a>
                                                     </div>
                                                     <div class="notification-btn-wrap">
                                                         <a href="archive.html" class="w-100 axil-btn axil-btn-ghost btn-color-alter axil-btn-small">View All
@@ -105,7 +72,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -117,19 +84,29 @@
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-md-block d-none">
-                    <a href="{{ route('main.index') }}" class="link-wrap desktop-logo img-height-100" aria-label="Site Logo"><img width="131" height="47" src="{{ setting()->logo }}" alt="logo"></a>
+                    <a href="{{ route('main.index') }}" class="link-wrap desktop-logo img-height-100" aria-label="Site Logo">
+                        <img width="131" height="47" src="{{ setting()->logo }}" alt="logo">
+                    </a>
                 </div>
                 <div class="d-md-none d-block">
-                    <a href="{{ route('main.index') }}" class="link-wrap mobile-logo img-height-100" aria-label="Site Logo"><img width="86" height="31" src="{{ setting()->logo }}" alt="logo"></a>
+                    <a href="{{ route('main.index') }}" class="link-wrap mobile-logo img-height-100" aria-label="Site Logo">
+                        <img width="86" height="31" src="{{ setting()->logo }}" alt="logo">
+                    </a>
                 </div>
                 <!-- Start Mainmenu Nav -->
                 <div id="mobilemenu-popup" class="mobile-menu-wrap">
                     <div class="mobile-logo-wrap d-lg-none d-block">
                         <div class="logo-holder">
-                            <a href="{{ route('main.index') }}" class="link-wrap single-logo light-mode img-height-100" aria-label="Site Logo"><img width="131" height="47" src="{{ setting()->logo }}" alt="logo"></a>
-                            <a href="{{ route('main.index') }}" class="link-wrap single-logo dark-mode img-height-100" aria-label="Site Logo"><img width="131" height="47" src="{{ setting()->logo }}" alt="logo" aria-label="Site Logo"></a>
+                            <a href="{{ route('main.index') }}" class="link-wrap single-logo light-mode img-height-100" aria-label="Site Logo">
+                                <img width="131" height="47" src="{{ setting()->logo }}" alt="logo">
+                            </a>
+                            <a href="{{ route('main.index') }}" class="link-wrap single-logo dark-mode img-height-100" aria-label="Site Logo">
+                                <img width="131" height="47" src="{{ setting()->logo }}" alt="logo" aria-label="Site Logo">
+                            </a>
                         </div>
-                        <button aria-label="Offcanvas" type="button" class="mobile-close" data-bs-dismiss="offcanvas"><i class="regular-multiply-circle"></i></button>
+                        <button aria-label="Offcanvas" type="button" class="mobile-close" data-bs-dismiss="offcanvas">
+                            <i class="regular-multiply-circle"></i>
+                        </button>
                     </div>
                     <nav id="dropdown" class="template-main-menu">
                         <ul class="menu">
@@ -139,11 +116,30 @@
                             <li class="menu-item">
                                 <a href="{{ route('about') }}">About</a>
                             </li>
-                            <li class="menu-item menu-item-has-children">
+                            @php
+                                $categories = \App\Models\Category::where('parent_id',0)->get();
+                            @endphp
+                            @foreach ($categories as $category)
+                            @php
+                                $subcategories = \App\Models\Category::where('parent_id',$category->id)->get()
+                            @endphp
+                            <li class="menu-item @if($subcategories->count() > 0) menu-item-has-children @endif">
+                                @if ($subcategories->count() > 0)
+                                    <a href="#">{{ $category->name }}</a>
+                                @else
+                                    <a href="{{ route('category.posts',$category->id) }}">{{ $category->name }}</a>
+                                @endif
+                                <ul class="sub-menu">
+                                    @foreach ($subcategories as $subcategory)
+                                        <li class="menu-item">
+                                            <a href="{{ route('category.posts',$subcategory->id) }}">{{ $subcategory->name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            @endforeach
+                            {{-- <li class="menu-item menu-item-has-children">
                                 <a href="#">Category</a>
-                                @php
-                                    $categories = \App\Models\Category::where('parent_id',0)->get();
-                                @endphp
                                 @if ($categories->count() > 0)
                                     <ul class="sub-menu">
                                         @foreach ($categories as $category)
@@ -154,17 +150,32 @@
                                                 <a href="#">{{$category->name}}</a>
                                                 <ul class="sub-menu">
                                                     @foreach ($subcategories as $subcategory)
-                                                        <li class="menu-item"><a href="archive-layout1.html">{{$subcategory->name}}</a></li>
+                                                        <li class="menu-item"><a href="{{ route('category.posts',$subcategory->id) }}">{{$subcategory->name}}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @endforeach
                                     </ul>
                                 @endif
-                            </li>
+                            </li> --}}
                             <li class="menu-item">
                                 <a href="{{ route('contact') }}">Contact</a>
                             </li>
+                            @guest
+                                <li class="menu-item d-lg-none d-block">
+                                    <a href="{{ route('login') }}">Sign In</a>
+                                </li>
+                                <li class="menu-item d-lg-none d-block">
+                                    <a href="{{ route('register') }}">Sign Up</a>
+                                </li>
+                            @else
+                                <li class="menu-item d-lg-none d-block">
+                                    <a href="{{ route('user.profile') }}">Profile</a>
+                                </li>
+                                <li class="menu-item d-lg-none d-block">
+                                    <a href="{{ route('post.list') }}">Posts</a>
+                                </li>
+                            @endguest
                         </ul>
                     </nav>
                 </div>
@@ -188,7 +199,7 @@
                                 <div class="navbar navbar-expand-md">
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Profile">
-                                            <span class="thumble-holder img-height-100"><img width="40" height="40" src="{{ asset('assets/frontend') }}/media/blog/profile4.webp" alt="Profile"></span>
+                                            <span class="thumble-holder img-height-100"><img width="40" height="40" src="{{ $profile->image?? asset('default/user.webp') }}" alt="Profile"></span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown2">
                                             <div class="dropdown-menu-inner">

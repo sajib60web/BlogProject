@@ -48,7 +48,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                {{-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Sub-Category:</label>
                                         <select name="sub_category_id" class="form-control " id="sub_category_id">
@@ -58,7 +58,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Post Type:</label>

@@ -85,11 +85,32 @@ class WelcomeController extends Controller
         }
     }
     public function categoryPosts($id){
-        $posts = Post::where('category_id',$id)->orWhere('sub_category_id',$id)->orderByDesc('id')->paginate(10);
-        $data['page_name'] = 'Post Details';
-        $data['post'] = $posts;
+        $data['page_name'] = 'Category Posts';
+        $data['posts'] = Post::where('category_id',$id)->orWhere('sub_category_id',$id)->orderByDesc('id')->paginate(10);
         return view('frontend.category_posts',$data);
     }
+    public function postAuthor($id)
+    {
+        $data['page_name'] = 'Author Posts';
+        $data['posts'] = Post::where('user_id',$id)->orderByDesc('id')->paginate(10);
+        return view('frontend.author_posts',$data);
+    }
+    public function searchPosts(Request $request)
+    {
+        $data['page_name'] = 'Search Posts';
+        $data['posts'] = Post::orderByDesc('id')
+        ->where(function ($query) use ($request) {
+            $query->where('title', 'LIKE', '%' . $request->search . '%');
+            $query->orWhere('content', 'LIKE', '%' . $request->search . '%');
+            $query->orWhere('meta_title', 'LIKE', '%' . $request->search . '%');
+            $query->whereHas('user', function ($queryUser) use ($request) {
+                $queryUser->orWhere('name', 'LIKE', '%' . $request->search . '%');
+            });
+        })
+        ->paginate(10);
+        return view('frontend.search_posts',$data);
+    }
+
     public function about()
     {
         $data['page_name'] = 'About';

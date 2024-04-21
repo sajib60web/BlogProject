@@ -33,33 +33,13 @@ class CategorySeeder extends Seeder
             ],
             [
                 'name'   => 'Science',
-                'parent_id'   => 1,
+                'parent_id'   => 0,
                 'description'   => 'Western fiction'
             ],
             [
                 'name'   => 'Artists Books',
-                'parent_id'   => 1,
+                'parent_id'   => 0,
                 'description'   => 'Artists Books'
-            ],
-            [
-                'name'   => 'Business',
-                'parent_id'   => 2,
-                'description'   => 'Business'
-            ],
-            [
-                'name'   => 'Design',
-                'parent_id'   => 2,
-                'description'   => 'Design'
-            ],
-            [
-                'name'   => 'Photography',
-                'parent_id'   => 3,
-                'description'   => 'Photography'
-            ],
-            [
-                'name'   => 'Travel',
-                'parent_id'   => 3,
-                'description'   => 'Travel'
             ]
         ];
         foreach ($categories as $key => $category) {

@@ -35,7 +35,7 @@
                                 <th>SL</th>
                                 <th>title</th>
                                 <th>Category</th>
-                                <th>Sub-Category</th>
+                                {{-- <th>Sub-Category</th> --}}
                                 <th>Type</th>
                                 <th>Image</th>
                                 <th>Video Url</th>
@@ -50,7 +50,7 @@
                                     <td>{{ $loop->index+1}}</td>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ @$post->category->name }}</td>
-                                    <td>{{ @$post->subcategory->name }}</td>
+                                    {{-- <td>{{ @$post->subcategory->name }}</td> --}}
                                     <td>
                                         @if ($post->post_type == App\Enums\PostType::ARTICLE)
                                             <span class="badge badge-info bg-info">Article</span>

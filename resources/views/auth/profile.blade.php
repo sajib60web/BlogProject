@@ -26,7 +26,7 @@
         <div class="container">
             <div class="author-box-layout1">
                 <div class="figure-holder img-height-100">
-                    <img width="178" height="178" src="{{ asset('assets/frontend') }}/media/blog/author.webp" alt="Author">
+                    <img width="178" height="178" src="{{ $profile->image?? asset('default/user.webp') }}" alt="Author">
                 </div>
                 <div class="content-holder">
                     <h3 class="title h3-regular">{{ $profile->name }}</h3>
