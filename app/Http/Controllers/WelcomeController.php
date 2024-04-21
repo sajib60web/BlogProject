@@ -27,7 +27,7 @@ class WelcomeController extends Controller
 
 
         $data['treding_topic_posts']  = Post::where('treding_topic',1)->orderByDesc('id')->get();
-        $data['latest_posts']         = Post::orderByDesc('post_type')->orderByDesc('id')->limit(6)->get();
+        $data['latest_posts']         = Post::where('post_type',PostType::ARTICLE)->orderByDesc('id')->limit(6)->get();
 
         $data['slider_posts']         = Post::where('slider',1)->orderByDesc('id')->get();
         $data['top_stories_posts']    = Post::where('stories',1)->orderByDesc('total_views')->limit(3)->get();
@@ -39,7 +39,7 @@ class WelcomeController extends Controller
 
         $data['recent_article_posts']           = Post::where('post_type',PostType::ARTICLE)->orderByDesc('id')->limit(9)->get();
         $data['latest_short_stories_posts']     = Post::where('short_stories',1)->orderByDesc('id')->limit(7)->get();
-        $data['recent_stories_article_posts']   = Post::where('post_type',PostType::ARTICLE)->where('stories',1)->orderByDesc('id')->limit(6)->get();
+        $data['recent_stories_article_posts']   = Post::where('post_type',PostType::ARTICLE)->where('stories',1)->orderByDesc('id')->limit(5)->get();
 
         $data['category_latest_posts']          = Post::latest()->get()->groupBy('category_id');
 
@@ -57,7 +57,7 @@ class WelcomeController extends Controller
         $data['related_posts']     = Post::whereNot('id',$post->id)->where('category_id',$post->category_id)->orderByDesc('id')->limit(10)->get();
         $data['prevous_post']    = Post::where('id','<',$post->id)->get()->last();
         $data['next_post']    = Post::where('id','>',$post->id)->get()->last();
-       
+
         return view('frontend.post_details',$data);
     }
     public function comment(Request $request){
@@ -74,14 +74,14 @@ class WelcomeController extends Controller
                 'alert-type' => 'success'
             );
             return redirect()->back()->with($notification);
-      
+
         } catch (\Throwable $th) {
             $notification = array(
                 'message' => 'Something went wrong.',
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
-      
+
         }
     }
     public function categoryPosts($id){
