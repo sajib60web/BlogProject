@@ -113,9 +113,9 @@
                             <li class="menu-item">
                                 <a href="{{ route('main.index') }}">Home</a>
                             </li>
-                            <li class="menu-item">
+                            {{-- <li class="menu-item">
                                 <a href="{{ route('about') }}">About</a>
-                            </li>
+                            </li> --}}
                             @php
                                 $categories = \App\Models\Category::where('parent_id',0)->get();
                             @endphp

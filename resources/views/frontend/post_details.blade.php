@@ -40,7 +40,7 @@
                             <ul class="entry-meta color-dark-1">
                                 <li class="post-author">
                                     by
-                                    <a href="">
+                                    <a href="{{ route('post.author',@$post->user->id) }}">
                                         {{@$post->user->name}}
                                     </a>
                                 </li>
@@ -439,7 +439,7 @@
                                     <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$rel_post->id,$rel_post->slug])}}" class="link-wrap">{{\Str::limit($rel_post->title,30,'...')}}</a></h3>
                                     <ul class="entry-meta color-dark-1-fixed">
                                         <li class="post-author">
-                                            <a href="author.html">
+                                            <a href="{{ route('post.author',@$rel_post->user->id) }}">
                                                 <img src="{{@$rel_post->user->image?? asset('default/user.webp')}}" alt="Author">
                                                  {{@$rel_post->user->name}}
                                             </a>

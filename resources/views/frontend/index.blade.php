@@ -105,9 +105,9 @@
                                         <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$latestPost->content), 250, ' ...') !!}</p>
                                         <ul class="entry-meta color-dark-1-fixed">
                                             <li class="post-author">
-                                                {{-- <a href="author.html"> --}}
+                                                <a href="{{ route('post.author',@$latestPost->user->id) }}">
                                                     <img src="{{ $latestPost->user->image?? asset('default/user.webp') }}" alt="Author"/>{{@$latestPost->user->name}}
-                                                {{-- </a> --}}
+                                                </a>
                                             </li>
                                             <li>
                                                 <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
@@ -189,22 +189,22 @@
                                 </ul>
                             </div>
                             <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->slug])}}" class="link-wrap">{{\Str::limit($topStoriesPost->title,60,'...')}}</a></h3>
-                            <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$latestPost->content), 150, ' ...') !!}</p>
+                            <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$topStoriesPost->content), 150, ' ...') !!}</p>
                             <ul class="entry-meta color-dark-1-fixed">
                                 <li class="post-author">
-
-                                        <img  src="{{ $latestPost->user->image?? asset('default/user.webp') }}"   alt="Author">
-                                        {{@$latestPost->user->name}}
-
+                                    <a href="{{ route('post.author',@$topStoriesPost->user->id) }}">
+                                        <img  src="{{ $topStoriesPost->user->image?? asset('default/user.webp') }}"   alt="Author">
+                                        {{@$topStoriesPost->user->name}}
+                                    </a>
                                 </li>
                                 <li>
-                                    <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
+                                    <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($topStoriesPost->created_at)->diffForHumans()}}
                                 </li>
                                 <li>
-                                    <i class="regular-eye"></i>{{@$latestPost->total_views}}
+                                    <i class="regular-eye"></i>{{@$topStoriesPost->total_views}}
                                 </li>
                             </ul>
-                            <a href="{{route('post.details',[$latestPost->id,$latestPost->slug])}}" class="btn-text color-dark-1-fixed">See Details<span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
+                            <a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->slug])}}" class="btn-text color-dark-1-fixed">See Details<span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
                         </div>
                     </div>
                 </div>
@@ -255,16 +255,16 @@
                                     <h3 class="entry-title h3-large color-light-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_single_post->id,$latest_stories_single_post->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_single_post->title,60,'...')}}</a></h3>
                                     <ul class="entry-meta color-light-1-fixed">
                                         <li class="post-author">
-                                            {{-- <a href="author.html"> --}}
-                                                <img  src="{{ $latestPost->user->image?? asset('default/user.webp') }}"   alt="Author">
-                                                {{@$latestPost->user->name}}
-                                            {{-- </a> --}}
+                                            <a href="{{ route('post.author',@$latest_stories_single_post->user->id) }}">
+                                                <img  src="{{ $latest_stories_single_post->user->image?? asset('default/user.webp') }}"   alt="Author">
+                                                {{@$latest_stories_single_post->user->name}}
+                                            </a>
                                         </li>
                                         <li>
-                                            <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
+                                            <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latest_stories_single_post->created_at)->diffForHumans()}}
                                         </li>
                                         <li>
-                                            <i class="regular-eye"></i>{{@$latestPost->total_views}}
+                                            <i class="regular-eye"></i>{{@$latest_stories_single_post->total_views}}
                                         </li>
                                     </ul>
                                 </div>
@@ -305,15 +305,15 @@
                             <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
                             <ul class="entry-meta color-dark-1-fixed">
                                 <li class="post-author">
-                                    {{-- <a href="author.html"> --}}
+                                    <a href="{{ route('post.author',@$latest_stories_post->user->id) }}">
                                        {{@$latest_stories_post->user->name}}
-                                    {{-- </a> --}}
+                                    </a>
                                 </li>
                                 <li>
-                                    <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
+                                    <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latest_stories_post->created_at)->diffForHumans()}}
                                 </li>
                                 <li>
-                                    <i class="regular-eye"></i>{{@$latestPost->total_views}}
+                                    <i class="regular-eye"></i>{{@$latest_stories_post->total_views}}
                                 </li>
                             </ul>
                         </div>
@@ -322,15 +322,15 @@
                                 <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
                                 <ul class="entry-meta color-dark-1-fixed">
                                     <li class="post-author">
-                                        {{-- <a href="author.html"> --}}
+                                        <a href="{{ route('post.author',@$latest_stories_post->user->id) }}">
                                             {{@$latest_stories_post->user->name}}
-                                        {{-- </a> --}}
+                                        </a>
                                     </li>
                                     <li>
-                                        <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
+                                        <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latest_stories_post->created_at)->diffForHumans()}}
                                     </li>
                                     <li>
-                                        <i class="regular-eye"></i>{{@$latestPost->total_views}}
+                                        <i class="regular-eye"></i>{{@$latest_stories_post->total_views}}
                                     </li>
                                 </ul>
                             </div>
@@ -467,7 +467,7 @@
                                         <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$recentArticlePost->content), 250, ' ...') !!}</p>
                                         <ul class="entry-meta color-dark-1-fixed">
                                             <li class="post-author">
-                                                <a href="author.html">
+                                                <a href="{{ route('post.author',@$recentArticlePost->user->id) }}">
                                                     <img  src="{{ $recentArticlePost->user->image?? asset('default/user.webp') }}"  alt="Author">
                                                     {{@$recentArticlePost->user->name}}
                                                 </a>
@@ -736,7 +736,7 @@
                                         <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap">{{\Str::limit($categoryPost->title,60,'...')}}</a></h3>
                                         <ul class="entry-meta color-dark-1-fixed">
                                             <li class="post-author">
-                                                <a href="author.html">
+                                                <a href="{{ route('post.author',@$categoryPost->user->id) }}">
                                                     <img src="{{ $categoryPost->user->image ?? asset('default/user.webp') }}" alt="Author">
                                                     {{@$categoryPost->user->name}}
                                                 </a>

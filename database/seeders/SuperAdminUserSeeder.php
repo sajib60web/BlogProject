@@ -30,7 +30,7 @@ class SuperAdminUserSeeder extends Seeder
         $user->assignRole([$role->name]);
         Admin::find(1)->givePermissionTo($permissions);
         User::create([
-            'name' => 'User',
+            'name' => 'SB Sajib',
             'username' => 'user',
             'email' => 'user@gmail.com',
             'role_id' => 'User',
