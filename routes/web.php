@@ -32,6 +32,7 @@ Route::controller(WelcomeController::class)->group(function () {
     Route::post('/contact/form', 'contactForm')->name('contact-form');
     Route::post('/comment', 'comment')->name('comment.submit');
     Route::post('/comment-replay', 'comment')->name('comment.replay.submit');
+    Route::post('/subscribe', 'subscribe')->name('user.subscribe');
 });
 
 Auth::routes(['verfiy' => true]);
