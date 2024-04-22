@@ -127,49 +127,6 @@
                                     <input class="form-control d-none" name="tags" id="post_tags" data-role="tagsinput" placeholder="Enter Tags" value="{{old('tags',$post->tags)}}" />
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <h3>Visibility</h3>
-                                <div class="row mb-2">
-                                    <div class="col-md-4 col-lg-2">
-                                        <div  style="display: flex;justify-content:space-between">
-                                            <label for="breaking">Add to breaking </label>
-                                            <div>
-                                                <input id="breaking" name="breaking" type="checkbox" value="1" @if ($post->breaking == 1) checked @endif />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-md-4 col-lg-2">
-                                        <div  style="display: flex;justify-content:space-between">
-                                            <label for="treding_topic">Add to Treding Topic </label>
-                                            <div>
-                                                <input id="treding_topic" name="treding_topic" type="checkbox" value="1" @if ($post->treding_topic == 1) checked @endif />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-md-4 col-lg-2">
-                                        <div  style="display: flex;justify-content:space-between">
-                                            <label for="stories">Add to stories </label>
-                                            <div>
-                                                <input id="stories" name="stories" type="checkbox" value="1"  @if ($post->stories == 1) checked @endif />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-md-4 col-lg-2">
-                                        <div  style="display: flex;justify-content:space-between">
-                                            <label for="recommended">Add to recommended </label>
-                                            <div>
-                                                <input id="recommended" name="recommended" type="checkbox" value="1" @if ($post->recommended == 1) checked @endif />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
