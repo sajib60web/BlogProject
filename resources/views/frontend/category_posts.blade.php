@@ -28,7 +28,7 @@
             <div class="col">
                 <div class="post-box-layout21 box-border-dark-1 radius-default figure-scale-animation">
                     <div class="figure-holder radius-medium">
-                        <a href="{{route('post.details',[$post->id,$post->title])}}" class="link-wrap figure-overlay img-height-100">
+                        <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap figure-overlay img-height-100">
                             <img width="540" height="350" src="{{ @$post->image_url}}" alt="Post" style="height: 350px;">
                         </a>
                     </div>
@@ -41,7 +41,7 @@
                             </ul>
                         </div>
                         <h3 class="entry-title h3-medium color-light-1-fixed underline-animation">
-                            <a href="{{route('post.details',[$post->id,$post->title])}}" class="link-wrap">{{\Str::limit(@$post->title,60,' ...')}}</a>
+                            <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap">{{\Str::limit(@$post->title,60,' ...')}}</a>
                         </h3>
                         <ul class="entry-meta color-light-1-fixed">
                             <li class="post-author">

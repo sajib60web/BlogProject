@@ -95,6 +95,9 @@ Route::group(['prefix' => 'admin'], function () {
 
         // Start User Controller
         Route::resource('users', UserController::class);
+        Route::get('signup-users',[UserController::class,'signupUsers'])->name('signup.users.index');
+        Route::put('signup-users-approve/{id}',[UserController::class,'signupUsersApprove'])->name('signup.users.approve');
+        Route::put('signup-users-reject{id}',[UserController::class,'signupUsersReject'])->name('signup.users.reject');
         // End User Controller
 
         // Start Category Controller
@@ -111,6 +114,8 @@ Route::group(['prefix' => 'admin'], function () {
 
         // Start Contact Message Controller
         Route::resource('contact_messages', ContactMessageController::class);
+        Route::get('contact/replay/{id}', [ContactMessageController::class,'contactReply'])->name('contact.replay');
+        Route::post('contact/replay/send', [ContactMessageController::class,'contactSend'])->name('contact.replay.send');
         // End Contact Message Controller
 
         //post controller

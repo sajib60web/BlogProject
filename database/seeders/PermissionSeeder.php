@@ -86,6 +86,13 @@ class PermissionSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Author',
+                'permissions' => [
+                    // Contact Message Permissions
+                    'author-list',
+                ]
+            ],
+            [
                 'group_name' => 'Settings',
                 'permissions' => [
                     // Settings Permissions

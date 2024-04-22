@@ -184,7 +184,7 @@
                         </a>
                     </li>
                 @endcan
-                
+
                 @can('post-list')
                 <li class="{{ Request::is('admin/post*')?'active':''}}">
                     <a href="{{ route('post.index') }}">
@@ -216,9 +216,17 @@
                         </a>
                     </li>
                 @endcan
+                @can('author-list')
+                    <li class="{{ Request::is('admin/signup-user*') ?'active':''}}">
+                        <a href="{{ route('signup.users.index') }}">
+                            <i class="fa fa-list"></i> <span>Authors</span>
+                        </a>
+                    </li>
+                @endcan
+
 
                 @if(auth('admin')->user()->can('user-list') || auth('admin')->user()->can('role-list'))
-                <li class="treeview  {{ Request::is('admin/users') || Request::is('admin/users/*') || Request::is('admin/roles') || Request::is('admin/roles/*')?'active':'' }}">
+                <li class="treeview  {{ Request::is('admin/users') || Request::is('admin/users/*') ||   Request::is('admin/roles') || Request::is('admin/roles/*')?'active':'' }}">
                         <a href="#">
                             <i class="fa fa-users"></i> <span>User Management</span>
                             <span class="pull-right-container">
@@ -229,6 +237,7 @@
                             @can('user-list')
                                 <li class="{{ Request::is('admin/users') || Request::is('admin/users/*')?'active':'' }}"><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i> User Manage</a></li>
                             @endcan
+
                             @can('role-list')
                                 <li class="{{ Request::is('admin/roles') || Request::is('admin/roles/*')?'active':'' }}"><a href="{{ route('roles.index') }}"><i class="fa fa-circle-o"></i> Role Manage</a></li>
                             @endcan

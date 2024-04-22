@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->string('role_id', 50)->nullable();
             $table->string('picture')->nullable();
             $table->string('designation')->nullable();
+            $table->unsignedTinyInteger('status')->default(Status::PENDING);
             $table->rememberToken();
             $table->timestamps();
         });

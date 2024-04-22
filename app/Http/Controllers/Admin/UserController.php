@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -46,6 +48,29 @@ class UserController extends Controller
         $data['page_name'] = 'Create User';
         $data['roles'] = Role::pluck('name', 'name')->all();
         return view('admin.users.create', $data);
+    }
+    public function signupUsers()
+    {
+        $data['page_name'] = 'Authors';
+        $data['users']     =  User::all();
+        return view('admin.users.signup_users', $data);
+    }
+    public function signupUsersApprove($id){
+        $user= User::where('id',$id)->update(['status'=>Status::ACTIVE]);
+        $notification = array(
+            'message' => 'Author Approved Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('signup.users.index')->with($notification);
+
+    }
+    public function signupUsersReject($id){
+        $user = User::where('id',$id)->update(['status'=>Status::INACTIVE]);
+        $notification = array(
+            'message' => 'Author rejected Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('signup.users.index')->with($notification);
     }
 
     /**

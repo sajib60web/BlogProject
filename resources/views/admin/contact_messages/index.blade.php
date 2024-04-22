@@ -48,6 +48,7 @@
                                         <td>{{ $contact->message }}</td>
                                         <td>{{ $contact->love_to_read }}</td>
                                         <td class="text-center">
+                                            <a href="{{route('contact.replay',$contact->id)}}" class="btn btn-primary">Reply</a>
                                             @can('contact-message-delete')
                                                 {!! Form::open(['method' => 'DELETE','route' => ['contact_messages.destroy', $contact->id],'style'=>'display:inline']) !!}
                                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure to Delete');"><i class="fa fa-trash"></i></button>

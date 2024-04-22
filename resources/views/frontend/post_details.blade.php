@@ -1,7 +1,5 @@
 @extends('frontend.layouts.app')
-
 @section('title', $page_name)
-
 @section('mainContent')
 
 
@@ -147,7 +145,7 @@
                                     </div>
                                 </div> --}}
                             </div>
-                            <div class="author-wrap bg-color-mimosa">
+                            {{-- <div class="author-wrap bg-color-mimosa">
                                 <div class="author-thumb img-height-100">
                                     <img width="178" height="178" src="{{@$post->user->image ?? asset('default/user.webp')}} " alt="Author Figure">
                                 </div>
@@ -156,32 +154,11 @@
                                     <div class="author-designation">{{$post->designation}}</div>
                                     <p class="entry-description color-dark-1-fixed">{{$post->about}}</p>
                                     <div class="axil-social social-layout-2 color-dark-1-fixed size-medium gap-12">
-                                        {{-- <ul>
-                                            <li class="pinterest">
-                                                <a aria-label="Learn more from Pinterest" href="https://pinterest.com/">
-                                                    <i class="regular-pinterest"></i>
-                                                </a>
-                                            </li>
-                                            <li class="instagram">
-                                                <a aria-label="Learn more from Instagram" href="https://instagram.com/">
-                                                    <i class="regular-instagram"></i>
-                                                </a>
-                                            </li>
-                                            <li class="twitter">
-                                                <a aria-label="Learn more from Twitter" href="https://twitter.com/">
-                                                    <i class="regular-tweeter"></i>
-                                                </a>
-                                            </li>
-                                            <li class="mail-fast">
-                                                <a aria-label="Learn more from Mail Fast" href="https://mail-fast.com/">
-                                                    <i class="regular-mail-fast"></i>
-                                                </a>
-                                            </li>
-                                        </ul> --}}
+
                                     </div>
                                 </div>
-                            </div>
-                            <div class="post-navigation">
+                            </div> --}}
+                            {{-- <div class="post-navigation">
                                 <div class="post-box prev-post">
                                     @if ($prevous_post)
                                         <div class="figure-holder">
@@ -207,7 +184,7 @@
                                         </div>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="post-comment">
                                 <div class="section-heading heading-style-7">
                                     <h3 class="title h3-regular">{{$post->comments->count()}} Comments</h3>
@@ -465,10 +442,6 @@
                 </div>
             </div>
         </section>
-
-
-
-
 @endsection
 
 @push('scripts')
@@ -484,3 +457,10 @@
     });
 </script>
 @endpush
+@section('meta_title',$post->meta_title)
+@section('meta_keywords',$post->meta_keywords)
+@section('meta_description',$post->meta_description)
+
+
+
+

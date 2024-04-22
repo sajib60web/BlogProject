@@ -117,7 +117,7 @@
                                 <a href="{{ route('about') }}">About</a>
                             </li> --}}
                             @php
-                                $categories = \App\Models\Category::where('parent_id',0)->get();
+                                $categories = \App\Models\Category::where('parent_id',0)->limit(9)->get();
                             @endphp
                             @foreach ($categories as $category)
                             @php
@@ -158,9 +158,9 @@
                                     </ul>
                                 @endif
                             </li> --}}
-                            <li class="menu-item">
+                            {{-- <li class="menu-item">
                                 <a href="{{ route('contact') }}">Contact</a>
-                            </li>
+                            </li> --}}
                             @guest
                                 <li class="menu-item d-lg-none d-block">
                                     <a href="{{ route('login') }}">Sign In</a>
@@ -188,49 +188,7 @@
                             </a>
                         </div>
                     </div>
-                    @guest
-                        <div class="d-lg-block d-none">
-                            <a href="{{ route('login') }}" title="Sign in" role="button" class="btn btn-success">Sign in</a> |
-                            <a href="{{ route('register') }}" title="Sign Up" role="button" class="btn btn-success">Sign Up</a>
-                        </div>
-                    @else
-                        <div class="d-lg-block d-none">
-                            <div class="profile-wrap dropdown-item-wrap">
-                                <div class="navbar navbar-expand-md">
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Profile">
-                                            <span class="thumble-holder img-height-100"><img width="40" height="40" src="{{ $profile->image?? asset('default/user.webp') }}" alt="Profile"></span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown2">
-                                            <div class="dropdown-menu-inner">
-                                                <div class="profile-content with-icon">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="{{ route('user.profile') }}">
-                                                                <div class="icon-holder"><i class="regular-user"></i></div>Profile
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ route('post.list') }}">
-                                                                <div class="icon-holder"><i class="regular-activity"></i></div>Posts
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mt-3">
-                                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();" class="w-100 axil-btn axil-btn-ghost btn-color-alter axil-btn-small">Sign Out</a>
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                        @csrf
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endguest
+                   
                     <div class="d-lg-none d-block">
                         <div class="my_switcher">
                             <ul>
