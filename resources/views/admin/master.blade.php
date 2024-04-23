@@ -208,14 +208,6 @@
                     </li>
                 @endcan
 
-                @can('about-view')
-                    <li class="{{ Request::is('admin/about*')?'active':''}}">
-                        <a href="{{ route('about.index') }}">
-                            <i class="fa fa-list"></i> <span>About</span>
-                        </a>
-                    </li>
-                @endcan
-
                 @can('contact-message-list')
                     <li class="{{ Request::is('admin/contact_messages*')?'active':''}}">
                         <a href="{{ route('contact_messages.index') }}">

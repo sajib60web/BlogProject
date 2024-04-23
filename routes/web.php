@@ -114,10 +114,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('pages', PageController::class);
         // End Page Controller
 
-        // Start About Controller
-        Route::resource('about', AboutController::class);
-        // End About Controller
-
         // Start Contact Message Controller
         Route::resource('contact_messages', ContactMessageController::class);
         Route::get('contact/replay/{id}', [ContactMessageController::class,'contactReply'])->name('contact.replay');

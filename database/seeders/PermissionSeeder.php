@@ -80,14 +80,6 @@ class PermissionSeeder extends Seeder
                 ]
             ],
             [
-                'group_name' => 'About',
-                'permissions' => [
-                    // about Permissions
-                    'about-view',
-                    'about-update',
-                ]
-            ],
-            [
                 'group_name' => 'Contact Message',
                 'permissions' => [
                     // Contact Message Permissions
