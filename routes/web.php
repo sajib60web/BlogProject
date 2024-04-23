@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -108,6 +109,10 @@ Route::group(['prefix' => 'admin'], function () {
         // Start Faq Controller
         Route::resource('faqs', FaqController::class);
         // End Faq Controller
+
+        // Start Page Controller
+        Route::resource('pages', PageController::class);
+        // End Page Controller
 
         // Start About Controller
         Route::resource('about', AboutController::class);

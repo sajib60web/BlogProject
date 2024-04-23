@@ -200,6 +200,13 @@
                         </a>
                     </li>
                 @endcan
+                @can('page-list')
+                    <li class="{{ Request::is('admin/pages*')?'active':''}}">
+                        <a href="{{ route('pages.index') }}">
+                            <i class="fa fa-list"></i> <span>Pages</span>
+                        </a>
+                    </li>
+                @endcan
 
                 @can('about-view')
                     <li class="{{ Request::is('admin/about*')?'active':''}}">

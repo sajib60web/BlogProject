@@ -70,6 +70,16 @@ class PermissionSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Page',
+                'permissions' => [
+                    // Page Permissions
+                    'page-list',
+                    'page-create',
+                    'page-edit',
+                    'page-delete',
+                ]
+            ],
+            [
                 'group_name' => 'About',
                 'permissions' => [
                     // about Permissions

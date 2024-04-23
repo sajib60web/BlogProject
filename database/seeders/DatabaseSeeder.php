@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             FaqSeeder::class,
             AboutSeeder::class,
+            PageSeeder::class,
         ]);
     }
 }
