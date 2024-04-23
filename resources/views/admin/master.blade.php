@@ -222,6 +222,13 @@
                         </a>
                     </li>
                 @endcan
+                @can('subscriber-list')
+                    <li class="{{ Request::is('admin/subscribe*') ?'active':''}}">
+                        <a href="{{ route('subscribe.list') }}">
+                            <i class="fa fa-list"></i> <span>Subscribers</span>
+                        </a>
+                    </li>
+                @endcan
 
 
                 @if(auth('admin')->user()->can('user-list') || auth('admin')->user()->can('role-list'))

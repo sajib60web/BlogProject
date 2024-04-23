@@ -126,13 +126,35 @@
                                     <div class="row">
                                         <div class="col-md-4 col-lg-2">
                                             <div  style="display: flex;justify-content:space-between">
-                                                <label for="slider">Add to slider </label>
+                                                <label for="slider">Add to carousel </label>
                                                 <div>
                                                     <input id="slider" name="slider" type="checkbox" value="1"  @if ($post->slider == 1) checked @endif  />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-2">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="main_frame">Add to main frame </label>
+                                                <div>
+                                                    <input id="main_frame" name="main_frame" type="checkbox" value="1" @if ($post->main_frame == 1) checked @endif />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-2">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="main_frame_slider">Add to main frame slider </label>
+                                                <div>
+                                                    <input id="main_frame_slider" name="main_frame_slider" type="checkbox" value="1" @if ($post->main_frame == 1) checked @endif />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                     <div class="row">
                                         <div class="col-md-4 col-lg-2">

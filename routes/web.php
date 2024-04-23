@@ -100,6 +100,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('signup-users',[UserController::class,'signupUsers'])->name('signup.users.index');
         Route::put('signup-users-approve/{id}',[UserController::class,'signupUsersApprove'])->name('signup.users.approve');
         Route::put('signup-users-reject{id}',[UserController::class,'signupUsersReject'])->name('signup.users.reject');
+        Route::get('subscribe-list',[UserController::class,'subscribeList'])->name('subscribe.list');
+        Route::get('send-newsletter',[UserController::class,'sendNewsletter'])->name('send.newsletter');
+        Route::post('send-newsletter-subscribers',[UserController::class,'sendNewsletterSubscriber'])->name('send.newsletter.subscriber');
+        Route::post('newsletter-post-search',    [UserController::class,'NewsletterPostSearch'])->name('newsletter.post.search');
         // End User Controller
 
         // Start Category Controller

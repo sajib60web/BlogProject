@@ -26,7 +26,7 @@ class PostController extends Controller
     {
 
         $data['page_name'] = 'Post List';
-        $data['posts'] = $this->repo->get(); 
+        $data['posts'] = $this->repo->get();
         return view('admin.post.index', $data);
     }
 
@@ -75,7 +75,7 @@ class PostController extends Controller
             $request['video_url'] = null;
         endif;
 
-        $columns = ['treding_topic','stories','breaking','recommended','slider','short_stories'];
+        $columns = ['treding_topic','stories','breaking','recommended','slider','short_stories','main_frame','main_frame_slider'];
         foreach ($columns as   $value) {
             if (!$request->$value) :
                 $request[$value] = 0;

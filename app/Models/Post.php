@@ -28,7 +28,7 @@ class Post extends Model
     {
         return $this->belongsTo(Upload::class, 'image_id', 'id');
     }
-    
+
     public function getImageUrlAttribute()
     {
         if ($this->image && fileExists($this->image->original)) :
@@ -50,7 +50,8 @@ class Post extends Model
     public function getMyVisibilityAttribute()
     {
         $visibility = '';
-        $columns = ['treding_topic','stories','breaking','recommended','slider','short_stories'];
+        $columns = ['treding_topic','stories','breaking','recommended','slider','short_stories','main_frame',
+        'main_frame_slider'];
         foreach ($columns as   $value) {
             if ($this->$value == 1) :
                 $visibility .= '<span class="badge badge-info bg-info">' . Str::headline($value) . '</span>';
@@ -65,6 +66,10 @@ class Post extends Model
 
   public function comments(){
     return $this->hasMany(Comment::class,'post_id','id')->whereNull('comment_id');
+  }
+
+  public function scopePublished($query){
+        $query->where('status',Status::PUBLISH);
   }
 
 }

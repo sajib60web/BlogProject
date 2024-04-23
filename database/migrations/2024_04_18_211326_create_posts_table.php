@@ -29,20 +29,14 @@ return new class extends Migration
             //visibility
 
             $table->unsignedTinyInteger('slider')->default(0);
-            // $table->integer('slider_order')->default(0);
             $table->unsignedTinyInteger('treding_topic')->default(0);
-            // $table->integer('treding_topic_order')->default(0);
             $table->unsignedTinyInteger('stories')->default(0);
-            // $table->integer('stories_order')->default(0);
             $table->unsignedTinyInteger('short_stories')->default(0);
-            // $table->integer('short_stories_order')->default(0);
-            // $table->unsignedTinyInteger('featured')->default(0);
-            // $table->integer('featured_order')->default(0);
             $table->unsignedTinyInteger('breaking')->default(0);
-            // $table->integer('breaking_order')->default(0);
             $table->unsignedTinyInteger('recommended')->default(0);
-            // $table->integer('recommended_order')->default(0);
-
+            $table->unsignedTinyInteger('main_frame')->default(0);
+            $table->unsignedTinyInteger('main_frame_slider')->default(0);
+ 
             $table->text('meta_title')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
