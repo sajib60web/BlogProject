@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\BlockStatus;
 use App\Enums\Status;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,17 +51,28 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
-    public function getImageAttribute(){
+    public function getImageAttribute()
+    {
         return asset('default/user.webp');
     }
 
-    public function getMyStatusAttribute(){
-        if($this->status == Status::PENDING):
+    public function getMyStatusAttribute()
+    {
+        if ($this->status == Status::PENDING) :
             return '<span class="badge badge-warning">Pending</span>';
-        elseif($this->status == Status::ACTIVE):
+        elseif ($this->status == Status::ACTIVE) :
             return '<span class="badge badge-success">Approved</span>';
-        else:
+        else :
             return '<span class="badge badge-danger">Rejected</span>';
+        endif;
+    }
+    
+    public function getMyBlockStatusAttribute()
+    {
+        if ($this->block_status == BlockStatus::UNBLOCK) :
+            return '<span class="badge badge-warning">Unblock</span>';
+        else :
+            return '<span class="badge badge-danger">Block</span>';
         endif;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\BlockStatus;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
@@ -49,23 +50,49 @@ class UserController extends Controller
         $data['roles'] = Role::pluck('name', 'name')->all();
         return view('admin.users.create', $data);
     }
+
     public function signupUsers()
     {
         $data['page_name'] = 'Authors';
         $data['users']     =  User::all();
         return view('admin.users.signup_users', $data);
     }
-    public function signupUsersApprove($id){
-        $user= User::where('id',$id)->update(['status'=>Status::ACTIVE]);
+
+    public function signupUserChange($id)
+    {
+        $user = User::find($id);
+        if ($user->status == Status::ACTIVE) {
+            $user->status = Status::INACTIVE;
+        } else {
+            $user->status = Status::ACTIVE;
+        }
+        $user->save();
         $notification = array(
-            'message' => 'Author Approved Successfully',
+            'message' => 'Status Change Successfully',
             'alert-type' => 'success'
         );
         return redirect()->route('signup.users.index')->with($notification);
-
     }
-    public function signupUsersReject($id){
-        $user = User::where('id',$id)->update(['status'=>Status::INACTIVE]);
+
+    public function userBlockChange($id)
+    {
+        $user = User::find($id);
+        if ($user->block_status == BlockStatus::UNBLOCK) {
+            $user->block_status = BlockStatus::BLOCK;
+        } else {
+            $user->block_status = BlockStatus::UNBLOCK;
+        }
+        $user->save();
+        $notification = array(
+            'message' => 'Block Status Change Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('signup.users.index')->with($notification);
+    }
+
+    public function signupUsersReject($id)
+    {
+        $user = User::where('id', $id)->update(['status' => Status::INACTIVE]);
         $notification = array(
             'message' => 'Author rejected Successfully',
             'alert-type' => 'success'
