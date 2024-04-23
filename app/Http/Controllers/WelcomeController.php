@@ -118,15 +118,30 @@ class WelcomeController extends Controller
     public function about()
     {
         $data['page_name'] = 'About';
-        $data['about'] = Page::find(PageType::ABOUT_US);
+        $data['page'] = Page::find(PageType::ABOUT_US);
         return view('frontend.about', $data);
     }
 
     public function contact()
     {
         $data['page_name'] = 'Contact';
+        $data['page'] = Page::find(PageType::CONTACT_US);
         $data['faqs'] = Faq::all();
         return view('frontend.contact', $data);
+    }
+
+    public function termsConditions()
+    {
+        $data['page_name'] = 'Terms & Conditions';
+        $data['page'] = Page::find(PageType::TERMS_CONDITIONS);
+        return view('frontend.terms_conditions', $data);
+    }
+
+    public function privacyPolicy()
+    {
+        $data['page_name'] = 'Privacy policy';
+        $data['page'] = Page::find(PageType::PRIVACY_POLICY);
+        return view('frontend.privacy_policy', $data);
     }
 
     public function contactForm(Request $request)

@@ -21,9 +21,14 @@
 <!--=====================================-->
 <!--=          Contact Area Start       =-->
 <!--=====================================-->
-<section class="contact-wrap-layout-1 space-top-50 bg-color-light-1 transition-default mb-5">
+<section class="contact-wrap-layout-1 space-top-30 bg-color-light-1 transition-default mb-5">
     <div class="container">
         <div class="row justify-content-center">
+            @if ($page->description)
+                <div class="col-lg-8">
+                    {!! $page->description !!}
+                </div>
+            @endif
             <div class="col-lg-8">
                 <div class="section-heading heading-style-9">
                     <h2 class="title">Get In Touch With Us?</h2>

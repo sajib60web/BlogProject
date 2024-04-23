@@ -34,6 +34,8 @@ Route::controller(WelcomeController::class)->group(function () {
     Route::post('/comment', 'comment')->name('comment.submit');
     Route::post('/comment-replay', 'comment')->name('comment.replay.submit');
     Route::post('/subscribe', 'subscribe')->name('user.subscribe');
+    Route::get('/terms/conditions', 'termsConditions')->name('terms_conditions');
+    Route::get('/privacy/policy', 'privacyPolicy')->name('privacy_policy');
 });
 
 Auth::routes(['verfiy' => true]);
