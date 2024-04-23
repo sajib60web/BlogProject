@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\BlockStatus;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Mail\Newsletter;
 use App\Models\Admin;
+use App\Models\Post;
+use App\Models\Subscribe;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -25,6 +29,7 @@ class UserController extends Controller
         $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:subscriber-list', ['only' => ['subscribeList']]);
     }
 
     /**
@@ -206,4 +211,70 @@ class UserController extends Controller
         );
         return redirect()->route('users.index')->with($notification);
     }
+
+
+    public function subscribeList(){
+        $data['page_name']   = 'Subscriber list';
+        $data['subscribers'] =  Subscribe::get();
+        return view('admin.subscribe.subscribe_list',$data);
+    }
+
+    public function sendNewsletter(){
+        $data['page_name']   = 'Send newsletter';
+        return view('admin.subscribe.send_newsletter',$data);
+    }
+
+    public function sendNewsletterSubscriber(Request $request){
+        try {
+            $this->validate($request, [
+                'post_id' => 'required',
+                'message' => 'required',
+            ]);
+            $posts = Post::whereIn('id',$request->post_id)->get();
+            $subscribers =  Subscribe::pluck('email')->toArray();
+            $data['posts'] = $posts;
+            $data['message'] = $request->message;
+            Mail::to($subscribers)->send(new Newsletter($data));
+
+            $notification = array(
+                'message' => 'Newsletter sended Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('subscribe.list')->with($notification);
+
+        } catch (\Throwable $th) {
+
+            $notification = array(
+                'message' => 'Someting went wrong.',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+
+    }
+
+
+
+    public function NewsletterPostSearch(Request $request){
+        try {
+            $response = [];
+            $search   = $request->search;
+            if($request->ajax()):
+
+                $response = [];
+                $posts = Post::where('title','like','%'.$search.'%')->where('status',Status::PUBLISH)->get();
+                foreach ($posts as   $post) {
+                    $response[] = [
+                        'id' => $post->id,
+                        'text'=> $post->title
+                    ];
+                }
+            endif;
+            return response()->json($response);
+        } catch (\Throwable $th) {
+            return response()->json([]);
+        }
+    }
+
+
 }

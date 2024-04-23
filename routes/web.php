@@ -100,9 +100,17 @@ Route::group(['prefix' => 'admin'], function () {
         // Start User Controller
         Route::resource('users', UserController::class);
         Route::controller(UserController::class)->group(function () {
-            Route::get('signup-users', 'signupUsers')->name('signup.users.index');
-            Route::get('signup-users-change/{id}', 'signupUserChange')->name('signup.users.change');
-            Route::get('user/block/change/{id}', 'userBlockChange')->name('user.block.change');
+
+            Route::get('signup-users',                 'signupUsers')->name('signup.users.index');
+            Route::put('signup-users-approve/{id}',    'signupUsersApprove')->name('signup.users.approve');
+            Route::put('signup-users-reject{id}',      'signupUsersReject')->name('signup.users.reject');
+            Route::get('subscribe-list',               'subscribeList')->name('subscribe.list');
+            Route::get('send-newsletter',              'sendNewsletter')->name('send.newsletter');
+            Route::post('send-newsletter-subscribers', 'sendNewsletterSubscriber')->name('send.newsletter.subscriber');
+            Route::post('newsletter-post-search',      'NewsletterPostSearch')->name('newsletter.post.search');
+ 
+            Route::get('signup-users-change/{id}',  'signupUserChange')->name('signup.users.change');
+            Route::get('user/block/change/{id}',    'userBlockChange')->name('user.block.change');
         });
         // End User Controller
 

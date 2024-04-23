@@ -57,7 +57,7 @@
     <div class="container">
         <div class="row g-3">
             <div class="col-lg-7">
-                @foreach ($latest_posts->take(1) as $latestOne)
+                @foreach ($main_frame as $latestOne)
                     <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden">
                         <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{@$latestOne->image_url}}"></div>
                         <div id="videoElement1" class="player" data-property="{
@@ -87,7 +87,7 @@
                 <div class="position-relative">
                     <div id="post-slider-1" class="post-slider-1 gutter-6 initially-none">
 
-                        @foreach ($latest_posts as $latestPost)
+                        @foreach ($main_frame_sliders as $latestPost)
                             <div class="single-slide">
                                 <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default">
                                     <div class="figure-holder radius-default">

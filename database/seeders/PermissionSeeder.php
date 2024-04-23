@@ -95,6 +95,12 @@ class PermissionSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Subscribers',
+                'permissions' => [
+                    'subscriber-list',
+                ]
+            ],
+            [
                 'group_name' => 'Settings',
                 'permissions' => [
                     // Settings Permissions

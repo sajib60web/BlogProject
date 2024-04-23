@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
                                     <button type="submit" class="btn btn-primary pull-right">Replay Send</button>
                                 </div>
                             </div>
