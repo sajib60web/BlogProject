@@ -5,4 +5,5 @@ interface Status{
     const INACTIVE   = 2;
     const PUBLISH    = 3;
     const UNPUBLISH  = 4;
+    const PENDING    = 5;
 }

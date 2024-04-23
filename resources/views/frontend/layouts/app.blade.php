@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ setting()->app_name }} | @yield('title')</title>
-    <meta name="description" content="Author: AxilTheme, Template: HTML, Category: Blog, Price: $13.00, Length: 23 pages">
+    <meta name="title" content="@yield('meta_title')">
+    <meta name="keywords" content="@yield('meta_keywords')">
+    <meta name="description" content="@yield('meta_description')">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ setting()->icon }}">

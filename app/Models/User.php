@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Status;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -26,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone_number',
         'address',
         'password',
+        'status'
     ];
 
     /**
@@ -50,5 +52,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getImageAttribute(){
         return asset('default/user.webp');
+    }
+
+    public function getMyStatusAttribute(){
+        if($this->status == Status::PENDING):
+            return '<span class="badge badge-warning">Pending</span>';
+        elseif($this->status == Status::ACTIVE):
+            return '<span class="badge badge-success">Approved</span>';
+        else:
+            return '<span class="badge badge-danger">Rejected</span>';
+        endif;
     }
 }

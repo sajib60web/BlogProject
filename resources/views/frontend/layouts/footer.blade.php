@@ -47,21 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 col-12">
-                    <div class="footer-widget">
-                        <h3 class="widget-title h3-small">About</h3>
-                        <div class="footer-menu">
-                            <ul>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="author.html">Author</a></li>
-                                <li><a href="archive-layout5.html">Culture Foram</a></li>
-                                <li><a href="archive.html">Culture Foram</a></li>
-                                <li><a href="archive.html">United Kingdom</a></li>
-                                <li><a href="archive.html">Media</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-lg-2 col-md-6 col-12">
                     <div class="footer-widget">
                         <h3 class="widget-title h3-small">Features</h3>
@@ -94,19 +80,82 @@
                 </div>
                 <div class="col-lg-2 col-md-6 col-12">
                     <div class="footer-widget">
-                        <h3 class="widget-title h3-small">Support</h3>
+                        <h3 class="widget-title h3-small">Pages</h3>
                         <div class="footer-menu">
                             <ul>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="archive-layout1.html">Music News</a></li>
+                                <li><a href="{{route('about')}}">About Us</a></li>
+                                <li><a href="{{route('contact')}}">Contact Us</a></li>
+                                {{-- <li><a href="archive-layout1.html">Music News</a></li>
                                 <li><a href="archive-layout2.html">Style News</a></li>
                                 <li><a href="archive-layout3.html">Entertainment</a></li>
                                 <li><a href="archive-layout4.html">Executive</a></li>
-                                <li><a href="404.html">404</a></li>
+                                <li><a href="404.html">404</a></li> --}}
                             </ul>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-2 col-md-6 col-12">
+                    <div class="footer-widget">
+                        {{-- <h3 class="widget-title h3-small">About</h3>
+                        <div class="footer-menu">
+                            <ul>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="author.html">Author</a></li>
+                                <li><a href="archive-layout5.html">Culture Foram</a></li>
+                                <li><a href="archive.html">Culture Foram</a></li>
+                                <li><a href="archive.html">United Kingdom</a></li>
+                                <li><a href="archive.html">Media</a></li>
+                            </ul>
+                        </div> --}}
+
+                         @guest
+                        <div class="d-lg-block d-none">
+                            <a href="{{ route('login') }}" title="Sign in" role="button" class="btn btn-success">Log In</a> |
+                            <a href="{{ route('register') }}" title="Sign Up" role="button" class="btn btn-success">Join</a>
+                        </div>
+                    @else
+                        <div class="d-lg-block d-none">
+                            <div class="profile-wrap dropdown-item-wrap">
+                                <div class="navbar navbar-expand-md">
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle btn btn-success href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Profile">
+                                            <span class="thumble-holder img-height-100"><img width="40" height="40" src="{{ $profile->image?? asset('default/user.webp') }}" alt="Profile"></span> {{auth()->user()->name}}
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown2">
+                                            <div class="dropdown-menu-inner">
+                                                <div class="profile-content with-icon">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="{{ route('user.profile') }}">
+                                                                <div class="icon-holder"><i class="regular-user"></i></div>Profile
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{{ route('post.list') }}">
+                                                                <div class="icon-holder"><i class="regular-activity"></i></div>Posts
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();" class="w-100 axil-btn axil-btn-ghost btn-color-alter axil-btn-small">Sign Out</a>
+                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                        @csrf
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endguest
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

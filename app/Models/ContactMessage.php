@@ -20,5 +20,6 @@ class ContactMessage extends Model
         'email',
         'message',
         'love_to_read',
+        'contact_id'
     ];
 }
