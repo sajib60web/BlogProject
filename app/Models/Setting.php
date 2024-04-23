@@ -18,7 +18,7 @@ class Setting extends Model
         if (file_exists($this->app_logo)) {
             return asset($this->app_logo);
         } else {
-            return asset('assets/frontend/media/logo-dark.svg');
+            return asset('default/logo.png');
         } 
     }
     public function getIconAttribute()

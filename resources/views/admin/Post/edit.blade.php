@@ -122,9 +122,8 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <h3>Visibility</h3>
-
                                     <div class="row">
-                                        <div class="col-md-4 col-lg-2">
+                                        <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="slider">Add to carousel </label>
                                                 <div>
@@ -135,7 +134,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-4 col-lg-2">
+                                        <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="main_frame">Add to main frame </label>
                                                 <div>
@@ -145,7 +144,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4 col-lg-2">
+                                        <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="main_frame_slider">Add to main frame slider </label>
                                                 <div>
@@ -154,10 +153,8 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <div class="row">
-                                        <div class="col-md-4 col-lg-2">
+                                        <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="breaking">Add to breaking </label>
                                                 <div>
@@ -167,7 +164,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4 col-lg-2">
+                                        <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="treding_topic">Add to Treding Topic </label>
                                                 <div>
@@ -177,7 +174,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4 col-lg-2">
+                                        <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="stories">Add to stories </label>
                                                 <div>
@@ -186,11 +183,8 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                     <div class="row">
-                                        <div class="col-md-4 col-lg-2">
+                                        <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="short_stories">Add to short stories </label>
                                                 <div>
@@ -199,10 +193,8 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <div class="row">
-                                        <div class="col-md-4 col-lg-2">
+                                        <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="recommended">Add to recommended </label>
                                                 <div>
