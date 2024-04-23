@@ -97,13 +97,19 @@ Route::group(['prefix' => 'admin'], function () {
 
         // Start User Controller
         Route::resource('users', UserController::class);
-        Route::get('signup-users',[UserController::class,'signupUsers'])->name('signup.users.index');
-        Route::put('signup-users-approve/{id}',[UserController::class,'signupUsersApprove'])->name('signup.users.approve');
-        Route::put('signup-users-reject{id}',[UserController::class,'signupUsersReject'])->name('signup.users.reject');
-        Route::get('subscribe-list',[UserController::class,'subscribeList'])->name('subscribe.list');
-        Route::get('send-newsletter',[UserController::class,'sendNewsletter'])->name('send.newsletter');
-        Route::post('send-newsletter-subscribers',[UserController::class,'sendNewsletterSubscriber'])->name('send.newsletter.subscriber');
-        Route::post('newsletter-post-search',    [UserController::class,'NewsletterPostSearch'])->name('newsletter.post.search');
+        Route::controller(UserController::class)->group(function () {
+
+            Route::get('signup-users',                 'signupUsers')->name('signup.users.index');
+            Route::put('signup-users-approve/{id}',    'signupUsersApprove')->name('signup.users.approve');
+            Route::put('signup-users-reject{id}',      'signupUsersReject')->name('signup.users.reject');
+            Route::get('subscribe-list',               'subscribeList')->name('subscribe.list');
+            Route::get('send-newsletter',              'sendNewsletter')->name('send.newsletter');
+            Route::post('send-newsletter-subscribers', 'sendNewsletterSubscriber')->name('send.newsletter.subscriber');
+            Route::post('newsletter-post-search',      'NewsletterPostSearch')->name('newsletter.post.search');
+ 
+            Route::get('signup-users-change/{id}',  'signupUserChange')->name('signup.users.change');
+            Route::get('user/block/change/{id}',    'userBlockChange')->name('user.block.change');
+        });
         // End User Controller
 
         // Start Category Controller
@@ -120,8 +126,8 @@ Route::group(['prefix' => 'admin'], function () {
 
         // Start Contact Message Controller
         Route::resource('contact_messages', ContactMessageController::class);
-        Route::get('contact/replay/{id}', [ContactMessageController::class,'contactReply'])->name('contact.replay');
-        Route::post('contact/replay/send', [ContactMessageController::class,'contactSend'])->name('contact.replay.send');
+        Route::get('contact/replay/{id}', [ContactMessageController::class, 'contactReply'])->name('contact.replay');
+        Route::post('contact/replay/send', [ContactMessageController::class, 'contactSend'])->name('contact.replay.send');
         // End Contact Message Controller
 
         //post controller

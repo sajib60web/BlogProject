@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\BlockStatus;
 use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->string('picture')->nullable();
             $table->string('designation')->nullable();
             $table->unsignedTinyInteger('status')->default(Status::PENDING);
+            $table->unsignedTinyInteger('block_status')->default(BlockStatus::UNBLOCK);
             $table->rememberToken();
             $table->timestamps();
         });
