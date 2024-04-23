@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PageType;
 use App\Enums\PostType;
 use App\Models\About;
 use App\Models\Comment;
 use App\Models\ContactMessage;
 use App\Models\Faq;
+use App\Models\Page;
 use App\Models\Post;
 use App\Models\Subscribe;
 use Illuminate\Http\Request;
@@ -116,7 +118,7 @@ class WelcomeController extends Controller
     public function about()
     {
         $data['page_name'] = 'About';
-        $data['about'] = About::find(1);
+        $data['about'] = Page::find(PageType::ABOUT_US);
         return view('frontend.about', $data);
     }
 
