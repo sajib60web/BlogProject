@@ -19,9 +19,15 @@ class CreateSettingsTable extends Migration
             $table->string('app_logo')->nullable();
             $table->string('app_favicon')->nullable();
             $table->text('address')->nullable();
+            $table->text('about')->nullable();
             $table->string('phone_number', 30)->nullable();
             $table->string('email', 100)->nullable();
-            $table->float('discount_rate')->default(10);
+            $table->text('embed_a_map')->nullable();
+            $table->string('facebook_link')->nullable();
+            $table->string('instagram_link')->nullable();
+            $table->string('pinter_est_link')->nullable();
+            $table->string('youtube_link')->nullable();
+            $table->string('twitter_link')->nullable();
             $table->timestamps();
         });
     }

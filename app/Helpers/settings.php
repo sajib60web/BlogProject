@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Setting;
+use Carbon\Carbon;
 
 //Time Zone
 date_default_timezone_set('Asia/Kolkata');
@@ -11,6 +12,7 @@ if (!function_exists('setting')) {
         return Setting::find(1);
     }
 }
+
 
 if (!function_exists('send_sms')) {
     function send_sms($number, $massage)
@@ -41,5 +43,13 @@ if (!function_exists('send_sms')) {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $result = curl_exec($ch);
         curl_close($ch);
+    }
+}
+
+if (!function_exists('dateFormat')) {
+    function dateFormat($date)
+    {
+        $date  = DateTime::createFromFormat('d/m/Y', $date);
+        return Carbon::parse($date)->format('d M Y');
     }
 }

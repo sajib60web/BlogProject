@@ -176,8 +176,63 @@
                         <i class="fa fa-home"></i> <span>Dashboard</span>
                     </a>
                 </li>
+
+                @can('category-list')
+                    <li class="{{ Request::is('admin/categories*')?'active':''}}">
+                        <a href="{{ route('categories.index') }}">
+                            <i class="fa fa-list"></i> <span>Category</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('post-list')
+                <li class="{{ Request::is('admin/post*')?'active':''}}">
+                    <a href="{{ route('post.index') }}">
+                        <i class="fa fa-list"></i> <span>Posts</span>
+                    </a>
+                </li>
+                @endcan
+
+                @can('faq-list')
+                    <li class="{{ Request::is('admin/faqs*')?'active':''}}">
+                        <a href="{{ route('faqs.index') }}">
+                            <i class="fa fa-list"></i> <span>Faq</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('page-list')
+                    <li class="{{ Request::is('admin/pages*')?'active':''}}">
+                        <a href="{{ route('pages.index') }}">
+                            <i class="fa fa-list"></i> <span>Pages</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('contact-message-list')
+                    <li class="{{ Request::is('admin/contact_messages*')?'active':''}}">
+                        <a href="{{ route('contact_messages.index') }}">
+                            <i class="fa fa-list"></i> <span>Contact Message</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('author-list')
+                    <li class="{{ Request::is('admin/signup-user*') ?'active':''}}">
+                        <a href="{{ route('signup.users.index') }}">
+                            <i class="fa fa-list"></i> <span>Authors</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('subscriber-list')
+                    <li class="{{ Request::is('admin/subscribe*') ?'active':''}}">
+                        <a href="{{ route('subscribe.list') }}">
+                            <i class="fa fa-list"></i> <span>Subscribers</span>
+                        </a>
+                    </li>
+                @endcan
+
+
                 @if(auth('admin')->user()->can('user-list') || auth('admin')->user()->can('role-list'))
-                <li class="treeview  {{ Request::is('admin/users') || Request::is('admin/users/*') || Request::is('admin/roles') || Request::is('admin/roles/*')?'active':'' }}">
+                <li class="treeview  {{ Request::is('admin/users') || Request::is('admin/users/*') ||   Request::is('admin/roles') || Request::is('admin/roles/*')?'active':'' }}">
                         <a href="#">
                             <i class="fa fa-users"></i> <span>User Management</span>
                             <span class="pull-right-container">
@@ -188,12 +243,14 @@
                             @can('user-list')
                                 <li class="{{ Request::is('admin/users') || Request::is('admin/users/*')?'active':'' }}"><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i> User Manage</a></li>
                             @endcan
+
                             @can('role-list')
                                 <li class="{{ Request::is('admin/roles') || Request::is('admin/roles/*')?'active':'' }}"><a href="{{ route('roles.index') }}"><i class="fa fa-circle-o"></i> Role Manage</a></li>
                             @endcan
                         </ul>
                     </li>
                 @endif
+
                 @can('software-settings')
                 <li class="{{ Request::is('admin/settings')?'active':''}}">
                     <a href="{{ route('settings') }}">

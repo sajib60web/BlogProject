@@ -40,6 +40,67 @@ class PermissionSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Category',
+                'permissions' => [
+                    // Category Permissions
+                    'category-list',
+                    'category-create',
+                    'category-edit',
+                    'category-delete',
+                ]
+            ],
+            [
+                'group_name' => 'Post',
+                'permissions' => [
+                    // post Permissions
+                    'post-list',
+                    'post-create',
+                    'post-edit',
+                    'post-delete',
+                ]
+            ],
+            [
+                'group_name' => 'Faq',
+                'permissions' => [
+                    // faq Permissions
+                    'faq-list',
+                    'faq-create',
+                    'faq-edit',
+                    'faq-delete',
+                ]
+            ],
+            [
+                'group_name' => 'Page',
+                'permissions' => [
+                    // Page Permissions
+                    'page-list',
+                    'page-create',
+                    'page-edit',
+                    'page-delete',
+                ]
+            ],
+            [
+                'group_name' => 'Contact Message',
+                'permissions' => [
+                    // Contact Message Permissions
+                    'contact-message-list',
+                    'contact-message-delete',
+                ]
+            ],
+            [
+                'group_name' => 'Author',
+                'permissions' => [
+                    // Contact Message Permissions
+                    'author-list',
+                ]
+            ],
+            [
+                'group_name' => 'Subscribers',
+                'permissions' => [
+                    'subscriber-list',
+                ]
+            ],
+            [
                 'group_name' => 'Settings',
                 'permissions' => [
                     // Settings Permissions
@@ -54,7 +115,7 @@ class PermissionSeeder extends Seeder
             for ($j = 0; $j < count($permissions[$i]['permissions']); $j++) {
                 // Create Permission
                 $permission = Permission::create([
-                    'name' => $permissions[$i]['permissions'][$j], 
+                    'name' => $permissions[$i]['permissions'][$j],
                     'group_name' => $permissionGroup,
                     'guard_name' => 'admin'
                 ]);

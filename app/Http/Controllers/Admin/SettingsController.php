@@ -23,7 +23,6 @@ class SettingsController extends Controller
             'address' => 'required',
             'phone_number' => 'required',
             'email' => 'required',
-            'discount_rate' => 'required|numeric',
         ]);
 
         $input = $request->all();

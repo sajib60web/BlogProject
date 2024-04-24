@@ -20,7 +20,6 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     {!! Form::model($settings, ['method' => 'POST','route' => ['settings.update', $settings->id], 'enctype'=>'multipart/form-data']) !!}
-                    <h4 class="text-center">Software Settings Information</h4>
                     <div class="row">
                         <div class="col-sm-10 col-sm-offset-1">
                             <div class="col-sm-12">
@@ -53,6 +52,12 @@
                                     {!! Form::text('address', null, array('placeholder' => 'Address','class' => 'form-control')) !!}
                                 </div>
                             </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>About: <span style="color: red;">*</span></label>
+                                    {!! Form::text('about', null, array('placeholder' => 'About','class' => 'form-control')) !!}
+                                </div>
+                            </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Phone Number: <span style="color: red;">*</span></label>
@@ -65,10 +70,45 @@
                                     {!! Form::email('email', null, array('placeholder' => 'E-mail','class' => 'form-control')) !!}
                                 </div>
                             </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Embed a Map: <span style="color: red;">*</span></label>
+                                    {!! Form::textarea('embed_a_map', null, array('placeholder' => 'Embed a Map','class' => 'form-control')) !!}
+                                </div>
+                            </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Discount Rate(%): <span style="color: red;">*</span></label>
-                                    {!! Form::text('discount_rate', null, array('placeholder' => 'Discount Rate(%)','class' => 'form-control')) !!}
+                                    <label>Facebook Url: <span style="color: red;">*</span></label>
+                                    {!! Form::text('facebook_link', null, array('placeholder' => 'Facebook Url','class' =>
+                                    'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Instagram Url: <span style="color: red;">*</span></label>
+                                    {!! Form::text('instagram_link', null, array('placeholder' => 'Instagram Url','class' =>
+                                    'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Pinterest: <span style="color: red;">*</span></label>
+                                    {!! Form::text('pinter_est_link', null, array('placeholder' => 'Pinterest Url','class' =>
+                                    'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Youtube Url: <span style="color: red;">*</span></label>
+                                    {!! Form::text('youtube_link', null, array('placeholder' => 'Youtube Url','class' =>
+                                    'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Twitter Url: <span style="color: red;">*</span></label>
+                                    {!! Form::text('twitter_link', null, array('placeholder' => 'Twitter Url','class' =>
+                                    'form-control')) !!}
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
