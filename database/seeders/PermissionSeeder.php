@@ -101,6 +101,14 @@ class PermissionSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Social Login',
+                'permissions' => [
+                    // Social Login Permissions
+                    'social-login-list',
+                    'social-login-update',
+                ]
+            ],
+            [
                 'group_name' => 'Settings',
                 'permissions' => [
                     // Settings Permissions

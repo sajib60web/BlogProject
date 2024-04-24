@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\SocialLoginSettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ProfileController as UserProfileController;
@@ -108,7 +109,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('send-newsletter',              'sendNewsletter')->name('send.newsletter');
             Route::post('send-newsletter-subscribers', 'sendNewsletterSubscriber')->name('send.newsletter.subscriber');
             Route::post('newsletter-post-search',      'NewsletterPostSearch')->name('newsletter.post.search');
- 
+
             Route::get('signup-users-change/{id}',  'signupUserChange')->name('signup.users.change');
             Route::get('user/block/change/{id}',    'userBlockChange')->name('user.block.change');
         });
@@ -143,6 +144,13 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/subcategory', 'subcategory')->name('subcategory');
         });
         //end post controller
+
+        // Start Social Login Setting Controller
+        Route::controller(SocialLoginSettingController::class)->group(function () {
+            Route::get('/social_login_settings', 'index')->name('social_login_settings');
+            Route::post('/social/login/setting/update', 'settingUpdate')->name('social_login_setting.update');
+        });
+        // End Social Login Setting Controller
 
         // Start Settings Controller
         Route::controller(SettingsController::class)->group(function () {

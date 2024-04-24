@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Setting;
+use App\Models\SocialLoginSetting;
 use Carbon\Carbon;
 
 //Time Zone
@@ -51,5 +52,16 @@ if (!function_exists('dateFormat')) {
     {
         $date  = DateTime::createFromFormat('d/m/Y', $date);
         return Carbon::parse($date)->format('d M Y');
+    }
+}
+
+if (!function_exists('settingsSocial')) {
+    function settingsSocial($title = "")
+    {
+        $settings = SocialLoginSetting::where('title', $title)->first();
+        if ($settings) :
+            return $settings->value;
+        endif;
+        return null;
     }
 }

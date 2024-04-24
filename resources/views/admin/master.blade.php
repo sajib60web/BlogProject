@@ -251,6 +251,13 @@
                     </li>
                 @endif
 
+                @can('social-login-list')
+                <li class="{{ Request::is('admin/social_login_settings')?'active':''}}">
+                    <a href="{{ route('social_login_settings') }}">
+                        <i class="fa fa-cog"></i> <span>Social Login Setting</span>
+                    </a>
+                </li>
+                @endcan
                 @can('software-settings')
                 <li class="{{ Request::is('admin/settings')?'active':''}}">
                     <a href="{{ route('settings') }}">
