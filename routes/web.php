@@ -16,11 +16,20 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ProfileController as UserProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
+
+//social authentication
+Route::get('/login/{social}',                 [SocialLoginController::class, 'socialRedirect'])->name('social.login');
+Route::get('/google/login',                   [SocialLoginController::class, 'authGoogleLogin']); //google login , need url add in  your google app
+Route::get('/facebook/login',                 [SocialLoginController::class, 'authFacebookLogin']); // facebook login, need url add in your facebook app
+Route::any('/github/login',                   [SocialLoginController::class, 'authGithubLogin']); // facebook login, need url add in your facebook app
+Route::get('/linkedin/login',                 [SocialLoginController::class, 'authLinkedinLogin']); // facebook login, need url add in your facebook app
 
 // Welcome Route
 Route::controller(WelcomeController::class)->group(function () {

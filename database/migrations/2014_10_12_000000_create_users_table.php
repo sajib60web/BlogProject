@@ -30,6 +30,10 @@ return new class extends Migration
             $table->string('designation')->nullable();
             $table->unsignedTinyInteger('status')->default(Status::PENDING);
             $table->unsignedTinyInteger('block_status')->default(BlockStatus::UNBLOCK);
+            $table->string('google_id')->unique()->nullable();
+            $table->string('facebook_id')->unique()->nullable();
+            $table->string('github_id')->unique()->nullable();
+            $table->string('linkedin_id')->unique()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -40,11 +40,29 @@
                             <button type="submit" class="axil-btn axil-btn-fill axil-btn-large btn-color-alter btn-bold">
                                 Sign in <i class="solid-login"></i>
                             </button>
+                            Or Login with
+                            <a href="{{route('social.login','facebook')}}" >
+                                <i class="solid-facebook2"></i>
+                          </a>
+                          <a href="{{route('social.login','google')}}"
+                           >
+                               <i class="solid-google"></i>
+                          </a>
+                          <a href="{{route('social.login','github')}}"  >
+                                Github <i class="fa fa-facebook"></i><i class="fa fa-square-github"></i>
+                          </a>
+                          <a href="{{route('social.login','linkedin')}}"  >
+                               Linked in<i class="fa-brands fa-linkedin"></i>
+                          </a>
+
+                        </div>
+                        <div class="form-group mb-0 " style="margin-top: 5px">
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                             @endif
+
                         </div>
                     </form>
                 </div>
@@ -53,3 +71,6 @@
     </div>
 </section>
 @endsection
+@push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
