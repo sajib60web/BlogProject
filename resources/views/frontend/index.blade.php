@@ -23,8 +23,7 @@
                 </div>
                 <div class="col-lg-9 col-xxl-10">
                     <div id="category-slider-1" class="category-slider-1 initially-none">
-
-                        @foreach ($treding_topic_posts as $treading_topic )
+                        @foreach ($treding_topic_posts as $treading_topic)
                             <div class="single-slide">
                                 <div class="category-box-layout1">
                                     <div class="figure-holder">
@@ -86,7 +85,6 @@
             <div class="col-lg-5">
                 <div class="position-relative">
                     <div id="post-slider-1" class="post-slider-1 gutter-6 initially-none">
-
                         @foreach ($main_frame_sliders as $latestPost)
                             <div class="single-slide">
                                 <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default">
@@ -120,7 +118,6 @@
                                 </div>
                             </div>
                         @endforeach
-
                     </div>
                     <ul class="slider-navigation-layout1 color-light-1-fixed position-layout1 nav-size-medium item-gap-5">
                         <li id="post-prev-1" class="prev"><i class="regular-arrow-left"></i></li>
@@ -139,9 +136,7 @@
     <div class="container">
         <div class="position-relative">
             <div id="post-slider-2" class="post-slider-2 gutter-30 initially-none">
-
                 @foreach ($slider_posts as $sliderPost)
-
                     <div class="single-slide">
                         <div class="post-box-layout3 box-border-dark-1 radius-default transition-default">
                             <div class="figure-holder radius-medium">
@@ -153,7 +148,6 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
             <ul class="slider-navigation-layout1 color-light-1 position-layout2">
                 <li id="post-prev-2" class="prev"><i class="regular-arrow-left"></i></li>
@@ -173,7 +167,6 @@
             <a href="archive-layout1.html" class="link-wrap">Go to Stories <span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
         </div>
         <div class="row g-3">
-
             @foreach ($top_stories_posts as $topStoriesPost)
                 <div class="col-lg-4">
                     <div class="post-box-layout4 box-border-dark-1 radius-default padding-20  @if($loop->index == 0) {{$color_classes[3]}} @else {{$color_classes[$loop->index]}} @endif  box-shadow-large shadow-style-2 transition-default">
@@ -272,7 +265,6 @@
                         @endforeach
                     </div>
                     @foreach ($latest_stories_posts->skip(1)->take(2) as $latest_stories_two_post)
-
                     <div class="col-lg-6">
                         <div class="post-box-layout5 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) {{$color_classes[2]}} @else {{$color_classes[3]}} @endif box-shadow-large shadow-style-2 transition-default">
                             <div class="figure-holder radius-default">
@@ -295,7 +287,6 @@
             </div>
             <div class="col-lg-4">
                 <div class="post-box-layout7 box-border-dark-1 radius-default padding-20 bg-color-scandal">
-
                     @foreach ($latest_stories_posts->skip(3) as $latest_stories_post)
                         @if ($loop->index == 0)
                         <div class="figure-holder radius-default">
@@ -336,7 +327,6 @@
                             </div>
                         @endif
                     @endforeach
-
                 </div>
             </div>
         </div>
@@ -370,7 +360,6 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="one">
                         <div class="row g-3 row-cols-1 row-cols-lg-2 row-cols-xl-3">
-
                             @foreach ($top_video_recc_posts as $recommended_post)
                                 <div class="col">
                                     <div class="post-box-layout8 radius-default">
@@ -396,12 +385,10 @@
                                     </div>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                     <div class="tab-pane fade" id="two">
                         <div class="row g-4 row-cols-1 row-cols-lg-2 row-cols-xl-3">
-
                             @foreach ($top_video_latest_posts as $top_video_latest_post)
                             <div class="col">
                                 <div class="post-box-layout8 radius-default">
@@ -426,8 +413,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -447,7 +433,6 @@
         <div class="row sticky-coloum-wrap">
             <div class="col-lg-8 col-12 sticky-coloum-item">
                 <div class="row g-3 pe-lg-4">
-
                     @foreach ($recent_article_posts->take(6) as $recentArticlePost)
                         <div class="col-12">
                             <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation {{$color_classes[$loop->index]}} box-shadow-large shadow-style-2 transition-default">
@@ -484,12 +469,10 @@
                             </div>
                         </div>
                     @endforeach
-
                 </div>
             </div>
             <div class="col-lg-4 col-12 sticky-coloum-item">
                 <div class="sidebar-global sidebar-layout1">
-
                     @foreach ($recent_article_posts->skip(6) as $recentArticlePostt)
                         <div class="col-12 mb-3">
                             <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation {{$color_classes[$loop->index]}} box-shadow-large shadow-style-2 transition-default">
@@ -507,7 +490,6 @@
                                         </div>
                                         <h3 class="entry-title color-dark-1-fixed underline-animation h3-small"><a href="{{route('post.details',[$recentArticlePostt->id,$recentArticlePostt->slug])}}" class="link-wrap">{{\Str::limit($recentArticlePostt->title,60,'...')}}</a></h3>
                                         <ul class="entry-meta color-dark-1-fixed">
-
                                             <li>
                                                 <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($recentArticlePostt->created_at)->diffForHumans()}}
                                             </li>
@@ -520,7 +502,6 @@
                             </div>
                         </div>
                     @endforeach
-
 
                     <div class="sidebar-widget mt-3">
                         <div class="section-heading heading-style-2">
@@ -561,11 +542,7 @@
                             @endforeach
                         </div>
                     </div>
-
                 </div>
-
-
-
             </div>
         </div>
     </div>
@@ -574,7 +551,7 @@
 <!--=====================================-->
 <!--=          Post Area Start          =-->
 <!--=====================================-->
-<section class="post-wrap-layout7 space-top-40 bg-color-light-1 transition-default">
+{{-- <section class="post-wrap-layout7 space-top-40 bg-color-light-1 transition-default">
     <div class="container">
         <div class="section-heading heading-style-1">
             <h2 class="title">Recent Articles</h2>
@@ -625,14 +602,13 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!--=====================================-->
 <!--=          Post Area Start          =-->
 <!--=====================================-->
 <section class="post-wrap-layout8 space-top-50 bg-color-light-1 transition-default">
     <div class="container">
         <div class="row g-3">
-
             @foreach ($category_latest_posts as  $groupcategory)
                 <div class="col-lg-4">
                     <div class="post-box-layout12 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) bg-color-scandal @elseif($loop->index == 1) bg-color-mimosa @else bg-color-old-lace  @endif box-shadow-large shadow-style-2 transition-default">
@@ -684,12 +660,10 @@
                                     </div>
                                 </div>
                             @endif
-
                         @endforeach
                     </div>
                 </div>
             @endforeach
-
         </div>
     </div>
 </section>

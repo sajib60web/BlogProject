@@ -203,6 +203,7 @@
         slickMultiSlider: function () {
             $('#category-slider-1').slick({
                 dots: false,
+                autoplay: true,
                 infinite: true,
                 speed: 500,
                 slidesToShow: 3,
@@ -261,6 +262,7 @@
             });
             $('#post-slider-1').slick({
                 dots: false,
+                autoplay: true,
                 infinite: true,
                 speed: 500,
                 slidesToShow: 1,

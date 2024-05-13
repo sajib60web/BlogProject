@@ -29,22 +29,23 @@
   	<![endif]-->
     <div id="preloader" class="preloader">
         <div class="loader-wrap">
-            <div class="single-box">
+            {{-- <div class="single-box">
                 <div class="circle-holder"></div>
                 <div class="shadow-holder"></div>
-            </div>
-            <div class="single-box">
+            </div> --}}
+            {{-- <div class="single-box">
                 <div class="circle-holder"></div>
                 <div class="shadow-holder"></div>
-            </div>
-            <div class="single-box">
+            </div> --}}
+            {{-- <div class="single-box">
                 <div class="circle-holder"></div>
                 <div class="shadow-holder"></div>
-            </div>
-            <div class="single-box">
+            </div> --}}
+            {{-- <div class="single-box">
                 <div class="circle-holder"></div>
                 <div class="shadow-holder"></div>
-            </div>
+            </div> --}}
+            <img width="131" height="47" src="{{ setting()->logo }}" alt="logo">
         </div>
     </div>
 

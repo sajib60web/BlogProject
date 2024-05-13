@@ -48,7 +48,6 @@ class WelcomeController extends Controller
         $data['recent_stories_article_posts']   = Post::where('post_type', PostType::ARTICLE)->published()->where('stories', 1)->orderByDesc('id')->limit(5)->get();
 
         $data['category_latest_posts']          = Post::published()->latest()->get()->groupBy('category_id');
-
         return view('frontend.index', $data);
     }
 
