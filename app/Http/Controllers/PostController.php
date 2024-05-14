@@ -71,11 +71,12 @@ class PostController extends Controller
 
     public function update(StoreRequest $request)
     {
+
         if ($request->post_type == PostType::ARTICLE) :
             $request['video_url'] = null;
         endif;
 
-        $columns = ['treding_topic','stories','breaking','recommended','slider','short_stories','main_frame','main_frame_slider'];
+        $columns = ['treding_topic', 'top_video_latest','top_stories','latest_stories_main','latest_stories_sub','latest_stories_right_main','latest_stories_right_sub','short_stories','breaking','top_video_recommended','slider','short_stories','main_frame','main_frame_slider','recent_article'];
         foreach ($columns as   $value) {
             if (!$request->$value) :
                 $request[$value] = 0;

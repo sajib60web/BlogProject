@@ -50,8 +50,10 @@ class Post extends Model
     public function getMyVisibilityAttribute()
     {
         $visibility = '';
-        $columns = ['treding_topic','stories','breaking','recommended','slider','short_stories','main_frame',
-        'main_frame_slider'];
+
+        $columns = ['treding_topic','top_stories','latest_stories_main', 'latest_stories_sub', 'latest_stories_right_main', 'latest_stories_right_sub','breaking','slider','short_stories','main_frame',
+        'main_frame_slider','top_video_main','top_video_recommended',
+        'top_video_latest','recent_article'];
         foreach ($columns as   $value) {
             if ($this->$value == 1) :
                 $visibility .= '<span class="badge badge-info bg-info">' . Str::headline($value) . '</span>';

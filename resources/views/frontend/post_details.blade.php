@@ -52,7 +52,7 @@
                                     <i class="regular-eye"></i>{{$post->total_views}}
                                 </li>
                                 <li>
-                                    <i class="regular-chatting"></i>2 Comments
+                                    <i class="regular-chatting"></i>{{$post->comments->count()}} Comments
                                 </li>
                             </ul>
                             {{-- <div class="axil-social social-layout-1 size-small gap-12">

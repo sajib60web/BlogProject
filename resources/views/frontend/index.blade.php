@@ -164,7 +164,7 @@
     <div class="container">
         <div class="section-heading heading-style-1">
             <h2 class="title">Top Stories</h2>
-            <a href="archive-layout1.html" class="link-wrap">Go to Stories <span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
+            {{-- <a href="archive-layout1.html" class="link-wrap">Go to Stories <span class="icon-holder"><i class="regular-arrow-right"></i></span> </a> --}}
         </div>
         <div class="row g-3">
             @foreach ($top_stories_posts as $topStoriesPost)
@@ -232,7 +232,7 @@
             <div class="col-lg-8">
                 <div class="row g-3">
                     <div class="col-lg-12">
-                        @foreach ($latest_stories_posts->take(1) as $latest_stories_single_post)
+                        @foreach ($latest_stories_main as $latest_stories_single_post)
                             <div class="post-box-layout5 box-border-dark-1 radius-default">
                                 <div class="figure-holder radius-medium">
                                     <a href="{{route('post.details',[$latest_stories_single_post->id,$latest_stories_single_post->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="810" height="558" src="{{ @$latest_stories_single_post->image_url }}" alt="Post"></a>
@@ -264,7 +264,7 @@
                             </div>
                         @endforeach
                     </div>
-                    @foreach ($latest_stories_posts->skip(1)->take(2) as $latest_stories_two_post)
+                    @foreach ($latest_stories_sub as $latest_stories_two_post)
                     <div class="col-lg-6">
                         <div class="post-box-layout5 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) {{$color_classes[2]}} @else {{$color_classes[3]}} @endif box-shadow-large shadow-style-2 transition-default">
                             <div class="figure-holder radius-default">
@@ -287,8 +287,8 @@
             </div>
             <div class="col-lg-4">
                 <div class="post-box-layout7 box-border-dark-1 radius-default padding-20 bg-color-scandal">
-                    @foreach ($latest_stories_posts->skip(3) as $latest_stories_post)
-                        @if ($loop->index == 0)
+                    @foreach ($latest_stories_right_main as $latest_stories_post)
+                         
                         <div class="figure-holder radius-default">
                             <a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{$latest_stories_post->image_url}}" alt="Post"></a>
                         </div>
@@ -308,24 +308,25 @@
                                 </li>
                             </ul>
                         </div>
-                        @else
+                    @endforeach
+                    @foreach ($latest_stories_right_sub as $latest_stories_post_s)
                             <div class="content-holder">
-                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
+                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post_s->id,$latest_stories_post_s->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_post_s->title,60,'...')}}</a></h3>
                                 <ul class="entry-meta color-dark-1-fixed">
                                     <li class="post-author">
-                                        <a href="{{ route('post.author',@$latest_stories_post->user->id) }}">
-                                            {{@$latest_stories_post->user->name}}
+                                        <a href="{{ route('post.author',@$latest_stories_post_s->user->id) }}">
+                                            {{@$latest_stories_post_s->user->name}}
                                         </a>
                                     </li>
                                     <li>
-                                        <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latest_stories_post->created_at)->diffForHumans()}}
+                                        <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latest_stories_post_s->created_at)->diffForHumans()}}
                                     </li>
                                     <li>
-                                        <i class="regular-eye"></i>{{@$latest_stories_post->total_views}}
+                                        <i class="regular-eye"></i>{{@$latest_stories_post_s->total_views}}
                                     </li>
                                 </ul>
                             </div>
-                        @endif
+
                     @endforeach
                 </div>
             </div>
@@ -611,7 +612,7 @@
         <div class="row g-3">
             @foreach ($category_latest_posts as  $groupcategory)
                 <div class="col-lg-4">
-                    <div class="post-box-layout12 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) bg-color-scandal @elseif($loop->index == 1) bg-color-mimosa @else bg-color-old-lace  @endif box-shadow-large shadow-style-2 transition-default">
+                    <div class="h-100 post-box-layout12 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) bg-color-scandal @elseif($loop->index == 1) bg-color-mimosa @else bg-color-old-lace  @endif box-shadow-large shadow-style-2 transition-default">
                         @foreach ($groupcategory->take(4) as $categoryPost)
                             @if ($loop->index == 0)
                                 <div class="single-item">

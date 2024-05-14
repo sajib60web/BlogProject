@@ -169,13 +169,57 @@
                                     <div class="row">
                                         <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
-                                                <label for="stories">Add to stories </label>
+                                                <label for="top_stories">Add to top stories </label>
                                                 <div>
-                                                    <input id="stories" name="stories" type="checkbox" value="1" />
+                                                    <input id="top_stories" name="top_stories" type="checkbox" value="1" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-3">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="latest_stories_main">Add to latest stories main</label>
+                                                <div>
+                                                    <input id="latest_stories_main" name="latest_stories_main" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-3">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="latest_stories_sub">Add to latest stories sub</label>
+                                                <div>
+                                                    <input id="latest_stories_sub" name="latest_stories_sub" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-3">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="latest_stories_right_main">Add to latest stories right main</label>
+                                                <div>
+                                                    <input id="latest_stories_right_main" name="latest_stories_right_main" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-3">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="latest_stories_right_sub">Add to latest stories right sub</label>
+                                                <div>
+                                                    <input id="latest_stories_right_sub" name="latest_stories_right_sub" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <div class="row">
                                         <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
@@ -190,9 +234,39 @@
                                     <div class="row">
                                         <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
-                                                <label for="recommended">Add to recommended </label>
+                                                <label for="top_video_main">Add to top video main </label>
                                                 <div>
-                                                    <input id="recommended" name="recommended" type="checkbox" value="1" />
+                                                    <input id="top_video_main" name="top_video_main" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-3">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="top_video_recommended">Add to top video recommended </label>
+                                                <div>
+                                                    <input id="top_video_recommended" name="top_video_recommended" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-3">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="top_video_latest">Add to top video latest </label>
+                                                <div>
+                                                    <input id="top_video_latest" name="top_video_latest" type="checkbox" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-3">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="recent_article">Add to recent article </label>
+                                                <div>
+                                                    <input id="recent_article" name="recent_article" type="checkbox" value="1" />
                                                 </div>
                                             </div>
                                         </div>

@@ -30,13 +30,22 @@ return new class extends Migration
 
             $table->unsignedTinyInteger('slider')->default(0);
             $table->unsignedTinyInteger('treding_topic')->default(0);
-            $table->unsignedTinyInteger('stories')->default(0);
+            $table->unsignedTinyInteger('top_stories')->default(0);
+
+            $table->unsignedTinyInteger('latest_stories_main')->default(0);
+            $table->unsignedTinyInteger('latest_stories_sub')->default(0);
+            $table->unsignedTinyInteger('latest_stories_right_main')->default(0);
+            $table->unsignedTinyInteger('latest_stories_right_sub')->default(0);
+
             $table->unsignedTinyInteger('short_stories')->default(0);
             $table->unsignedTinyInteger('breaking')->default(0);
-            $table->unsignedTinyInteger('recommended')->default(0);
+            $table->unsignedTinyInteger('top_video_main')->default(0);
+            $table->unsignedTinyInteger('top_video_recommended')->default(0);
+            $table->unsignedTinyInteger('top_video_latest')->default(0);
             $table->unsignedTinyInteger('main_frame')->default(0);
             $table->unsignedTinyInteger('main_frame_slider')->default(0);
- 
+            $table->unsignedTinyInteger('recent_article')->default(0);
+
             $table->text('meta_title')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
