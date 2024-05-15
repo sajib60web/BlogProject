@@ -135,6 +135,7 @@
                                         </div>
                                     </div>
 
+
                                     <div class="row">
                                         <div class="col-md-5 col-lg-3">
                                             <div  style="display: flex;justify-content:space-between">
@@ -224,6 +225,19 @@
                                                 <label for="latest_stories_right_sub">Add to latest stories right sub</label>
                                                 <div>
                                                     <input id="latest_stories_right_sub" name="latest_stories_right_sub" type="checkbox" value="1" @if ($post->latest_stories_right_sub == 1) checked @endif/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-5 col-lg-3">
+                                            <div  style="display: flex;justify-content:space-between">
+                                                <label for="short_stories">Add to short stories </label>
+                                                <div>
+                                                    <input id="short_stories" name="short_stories" type="checkbox" value="1" @if ($post->short_stories == 1) checked @endif />
                                                 </div>
                                             </div>
                                         </div>

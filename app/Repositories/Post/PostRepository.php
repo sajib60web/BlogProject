@@ -21,8 +21,7 @@ class PostRepository implements PostInterface {
         endif;
 
         $request['slug'] = \Str::slug($request->title);
-
-        $post = Post::create($request->except(['_token','image']));
+        $post = Post::create($request->except(['_token','image','files']));
         if($post):
             return true;
         else:
@@ -37,7 +36,7 @@ class PostRepository implements PostInterface {
             $image_id = $this->uploadFile('post',$request->image,$post->image_id);
             $request['image_id']  = $image_id;
         endif;
-       $post->update($request->except(['_token','id','_method','image']));
+       $post->update($request->except(['_token','id','_method','image','files']));
 
         if($post):
             return true;

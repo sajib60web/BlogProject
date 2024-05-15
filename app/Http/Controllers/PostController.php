@@ -39,6 +39,10 @@ class PostController extends Controller
 
     public function store(StoreRequest $request)
     {
+        ini_set('memory_limit', '50012M');
+        ini_set('max_execution_time', 90000000);
+        ini_set('max_allowed_packet','100M');
+        
         $request['user_id'] = auth()->user()->id;
         if ($request->post_type == PostType::ARTICLE) :
             $request['video_url'] = null;
@@ -71,6 +75,10 @@ class PostController extends Controller
 
     public function update(StoreRequest $request)
     {
+
+        ini_set('memory_limit', '50012M');
+        ini_set('max_execution_time', 90000000);
+        ini_set('max_allowed_packet','100M');
 
         if ($request->post_type == PostType::ARTICLE) :
             $request['video_url'] = null;

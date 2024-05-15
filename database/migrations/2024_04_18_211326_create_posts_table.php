@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('slug');
-            $table->longText('content');
+            $table->longText('content')->nullable();
             $table->bigInteger('user_id')->nullable();
             $table->foreignId('category_id')->nullable();
             $table->foreignId('sub_category_id')->nullable();
