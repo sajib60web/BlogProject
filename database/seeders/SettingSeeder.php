@@ -15,7 +15,7 @@ class SettingSeeder extends Seeder
     {
         // Create Setting
         Setting::create([
-            'app_name' => 'Laravel Kit',
+            'app_name' => 'Snapyaa',
             'app_logo' => null,
             'app_favicon' => null,
             'address' => 'Dhaka - 1216',

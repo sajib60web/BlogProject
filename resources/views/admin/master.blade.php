@@ -96,9 +96,9 @@
         <!-- Logo -->
         <a href="{{ route('admin.dashboard') }}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>{{ config('app.name') }}</span>
+            <span class="logo-mini"><b>{{ setting()->app_name }}</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>{{ config('app.name') }}</b></span>
+            <span class="logo-lg"><b>{{ setting()->app_name }}</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
