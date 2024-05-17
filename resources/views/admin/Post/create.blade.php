@@ -115,7 +115,7 @@
                                 <div class="col-sm-12">
                                     <h3>Visibility</h3>
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="slider">Add to carousel </label>
                                                 <div>
@@ -125,7 +125,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="main_frame">Add to main frame </label>
                                                 <div>
@@ -135,7 +135,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="main_frame_slider">Add to main frame slider </label>
                                                 <div>
@@ -147,7 +147,7 @@
 
 
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="breaking">Add to breaking </label>
                                                 <div>
@@ -157,7 +157,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="treding_topic">Add to Treding Topic </label>
                                                 <div>
@@ -167,7 +167,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="top_stories">Add to top stories </label>
                                                 <div>
@@ -176,10 +176,8 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="latest_stories_main">Add to latest stories main</label>
                                                 <div>
@@ -189,7 +187,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="latest_stories_sub">Add to latest stories sub</label>
                                                 <div>
@@ -199,7 +197,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="latest_stories_right_main">Add to latest stories right main</label>
                                                 <div>
@@ -209,7 +207,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="latest_stories_right_sub">Add to latest stories right sub</label>
                                                 <div>
@@ -221,7 +219,7 @@
 
 
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="short_stories">Add to short stories </label>
                                                 <div>
@@ -232,7 +230,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="top_video_main">Add to top video main </label>
                                                 <div>
@@ -242,7 +240,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="top_video_recommended">Add to top video recommended </label>
                                                 <div>
@@ -252,7 +250,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="top_video_latest">Add to top video latest </label>
                                                 <div>
@@ -262,7 +260,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-3">
+                                        <div class="col-md-6 col-lg-4">
                                             <div  style="display: flex;justify-content:space-between">
                                                 <label for="recent_article">Add to recent article </label>
                                                 <div>
