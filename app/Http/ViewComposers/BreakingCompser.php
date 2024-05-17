@@ -13,7 +13,6 @@ class BreakingCompser
 
     public function compose(View $view)
     {
-
         $data       = Post::where('breaking',1)->orderByDesc('id')->get();
         $view->with('breaking_posts', $data);
     }

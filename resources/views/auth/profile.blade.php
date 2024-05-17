@@ -30,7 +30,7 @@
                 </div>
                 <div class="content-holder">
                     <h3 class="title h3-regular">{{ $profile->name }}</h3>
-                    <div class="designation">Author</div>
+                    <div class="designation">Join as a content writer</div>
                     <p class="description">{{ $profile->about }}</p>
                     <div class="axil-social social-layout-1 size-small gap-12">
                         <ul>

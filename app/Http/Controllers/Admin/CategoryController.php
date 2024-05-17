@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -51,7 +52,7 @@ class CategoryController extends Controller
         ]);
 
         $input = $request->all();
-        $input['slug']  = \Str::slug($request->name);
+        $input['slug']  = Str::slug($request->name);
         Category::create($input);
         $notification = array(
             'message' => 'Category Create Successfully',
@@ -90,6 +91,7 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
         $input = $request->all();
+        $input['slug']  = Str::slug($request->name);
         $category->update($input);
         $notification = array(
             'message' => 'Category Update Successfully',

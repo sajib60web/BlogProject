@@ -153,6 +153,11 @@
                                                         </li>
                                                     </ul>
                                                 </div>
+                                                <div class="profile-content">
+                                                    <ul>
+                                                        <li><a href="#">Join as a content writer</a></li>
+                                                    </ul>
+                                                </div>
                                                 <div class="mt-3">
                                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="w-100 axil-btn axil-btn-ghost btn-color-alter axil-btn-small">Sign Out</a>
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
