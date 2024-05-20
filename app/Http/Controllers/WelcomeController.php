@@ -65,7 +65,18 @@ class WelcomeController extends Controller
         $data['page_name'] = 'Post Details';
         $data['post'] = $post;
         $data['latest_short_stories_posts']     = Post::where('short_stories', 1)->orderByDesc('id')->limit(7)->get();
-        $data['related_posts']     = Post::whereNot('id', $post->id)->where('category_id', $post->category_id)->orderByDesc('id')->limit(10)->get();
+        // $data['related_posts']     = Post::whereNot('id', $post->id)
+        //     ->where('category_id', $post->category_id)
+        //     ->orderByDesc('id')
+        //     ->limit(10)
+        //     ->get();
+        $data['related_posts']     = Post::where('post_type', PostType::ARTICLE)
+            ->where('category_id', $post->category_id)
+            ->where('recent_article', 1)
+            ->published()
+            ->orderByDesc('id')
+            ->limit(10)
+            ->get();
         $data['prevous_post']    = Post::where('id', '<', $post->id)->get()->last();
         $data['next_post']    = Post::where('id', '>', $post->id)->get()->last();
 
@@ -94,17 +105,20 @@ class WelcomeController extends Controller
             return redirect()->back()->with($notification);
         }
     }
-    public function categoryPosts($id, $slug)
+    public function categoryPosts($slug)
     {
         $data['page_name'] = 'Category Posts';
-        $data['posts'] = Post::where('category_id', $id)
-            // ->orWhere('sub_category_id', $id)
-            ->published()
+        $data['posts'] = Post::published()
+            ->where(function ($query) use ($slug) {
+                $query->orWhereHas('category', function ($queryCategory) use ($slug) {
+                    $queryCategory->where('slug', $slug);
+                });
+            })
             ->orderByDesc('id')
             ->paginate(10);
         return view('frontend.category_posts', $data);
     }
-    
+
     public function postAuthor($id)
     {
         $data['page_name'] = 'Author Posts';

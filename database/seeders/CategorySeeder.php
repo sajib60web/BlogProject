@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
@@ -45,7 +46,7 @@ class CategorySeeder extends Seeder
         foreach ($categories as $key => $category) {
             $data = new Category();
             $data->name = $category['name'];
-            $data->slug = \Str::slug($category['name']);
+            $data->slug = Str::slug($category['name']);
             $data->parent_id = $category['parent_id'];
             $data->description = $category['description'];
             $data->save();

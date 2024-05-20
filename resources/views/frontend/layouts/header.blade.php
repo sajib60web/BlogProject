@@ -36,6 +36,27 @@
                                 </div>
                             </div>
                         </div>
+                        @guest
+                            <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
+                                <a href="{{ route('login') }}" style="color: white;">Sign In</a>
+                            </div>
+                            <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
+                                <a href="{{ route('register') }}" style="color: white;">Sign Up</a>
+                            </div>
+                        @else
+                            <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
+                                <a href="{{ route('user.profile') }}" style="color: white;">Profile</a>
+                            </div>
+                            <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
+                                <a href="{{ route('post.list') }}" style="color: white;">Posts</a>
+                            </div>
+                            <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color: white;">Sign Out</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        @endguest
                     </div>
                 </div>
             </div>
@@ -72,9 +93,6 @@
                     </div>
                     <nav id="dropdown" class="template-main-menu">
                         <ul class="menu">
-                            <li class="menu-item">
-                                <a href="{{ route('main.index') }}">Home</a>
-                            </li>
                             @php
                                 $categories = \App\Models\Category::where('parent_id',0)->limit(9)->get();
                             @endphp
@@ -86,12 +104,12 @@
                                 @if ($subcategories->count() > 0)
                                     <a href="#">{{ $category->name }}</a>
                                 @else
-                                    <a href="{{ route('category.posts',[$category->id,$category->slug]) }}">{{ $category->name }}</a>
+                                    <a href="{{ route('category.posts',$category->slug) }}">{{ $category->name }}</a>
                                 @endif
                                 <ul class="sub-menu">
                                     @foreach ($subcategories as $subcategory)
                                         <li class="menu-item">
-                                            <a href="{{ route('category.posts',[$subcategory->id,$category->slug]) }}">{{ $subcategory->name }}</a>
+                                            <a href="{{ route('category.posts',$category->slug) }}">{{ $subcategory->name }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -111,6 +129,12 @@
                                 <li class="menu-item d-lg-none d-block">
                                     <a href="{{ route('post.list') }}">Posts</a>
                                 </li>
+                                <li class="menu-item d-lg-none d-block">
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form-mobile').submit();" style="color: white;">Sign Out</a>
+                                    <form id="logout-form-mobile" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
                             @endguest
                         </ul>
                     </nav>
@@ -124,7 +148,7 @@
                             </a>
                         </div>
                     </div> --}}
-                    @guest
+                    {{-- @guest
                         <div class="d-lg-block d-none">
                             <a href="{{ route('login') }}" title="Sign in" role="button" class="btn btn-success customBtn">Sign in</a> |
                             <a href="{{ route('register') }}" title="Join Naw" role="button" class="btn btn-success customBtn">Sign Up</a>
@@ -153,11 +177,6 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div class="profile-content">
-                                                    <ul>
-                                                        <li><a href="#">Join as a content writer</a></li>
-                                                    </ul>
-                                                </div>
                                                 <div class="mt-3">
                                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="w-100 axil-btn axil-btn-ghost btn-color-alter axil-btn-small">Sign Out</a>
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -170,7 +189,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endguest
+                    @endguest --}}
                     <div class="d-lg-none d-block">
                         <div class="my_switcher">
                             <ul>

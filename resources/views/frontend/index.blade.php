@@ -140,7 +140,9 @@
                     <div class="single-slide">
                         <div class="post-box-layout3 box-border-dark-1 radius-default transition-default">
                             <div class="figure-holder radius-medium">
-                                <a href="{{route('post.details',[$sliderPost->id,$sliderPost->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="540" height="540" src="{{ @$sliderPost->image_url}}" alt="Post"></a>
+                                <a href="{{route('post.details',[$sliderPost->id,$sliderPost->slug])}}" class="link-wrap figure-overlay img-height-100">
+                                    <img style="height: 300px;width: 100%;" src="{{ @$sliderPost->image_url}}" alt="Post">
+                                </a>
                             </div>
                             <div class="content-holder">
                                 <h3 class="entry-title h3-medium color-light-1-fixed underline-animation"><a href="{{route('post.details',[$sliderPost->id,$sliderPost->slug])}}">{{\Str::limit($sliderPost->title,60,'...')}}</a></h3>
@@ -171,7 +173,9 @@
                 <div class="col-lg-4">
                     <div class="post-box-layout4 box-border-dark-1 radius-default padding-20  @if($loop->index == 0) {{$color_classes[3]}} @else {{$color_classes[$loop->index]}} @endif  box-shadow-large shadow-style-2 transition-default">
                         <div class="figure-holder radius-default">
-                            <a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->slug])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{ $topStoriesPost->image_url }}" alt="Post"></a>
+                            <a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->slug])}}" class="link-wrap img-height-100">
+                                <img style="height: 250px; width: 100%;" src="{{ $topStoriesPost->image_url }}" alt="Post">
+                            </a>
                         </div>
                         <div class="content-holder">
                             <div class="entry-category style-2 color-dark-1-fixed">

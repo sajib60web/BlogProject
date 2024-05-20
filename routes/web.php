@@ -35,7 +35,7 @@ Route::get('/linkedin/login',                 [SocialLoginController::class, 'au
 Route::controller(WelcomeController::class)->group(function () {
     Route::get('/', 'index')->name('main.index');
     Route::get('/post/{id}/{slug}', 'postDetails')->name('post.details');
-    Route::get('/category/{id}/{slug}', 'categoryPosts')->name('category.posts');
+    Route::get('/category/{slug}', 'categoryPosts')->name('category.posts');
     Route::get('/author/posts/{id}', 'postAuthor')->name('post.author');
     Route::get('/search/posts/', 'searchPosts')->name('search.posts');
     Route::get('/about', 'about')->name('about');

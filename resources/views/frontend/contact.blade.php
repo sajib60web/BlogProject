@@ -12,7 +12,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('main.index') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
                 </ol>
             </nav>
         </div>
@@ -24,28 +24,8 @@
 <section class="contact-wrap-layout-1 space-top-30 bg-color-light-1 transition-default mb-5">
     <div class="container">
         <div class="row justify-content-center">
-            @if ($page->description)
-                <div class="col-lg-8">
-                    {!! $page->description !!}
-                </div>
-            @endif
             <div class="col-lg-8">
-                <div class="section-heading heading-style-9">
-                    <h2 class="title">Get In Touch With Us?</h2>
-                </div>
                 <div class="row g-3">
-                    <div class="col-md-12">
-                        <div class="contact-layout-1 box-border-dark-1 radius-default bg-color-scandal box-shadow-medium shadow-style-2 transition-default">
-                            <div class="contact-info-box">
-                                <div class="box-icon">
-                                    <i class="regular-call-out"></i>
-                                </div>
-                                <div class="contact-way">{{ setting()->phone_number }}</div>
-                                <div class="contact-text">{{ setting()->address }}</div>
-                                <a href="tel:{{ setting()->phone_number }}" class="axil-btn axil-btn-fill shadow-fixed axil-btn-small">Call Now<div class="icon-holder"><i class="regular-arrow-right"></i></div></a>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-12">
                         <div class="contact-form-wrap box-border-dark-1 radius-default">
                             <h3 class="title">Submit Your Inquiry</h3>
