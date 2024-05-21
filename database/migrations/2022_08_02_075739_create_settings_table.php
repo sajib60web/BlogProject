@@ -28,6 +28,9 @@ class CreateSettingsTable extends Migration
             $table->string('pinter_est_link')->nullable();
             $table->string('youtube_link')->nullable();
             $table->string('twitter_link')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->text('meta_keywords')->nullable();
+            $table->string('meta_description')->nullable();
             $table->timestamps();
         });
     }

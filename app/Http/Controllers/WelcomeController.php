@@ -82,6 +82,7 @@ class WelcomeController extends Controller
 
         return view('frontend.post_details', $data);
     }
+    
     public function comment(Request $request)
     {
         try {

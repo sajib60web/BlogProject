@@ -34,7 +34,8 @@ class SuperAdminUserSeeder extends Seeder
             'username' => 'user',
             'email' => 'user@gmail.com',
             'role_id' => 'User',
-            'password' => bcrypt('123456')
+            'password' => bcrypt('123456'),
+            'email_verified_at' => now(),
         ]);
     }
 }

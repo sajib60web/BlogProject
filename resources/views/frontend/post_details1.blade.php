@@ -41,6 +41,10 @@
     <meta property="og:image" content="{{ $imagemeta }}" />
 @endsection
 @section('mainContent')
+@php
+    $postTitle = urlencode(url()->current());
+    $postURL = urlencode($post->title);
+@endphp
 <!--=====================================-->
 <!--=       breadcrumb Area Start       =-->
 <!--=====================================-->
@@ -124,13 +128,9 @@
                             </li>
                         </ul>
                     </div>
-                    @guest
-                            
-                    @else
-                        <div class="print">
-                            <a role="button" id="print_post"><i class="fa-solid fa-print" style="font-size: 30px;color: black;"></i></a>
-                        </div>
-                    @endguest
+                    <div class="print">
+                        <a role="button" id="print_post"><i class="fa-solid fa-print" style="font-size: 30px;color: black;"></i></a>
+                    </div>
                     <div class="mb-4 box-border-dark-1 radius-default transition-default post-image">
                         <div class="figure-holder position-relative radius-default">
                             @if ($post->post_type == App\Enums\PostType::VIDEO)
@@ -189,8 +189,148 @@
                         </div>
                     </div>
                     <div class="post-comment">
-                        <div class="fb-comments" data-href="{{ Request::url() }}" data-numposts="10"></div>
+                        <div class="section-heading heading-style-7">
+                            <h3 class="title h3-regular">{{$post->comments->count()}} Comments</h3>
+                        </div>
+                        <ul class="comment-list">
+                            @foreach ($post->comments as $comment)
+                                <li>
+                                    <div class="each-comment">
+                                        <div class="comment-figure img-height-100">
+                                            <img width="500" height="500" src="{{$comment->user->image ?? asset('default/user.webp')}}" alt="Comment">
+                                        </div>
+                                        <div class="comment-content">
+                                            <h4 class="comment-title">{{$comment->user->name ?? 'Guest'}}</h4>
+                                            <div class="comment-meta"><span class="post-date">{{\Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}</span></div>
+                                            <p class="comment-comment">{{$comment->message}}</p>
+                                            @if (auth()->user())
+                                            <a href="#" class="item-btn replay-btn" data-commentid="{{$comment->id}}" href="#comment{{$comment->id}}">Reply</a>
+                                            @else
+                                            <a  class="item-btn"  href="{{route('login')}}">Login</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <ul class="children">
+                                        @foreach ($comment->childrenComments as $childComment)
+                                            <li>
+                                                <div class="each-comment">
+                                                    <div class="comment-figure img-height-100">
+                                                        <img width="500" height="500" src="{{$childComment->user->image?? asset('default/user.webp')}}" alt="Comment">
+                                                    </div>
+                                                    <div class="comment-content">
+                                                        <h4 class="comment-title">{{$childComment->user->name?? 'guest'}}</h4>
+                                                        <div class="comment-meta"><span class="post-date">{{\Carbon\Carbon::parse($childComment->created_at)->diffForHumans()}}</span></div>
+                                                        <p class="comment-comment">{{$childComment->message}}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+
+                                    @if (auth()->user())
+                                    <div id="comment{{$comment->id}}" style="display: none">
+                                        <div class="leave-comment mb-3">
+                                            {{-- <div class="section-heading heading-style-7">
+                                                <h3 class="title h3-regular">Reply</h3>
+                                            </div>  --}}
+                                            <form class="leave-form-box" method="post" action="{{route('comment.replay.submit')}}">
+                                                @csrf
+                                                <input type="hidden" name="comment_id" value="{{$comment->id}}"/>
+                                                <input type="hidden" name="post_id" value="{{$post->id}}"/>
+                                                <div class="row g-2">
+                                                    <div class="col-md-6 form-group">
+                                                        <input type="hidden" name="name" placeholder="Name" class="form-control" name="name" value="{{auth()->user()->name}}" id="name" data-error="Name field is required" required>
+                                                        <div class="help-block with-errors"></div>
+                                                        @error('name')
+                                                            <p class="text-danger mt-2">{{$message}}</p>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-6 form-group">
+                                                        <input type="hidden" name="email" placeholder="Your E-mail*" class="form-control" name="email" id="leave-email" value="{{auth()->user()->email}}" data-error="E-mail field is required" required>
+                                                        <div class="help-block with-errors"></div>
+                                                        @error('email')
+                                                            <p class="text-danger mt-2">{{$message}}</p>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="col-12 form-group">
+                                                        <div class="section-heading heading-style-7">
+                                                            <h3 class="title h3-regular">Leave a Reply</h3>
+                                                        </div>
+                                                        <textarea name="message" class="textarea form-control" placeholder="Message" name="message" id="leave-message" rows="5" cols="20" data-error="Message field is required" required></textarea>
+                                                        <div class="help-block with-errors"></div>
+                                                        @error('message')
+                                                            <p class="text-danger mt-2">{{$message}}</p>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-12 form-group mt-2">
+                                                        <button type="submit"   class="axil-btn axil-btn-fill btn-color-alter axil-btn-large">
+                                                        <span><span>Reply Comment</span></span></button>
+                                                        <button type="button"   class="axil-btn axil-btn-fill btn-color-alter axil-btn-large close" data-commentid="{{$comment->id}}">
+                                                        <span><span>Close</span></span></button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
+
+                    @if (auth()->user())
+                        <div class="leave-comment">
+                            <div class="section-heading heading-style-7">
+                                <h3 class="title h3-regular">Post A Comment</h3>
+                            </div>
+                            <p class="mb-4">Your email address will not be published. Required fields are marked *</p>
+                            <form class="leave-form-box" method="post" action="{{route('comment.submit')}}">
+                                @csrf
+                                <input type="hidden" name="post_id" value="{{$post->id}}"/>
+                                <div class="row g-2">
+                                    <div class="col-md-6 form-group">
+                                        <input type="text" name="name" placeholder="Name" class="form-control" name="name" id="name" data-error="Name field is required" required>
+                                        <div class="help-block with-errors"></div>
+                                        @error('name')
+                                            <p class="text-danger mt-2">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <input type="email" name="email" placeholder="Your E-mail*" class="form-control" name="email" id="leave-email" data-error="E-mail field is required" required>
+                                        <div class="help-block with-errors"></div>
+                                        @error('email')
+                                            <p class="text-danger mt-2">{{$message}}</p>
+                                        @enderror
+                                    </div>
+
+                                    {{-- <div class="col-12 form-group">
+                                        <input type="checkbox" id="show-message" name="show-message" value="Bike">
+                                        <label class="show-message-label" for="show-message">Don’t show this message again</label>
+                                    </div> --}}
+                                    <div class="col-12 form-group">
+                                        <div class="section-heading heading-style-7">
+                                            <h3 class="title h3-regular">Leave a Reply</h3>
+                                        </div>
+                                        <textarea name="message" class="textarea form-control" placeholder="Message" name="message" id="leave-message" rows="5" cols="20" data-error="Message field is required" required></textarea>
+                                        <div class="help-block with-errors"></div>
+                                        @error('message')
+                                            <p class="text-danger mt-2">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="col-12 form-group mt-2">
+                                        <button type="submit"   class="axil-btn axil-btn-fill btn-color-alter axil-btn-large">
+                                        <span><span>Post Comment</span></span></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    @else
+                        <div class="col-12 form-group mt-2">
+                            <a  href="{{route('login')}}" class="axil-btn axil-btn-fill btn-color-alter axil-btn-large">
+                            <span><span>Login</span></span></a>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="col-lg-4 sticky-coloum-item">
@@ -289,9 +429,6 @@
 @endsection
 
 @push('scripts')
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v20.0&appId=1406941472888394" nonce="R3pnncOx"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <script src="{{ asset('js/printThis.js') }}"></script>
@@ -308,6 +445,9 @@
             importCSS: true,
         })
     });
-    document.onload();
 </script>
 @endpush
+
+
+
+

@@ -36,6 +36,7 @@
                                     <tr>
                                         <th scope="col">SL</th>
                                         <th scope="col">Name</th>
+                                        <th scope="col">Download Status</th>
                                         <th scope="col">Description</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -45,6 +46,7 @@
                                     <tr>
                                         <td>{{ $k+1 }}</td>
                                         <td>{{ $category->name }}</td>
+                                        <td>{!! $category->my_download_status !!}</td>
                                         <td>{{ $category->description }}</td>
                                         <td class="text-center">
                                             @can('category-edit')

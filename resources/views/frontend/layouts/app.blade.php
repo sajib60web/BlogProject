@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <!-- Meta Data -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ setting()->app_name }} | @yield('title')</title>
-    <meta name="title" content="@yield('meta_title')">
-    <meta name="keywords" content="@yield('meta_keywords')">
-    <meta name="description" content="@yield('meta_description')">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ setting()->app_name }} | @yield('title')</title>
+    <meta name="title" content="{{ setting()->meta_title }}">
+    <meta name="keywords" content="{{ setting()->meta_keywords }}">
+    <meta name="description" content="{{ setting()->meta_description }}">
+    @yield('meta_content')
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ setting()->icon }}">
+    <!-- Apple Favicon -->
+    <link rel="apple-touch-icon" href="{{ setting()->icon }}">
+    <!-- All Device Favicon -->
+    <link rel="icon" href="{{ setting()->icon }}">
+
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/fonts/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/slick/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/slick/slick-theme.css') }}">
@@ -20,6 +29,15 @@
     <!-- Site Stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/app.css') }}">
     <link href="{{ asset('assets/admin') }}/css/toastr.min.css" rel="stylesheet" type="text/css">
+    <style>
+        .breadcrumb-item+.breadcrumb-item::before {
+            display: inline-block;
+            padding-right: .3rem;
+            padding-left: 0;
+            color: black;
+            content: "/";
+        }
+    </style>
     @stack('styles')
 </head>
 

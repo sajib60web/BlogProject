@@ -49,6 +49,16 @@
                             </div> --}}
                             <div class="col-sm-7">
                                 <div class="form-group">
+                                    <label>Download Status:<span style="color: red;">*</span></label>
+                                    <select name="download_status" class="form-control select2" id="download_status">
+                                        <option value="">Select Download Status</option>
+                                        <option value="1" @selected(old('download_status',$category->download_status) == 1)>Yes</option>
+                                        <option value="2" @selected(old('download_status',$category->download_status) == 2)>No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group">
                                     <label>Description:</label>
                                     {!! Form::textarea('description', null, array('placeholder' => 'Enter Description','class' => 'form-control')) !!}
                                 </div>

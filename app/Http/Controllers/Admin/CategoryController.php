@@ -49,6 +49,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|max:191',
+            'download_status' => 'required',
         ]);
 
         $input = $request->all();
@@ -86,7 +87,8 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => 'required|max:191'
+            'name' => 'required|max:191',
+            'download_status' => 'required',
         ]);
 
         $category = Category::find($id);

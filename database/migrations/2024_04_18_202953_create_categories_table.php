@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->integer('parent_id')->default(0);
             $table->text('description')->nullable();
+            $table->tinyInteger('download_status')->default(2);
             $table->timestamps();
         });
     }

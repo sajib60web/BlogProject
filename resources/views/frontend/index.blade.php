@@ -27,7 +27,9 @@
                             <div class="single-slide">
                                 <div class="category-box-layout1">
                                     <div class="figure-holder">
-                                        <a href="{{route('post.details',[$treading_topic->id,$treading_topic->slug])}}" class="link-wrap img-height-100"><img width="150" height="150" src="{{ $treading_topic->image_url }} " alt="{{@$treading_topic->category->name}}"></a>
+                                        <a href="{{route('post.details',[$treading_topic->id,$treading_topic->slug])}}" class="link-wrap img-height-100">
+                                            <img style="height: 100px; width: 100px;" src="{{ $treading_topic->image_url }} " alt="{{@$treading_topic->category->name}}">
+                                        </a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-1 color-dark-1-fixed">
@@ -272,7 +274,9 @@
                     <div class="col-lg-6">
                         <div class="post-box-layout5 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) {{$color_classes[2]}} @else {{$color_classes[3]}} @endif box-shadow-large shadow-style-2 transition-default">
                             <div class="figure-holder radius-default">
-                                <a href="{{route('post.details',[$latest_stories_two_post->id,$latest_stories_two_post->slug]) }}" class="link-wrap figure-overlay img-height-100"><img width="660" height="470" src="{{ $latest_stories_two_post->image_url }}" alt="Post"></a>
+                                <a href="{{route('post.details',[$latest_stories_two_post->id,$latest_stories_two_post->slug]) }}" class="link-wrap figure-overlay img-height-100">
+                                    <img style="height: 250px; width: 100%;" src="{{ $latest_stories_two_post->image_url }}" alt="Post">
+                                </a>
                             </div>
                             <div class="content-holder">
                                 <div class="entry-category style-3 color-light-1-fixed">
@@ -621,7 +625,9 @@
                             @if ($loop->index == 0)
                                 <div class="single-item">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap img-height-100"><img width="660" height="440" src="{{ @$categoryPost->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap img-height-100">
+                                            <img  style="height: 250px; width: 100%;" src="{{ @$categoryPost->image_url }}" alt="Post">
+                                        </a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-2 color-dark-1-fixed">
@@ -651,7 +657,9 @@
                             @else
                                 <div class="single-item">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="250" height="168" src="{{ @$categoryPost->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap figure-overlay img-height-100">
+                                            <img  style="height: 250px; width: 100%;" src="{{ @$categoryPost->image_url }}" alt="Post">
+                                        </a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-3 color-dark-1-fixed">
