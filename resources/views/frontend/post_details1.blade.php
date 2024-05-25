@@ -80,12 +80,15 @@
                     <h1 class="app-name" style="text-align: center;">{{ setting()->app_name }}</h1>
                     <h1 class="entry-title color-dark-1 post-title">{{$post->title}}</h1>
                     <ul class="entry-meta color-dark-1">
-                        <li class="post-author">
-                            By
-                            <a href="{{ route('post.author',@$post->user->id) }}">
-                                {{@$post->user->name}}
-                            </a>
-                        </li>
+                        @if (isset($post->user->name))
+                            <li class="post-author">
+                                By
+                                <a href="{{ route('post.author',@$post->user->id) }}">
+                                    {{@$post->user->name}}
+                                </a>
+                            </li>
+                        @endif
+                        
                         <li>
                             <i class="regular-calendar-01"></i>{{\Carbon\Carbon::parse($post->created_at)->format('M d, Y')}}
                         </li>

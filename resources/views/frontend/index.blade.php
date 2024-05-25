@@ -104,11 +104,13 @@
                                         <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[@$latestPost->id,@$latestPost->slug])}}" class="link-wrap">{{\Str::limit(@$latestPost->title,60,' ...')}}</a></h3>
                                         <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$latestPost->content), 250, ' ...') !!}</p>
                                         <ul class="entry-meta color-dark-1-fixed">
-                                            <li class="post-author">
-                                                <a href="{{ route('post.author',@$latestPost->user->id) }}">
-                                                    <img src="{{ $latestPost->user->image?? asset('default/user.webp') }}" alt="Author"/>{{@$latestPost->user->name}}
-                                                </a>
-                                            </li>
+                                            @if ($latestPost->user->id)
+                                                <li class="post-author">
+                                                    <a href="{{ route('post.author',@$latestPost->user->id) }}">
+                                                        <img src="{{ $latestPost->user->image?? asset('default/user.webp') }}" alt="Author"/>{{@$latestPost->user->name}}
+                                                    </a>
+                                                </li>
+                                            @endif
                                             <li>
                                                 <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latestPost->created_at)->diffForHumans()}}
                                             </li>
@@ -190,12 +192,14 @@
                             <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->slug])}}" class="link-wrap">{{\Str::limit($topStoriesPost->title,60,'...')}}</a></h3>
                             <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$topStoriesPost->content), 150, ' ...') !!}</p>
                             <ul class="entry-meta color-dark-1-fixed">
-                                <li class="post-author">
-                                    <a href="{{ route('post.author',@$topStoriesPost->user->id) }}">
-                                        <img  src="{{ $topStoriesPost->user->image?? asset('default/user.webp') }}"   alt="Author">
-                                        {{@$topStoriesPost->user->name}}
-                                    </a>
-                                </li>
+                                @if ($topStoriesPost->user->id)
+                                    <li class="post-author">
+                                        <a href="{{ route('post.author',@$topStoriesPost->user->id) }}">
+                                            <img  src="{{ $topStoriesPost->user->image?? asset('default/user.webp') }}"   alt="Author">
+                                            {{@$topStoriesPost->user->name}}
+                                        </a>
+                                    </li>
+                                @endif
                                 <li>
                                     <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($topStoriesPost->created_at)->diffForHumans()}}
                                 </li>
@@ -253,12 +257,14 @@
                                     </div>
                                     <h3 class="entry-title h3-large color-light-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_single_post->id,$latest_stories_single_post->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_single_post->title,60,'...')}}</a></h3>
                                     <ul class="entry-meta color-light-1-fixed">
-                                        <li class="post-author">
-                                            <a href="{{ route('post.author',@$latest_stories_single_post->user->id) }}">
-                                                <img  src="{{ $latest_stories_single_post->user->image?? asset('default/user.webp') }}"   alt="Author">
-                                                {{@$latest_stories_single_post->user->name}}
-                                            </a>
-                                        </li>
+                                        @if (isset($latest_stories_single_post->user->id))
+                                            <li class="post-author">
+                                                <a href="{{ route('post.author',@$latest_stories_single_post->user->id) }}">
+                                                    <img  src="{{ $latest_stories_single_post->user->image?? asset('default/user.webp') }}"   alt="Author">
+                                                    {{@$latest_stories_single_post->user->name}}
+                                                </a>
+                                            </li>
+                                        @endif
                                         <li>
                                             <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latest_stories_single_post->created_at)->diffForHumans()}}
                                         </li>
@@ -303,11 +309,13 @@
                         <div class="content-holder">
                             <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
                             <ul class="entry-meta color-dark-1-fixed">
-                                <li class="post-author">
-                                    <a href="{{ route('post.author',@$latest_stories_post->user->id) }}">
-                                       {{@$latest_stories_post->user->name}}
-                                    </a>
-                                </li>
+                                @if (isset($latest_stories_post->user->id))
+                                    <li class="post-author">
+                                        <a href="{{ route('post.author',@$latest_stories_post->user->id) }}">
+                                        {{@$latest_stories_post->user->name}}
+                                        </a>
+                                    </li>
+                                @endif
                                 <li>
                                     <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latest_stories_post->created_at)->diffForHumans()}}
                                 </li>
@@ -321,11 +329,13 @@
                             <div class="content-holder">
                                 <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post_s->id,$latest_stories_post_s->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_post_s->title,60,'...')}}</a></h3>
                                 <ul class="entry-meta color-dark-1-fixed">
-                                    <li class="post-author">
-                                        <a href="{{ route('post.author',@$latest_stories_post_s->user->id) }}">
-                                            {{@$latest_stories_post_s->user->name}}
-                                        </a>
-                                    </li>
+                                    @if (isset($latest_stories_post_s->user->id))
+                                        <li class="post-author">
+                                            <a href="{{ route('post.author',@$latest_stories_post_s->user->id) }}">
+                                                {{@$latest_stories_post_s->user->name}}
+                                            </a>
+                                        </li>
+                                    @endif
                                     <li>
                                         <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latest_stories_post_s->created_at)->diffForHumans()}}
                                     </li>
@@ -460,12 +470,14 @@
                                         <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$recentArticlePost->id,$recentArticlePost->slug])}}" class="link-wrap">{{\Str::limit($recentArticlePost->title,60,'...')}}</a></h3>
                                         <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$recentArticlePost->content), 250, ' ...') !!}</p>
                                         <ul class="entry-meta color-dark-1-fixed">
-                                            <li class="post-author">
-                                                <a href="{{ route('post.author',@$recentArticlePost->user->id) }}">
-                                                    <img  src="{{ $recentArticlePost->user->image?? asset('default/user.webp') }}"  alt="Author">
-                                                    {{@$recentArticlePost->user->name}}
-                                                </a>
-                                            </li>
+                                            @if (isset($recentArticlePost->user->id))
+                                                <li class="post-author">
+                                                    <a href="{{ route('post.author',@$recentArticlePost->user->id) }}">
+                                                        <img  src="{{ $recentArticlePost->user->image?? asset('default/user.webp') }}"  alt="Author">
+                                                        {{@$recentArticlePost->user->name}}
+                                                    </a>
+                                                </li>
+                                            @endif
                                             <li>
                                                 <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($recentArticlePost->created_at)->diffForHumans()}}
                                             </li>
@@ -639,12 +651,14 @@
                                         </div>
                                         <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap">{{\Str::limit($categoryPost->title,60,'...')}}</a></h3>
                                         <ul class="entry-meta color-dark-1-fixed">
-                                            <li class="post-author">
-                                                <a href="{{ route('post.author',@$categoryPost->user->id) }}">
-                                                    <img src="{{ $categoryPost->user->image ?? asset('default/user.webp') }}" alt="Author">
-                                                    {{@$categoryPost->user->name}}
-                                                </a>
-                                            </li>
+                                            @if (isset($categoryPost->user->id))
+                                                <li class="post-author">
+                                                    <a href="{{ route('post.author',@$categoryPost->user->id) }}">
+                                                        <img src="{{ $categoryPost->user->image ?? asset('default/user.webp') }}" alt="Author">
+                                                        {{@$categoryPost->user->name}}
+                                                    </a>
+                                                </li>
+                                            @endif
                                             <li>
                                                 <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($categoryPost->created_at)->diffForHumans()}}
                                             </li>

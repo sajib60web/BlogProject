@@ -44,11 +44,13 @@
                             <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap">{{\Str::limit(@$post->title,60,' ...')}}</a>
                         </h3>
                         <ul class="entry-meta color-light-1-fixed">
-                            <li class="post-author">
-                                <a href="{{ route('post.author',@$post->user->id) }}">
-                                    {{@$post->user->name}}
-                                </a>
-                            </li>
+                            @if (isset($post->user->name))
+                                <li class="post-author">
+                                    <a href="{{ route('post.author',@$post->user->id) }}">
+                                        {{@$post->user->name}}
+                                    </a>
+                                </li> 
+                            @endif
                             <li>
                                 <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}
                             </li>

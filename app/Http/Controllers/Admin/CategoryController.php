@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -105,9 +106,10 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         Category::find($id)->delete();
+        Post::where('category_id', $id)->delete();
         $notification = array(
             'message' => 'Category Delete Successfully',
             'alert-type' => 'success'
