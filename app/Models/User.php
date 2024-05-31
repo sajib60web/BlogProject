@@ -51,9 +51,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
+    
+
     public function getImageAttribute()
     {
-        return asset('default/user.webp');
+        if ($this->picture && file_exists($this->picture)) :
+            return asset($this->picture);
+        else :
+            return asset('default/user.webp');
+        endif;
     }
 
     public function getMyStatusAttribute()

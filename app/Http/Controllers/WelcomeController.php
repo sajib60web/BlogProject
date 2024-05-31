@@ -52,7 +52,7 @@ class WelcomeController extends Controller
         $data['latest_short_stories_posts']     = Post::where('short_stories', 1)->published()->orderByDesc('id')->limit(7)->get();
         $data['recent_stories_article_posts']   = Post::where('post_type', PostType::ARTICLE)->published()->where('short_stories', 1)->orderByDesc('id')->limit(5)->get();
 
-        $data['category_latest_posts']          = Post::published()->latest()->get()->groupBy('category_id')->take(3);
+        $data['category_latest_posts']          = Post::where('post_type', PostType::ARTICLE)->where('recent_article', 1)->published()->latest()->get()->groupBy('category_id')->take(3);
         return view('frontend.index', $data);
     }
 
@@ -65,13 +65,8 @@ class WelcomeController extends Controller
         $data['page_name'] = 'Post Details';
         $data['post'] = $post;
         $data['latest_short_stories_posts']     = Post::where('short_stories', 1)->orderByDesc('id')->limit(7)->get();
-        // $data['related_posts']     = Post::whereNot('id', $post->id)
-        //     ->where('category_id', $post->category_id)
-        //     ->orderByDesc('id')
-        //     ->limit(10)
-        //     ->get();
         $data['related_posts']     = Post::where('post_type', PostType::ARTICLE)
-            ->where('category_id', $post->category_id)
+            // ->where('category_id', $post->category_id)
             ->where('recent_article', 1)
             ->published()
             ->orderByDesc('id')
@@ -79,7 +74,6 @@ class WelcomeController extends Controller
             ->get();
         $data['prevous_post']    = Post::where('id', '<', $post->id)->get()->last();
         $data['next_post']    = Post::where('id', '>', $post->id)->get()->last();
-
         return view('frontend.post_details', $data);
     }
     

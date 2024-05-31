@@ -20,7 +20,7 @@ class Category extends Model
         'description',
         'download_status',
     ];
-    
+
     public function posts()
     {
         return $this->hasMany(Post::class, 'category_id', 'id');
@@ -33,5 +33,10 @@ class Category extends Model
         elseif ($this->download_status == 2) :
             return '<span class="badge badge-danger bg-danger">No</span>';
         endif;
+    }
+
+    public function subcategory()
+    {
+        return $this->hasMany(Category::class, 'parent_id', 'id');
     }
 }

@@ -1,11 +1,12 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Setting;
 use App\Models\SocialLoginSetting;
 use Carbon\Carbon;
 
 //Time Zone
-date_default_timezone_set('Asia/Kolkata');
+date_default_timezone_set('Asia/Dhaka');
 
 if (!function_exists('setting')) {
     function setting()
@@ -63,5 +64,11 @@ if (!function_exists('settingsSocial')) {
             return $settings->value;
         endif;
         return null;
+    }
+}
+if (!function_exists('category')) {
+    function category()
+    {
+        return Category::where('parent_id', 0)->get();
     }
 }

@@ -94,7 +94,8 @@
                     <nav id="dropdown" class="template-main-menu">
                         <ul class="menu">
                             @php
-                                $categories = \App\Models\Category::where('parent_id',0)->limit(9)->get();
+                                $categories = \App\Models\Category::where('parent_id', 0)->limit(7)->get();
+                                $sub_menu_categories = \App\Models\Category::where('parent_id', 0)->skip(7)->limit(100)->get();
                             @endphp
                             @foreach ($categories as $category)
                             @php
@@ -115,6 +116,18 @@
                                 </ul>
                             </li>
                             @endforeach
+                            @if (category()->count() > 7)
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#">More</a>
+                                    <ul class="sub-menu">
+                                        @foreach ($sub_menu_categories as $sub_menu_category)
+                                            <li class="menu-item">
+                                                <a href="{{ route('category.posts',$category->slug) }}">{{ $category->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endif
                             @guest
                                 <li class="menu-item d-lg-none d-block">
                                     <a href="{{ route('login') }}">Sign In</a>

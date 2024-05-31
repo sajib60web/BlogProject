@@ -60,26 +60,11 @@
             <div class="col-lg-7">
                 @foreach ($main_frame as $latestOne)
                     <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden">
-                        <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{@$latestOne->image_url}}"></div>
-                        <div id="videoElement1" class="player" data-property="{
-                    videoURL:'{{@$latestOne->video_url}}',
-                    containment:'#videoPlayer-1',
-                    showControls:true,
-                    autoPlay:true,
-                    loop:false,
-                    mute:true,
-                    startAt:0,
-                    opacity:1,
-                    addRaster:true,
-                    quality:'default',
-                    opacity:1,
-                    showControls:false,
-                    optimizeDisplay:true,
-                    anchor:'bottom, center'
-                }">
-                        </div>
+                        <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{@$latestOne->image_url}}');background-size: auto;"></div>
                         <div class="content-holder">
-                            <h3 class="entry-title h3-large color-light-1-fixed underline-animation mb-0"><a href="{{route('post.details',[$latestOne->id,$latestOne->slug])}}">{{@$latestOne->title}}</a></h3>
+                            <h3 class="entry-title h3-large color-light-1-fixed underline-animation mb-0">
+                                <a href="{{route('post.details',[$latestOne->id,$latestOne->slug])}}">{{@$latestOne->title}}</a>
+                            </h3>
                         </div>
                     </div>
                 @endforeach
@@ -91,7 +76,9 @@
                             <div class="single-slide">
                                 <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$latestPost->id,$latestPost->slug])}}" class="link-wrap img-height-100"><img width="635" height="365" src="{{ @$latestPost->image_url}}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$latestPost->id,$latestPost->slug])}}" class="link-wrap img-height-100">
+                                            <img style="width: 100%; height: 365px;" src="{{ @$latestPost->image_url}}" alt="Post">
+                                        </a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-1 color-dark-1-fixed">
@@ -170,7 +157,6 @@
     <div class="container">
         <div class="section-heading heading-style-1">
             <h2 class="title">Top Stories</h2>
-            {{-- <a href="archive-layout1.html" class="link-wrap">Go to Stories <span class="icon-holder"><i class="regular-arrow-right"></i></span> </a> --}}
         </div>
         <div class="row g-3">
             @foreach ($top_stories_posts as $topStoriesPost)
@@ -189,8 +175,12 @@
                                     </li>
                                 </ul>
                             </div>
-                            <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->slug])}}" class="link-wrap">{{\Str::limit($topStoriesPost->title,60,'...')}}</a></h3>
-                            <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$topStoriesPost->content), 150, ' ...') !!}</p>
+                            <h3 class="entry-title color-dark-1-fixed underline-animation">
+                                <a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->slug])}}" class="link-wrap">
+                                    {{\Str::limit($topStoriesPost->title,45,'...')}}
+                                </a>
+                            </h3>
+                            <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$topStoriesPost->content), 100, ' ...') !!}</p>
                             <ul class="entry-meta color-dark-1-fixed">
                                 @if ($topStoriesPost->user->id)
                                     <li class="post-author">
@@ -242,6 +232,7 @@
             <div class="col-lg-8">
                 <div class="row g-3">
                     <div class="col-lg-12">
+                        @php($latest_stories_main_id = 0)
                         @foreach ($latest_stories_main as $latest_stories_single_post)
                             <div class="post-box-layout5 box-border-dark-1 radius-default">
                                 <div class="figure-holder radius-medium">
@@ -274,9 +265,13 @@
                                     </ul>
                                 </div>
                             </div>
+                            @php($latest_stories_main_id = $latest_stories_single_post->id)
                         @endforeach
                     </div>
                     @foreach ($latest_stories_sub as $latest_stories_two_post)
+                    @if ($latest_stories_main_id == $latest_stories_two_post->id)
+                        @continue
+                    @endif
                     <div class="col-lg-6">
                         <div class="post-box-layout5 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) {{$color_classes[2]}} @else {{$color_classes[3]}} @endif box-shadow-large shadow-style-2 transition-default">
                             <div class="figure-holder radius-default">
@@ -302,9 +297,10 @@
             <div class="col-lg-4">
                 <div class="post-box-layout7 box-border-dark-1 radius-default padding-20 bg-color-scandal">
                     @foreach ($latest_stories_right_main as $latest_stories_post)
-                         
                         <div class="figure-holder radius-default">
-                            <a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{$latest_stories_post->image_url}}" alt="Post"></a>
+                            <a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap img-height-100">
+                                <img width="660" height="470" src="{{$latest_stories_post->image_url}}" alt="Post">
+                            </a>
                         </div>
                         <div class="content-holder">
                             <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_post->title,60,'...')}}</a></h3>
@@ -370,14 +366,14 @@
             <div class="multi-posts-layout1">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#one">Recommended</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#one">Recommended</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#two">Latest</a>
+                        <a class="nav-link active" data-bs-toggle="tab" href="#two">Latest</a>
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane fade active show" id="one">
+                    <div class="tab-pane fade" id="one">
                         <div class="row g-3 row-cols-1 row-cols-lg-2 row-cols-xl-3">
                             @foreach ($top_video_recc_posts as $recommended_post)
                                 <div class="col">
@@ -406,7 +402,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="two">
+                    <div class="tab-pane fade active show" id="two">
                         <div class="row g-4 row-cols-1 row-cols-lg-2 row-cols-xl-3">
                             @foreach ($top_video_latest_posts as $top_video_latest_post)
                             <div class="col">
@@ -530,7 +526,6 @@
                         </div>
                         <div class="widget-post post-layout1">
                             @foreach ($latest_short_stories_posts as $short_stories_post)
-
                             @if ($loop->index == 0)
                                 <div class="post-box">
                                     <div class="figure-holder radius-default">
@@ -568,62 +563,6 @@
         </div>
     </div>
 </section>
-
-<!--=====================================-->
-<!--=          Post Area Start          =-->
-<!--=====================================-->
-{{-- <section class="post-wrap-layout7 space-top-40 bg-color-light-1 transition-default">
-    <div class="container">
-        <div class="section-heading heading-style-1">
-            <h2 class="title">Recent Articles</h2>
-            <a href="archive-layout1.html" class="link-wrap">Go to Stories <span class="icon-holder"><i class="regular-arrow-right"></i></span> </a>
-        </div>
-        <div class="row g-3">
-            <div class="col-lg-6">
-                @foreach ($recent_stories_article_posts->take(1) as  $recentStoriesSingleArticle)
-                    <div class="post-box-layout10 box-border-dark-1 radius-default both-side-equal">
-                        <div class="figure-holder radius-medium">
-                            <a href="{{route('post.details',[$recentStoriesSingleArticle->id,$recentStoriesSingleArticle->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="630" height="500" src="{{ $recentStoriesSingleArticle->image_url }}" alt="Post"></a>
-                        </div>
-                        <div class="content-holder">
-                            <div class="entry-category style-2 color-dark-1-fixed">
-                                <ul>
-                                    <li>
-                                        <a href="{{route('category.posts',[$recentStoriesSingleArticle->category_id,$recentStoriesSingleArticle->category->slug])}}">{{$recentStoriesSingleArticle->category->name}}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="entry-title h3-large color-light-1-fixed underline-animation"><a href="{{route('post.details',[$recentStoriesSingleArticle->id,$recentStoriesSingleArticle->slug])}}" class="link-wrap">{{\Str::limit($recentStoriesSingleArticle->title,60,'...')}}</a></h3>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <div class="col-lg-6">
-                <div class="row g-3">
-                    @foreach ($recent_stories_article_posts->skip(1) as  $recentStoriesArticle)
-                    <div class="col-md-6 col-12">
-                        <div class="post-box-layout11 box-border-dark-1 radius-default padding-20 {{$color_classes[$loop->index]}} box-shadow-small shadow-style-2 transition-default">
-                            <div class="figure-holder radius-default">
-                                <a href="{{route('post.details',[$recentStoriesArticle->id,$recentStoriesArticle->slug])}}" class="link-wrap img-height-100"><img width="480" height="344" src="{{ $recentStoriesArticle->image_url }}" alt="Post"></a>
-                            </div>
-                            <div class="content-holder">
-                                <div class="entry-category style-2 color-dark-1-fixed">
-                                    <ul>
-                                        <li>
-                                            <a href="{{route('category.posts',[$recentStoriesArticle->category_id,$recentStoriesArticle->category->slug])}}">{{@$recentStoriesArticle->category->name}}</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$recentStoriesArticle->id,$recentStoriesArticle->slug])}}" class="link-wrap">{{\Str::limit(@$recentStoriesArticle->title,60,'...')}}</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
 <!--=====================================-->
 <!--=          Post Area Start          =-->
 <!--=====================================-->
@@ -638,7 +577,7 @@
                                 <div class="single-item">
                                     <div class="figure-holder radius-default">
                                         <a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap img-height-100">
-                                            <img  style="height: 250px; width: 100%;" src="{{ @$categoryPost->image_url }}" alt="Post">
+                                            <img style="height: 150px; width: 100%;" src="{{ @$categoryPost->image_url }}" alt="Post">
                                         </a>
                                     </div>
                                     <div class="content-holder">
@@ -672,7 +611,7 @@
                                 <div class="single-item">
                                     <div class="figure-holder radius-default">
                                         <a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap figure-overlay img-height-100">
-                                            <img  style="height: 250px; width: 100%;" src="{{ @$categoryPost->image_url }}" alt="Post">
+                                            <img  style="height: 150px; width: 100%;" src="{{ @$categoryPost->image_url }}" alt="Post">
                                         </a>
                                     </div>
                                     <div class="content-holder">
@@ -709,10 +648,6 @@
                     Subscribe<i class="solid-navigation"></i>
                 </button>
             </form>
-            <ul class="elements-wrap img-height-100">
-                <li><img width="57" height="53" src="{{ asset('assets/frontend') }}/media/elements/element1.webp" alt="Element"></li>
-                <li><img width="120" height="186" src="{{ asset('assets/frontend') }}/media/elements/element2.webp" alt="Element"></li>
-            </ul>
         </div>
     </div>
 </section>

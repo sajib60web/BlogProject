@@ -272,6 +272,7 @@
             });
             $('#post-slider-2').slick({
                 dots: false,
+                autoplay: true,
                 infinite: true,
                 speed: 500,
                 slidesToShow: 4,

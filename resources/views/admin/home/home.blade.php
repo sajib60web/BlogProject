@@ -17,77 +17,89 @@
         <!-- Info boxes -->
         <div class="row">
             <div class="col-sm-4 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-dark"><i class="fa fa-user"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Authors</span>
-                        <span class="info-box-number">{{ \App\Models\User::all()->count() }}</span>
+                <a href="{{ route('signup.users.index') }}">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-dark"><i class="fa fa-user"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Authors</span>
+                            <span class="info-box-number">{{ \App\Models\User::all()->count() }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
+                    <!-- /.info-box -->
+                </a>
             </div>
             <!-- /.col -->
             <div class="col-sm-4 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-dark"><i class="fa fa-street-view"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Roles</span>
-                        <span class="info-box-number">{{ \Spatie\Permission\Models\Role::all()->count() }}</span>
+                <a href="{{ route('roles.index') }}">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-dark"><i class="fa fa-street-view"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Roles</span>
+                            <span class="info-box-number">{{ \Spatie\Permission\Models\Role::all()->count() }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
+                    <!-- /.info-box -->
+                </a>
             </div>
 
             <!-- /.col -->
             <div class="col-sm-4 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-dark"><i class="fa fa-list"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Categories</span>
-                        <span class="info-box-number">{{ \App\Models\Category::all()->count() }}</span>
+                <a href="{{ route('categories.index') }}">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-dark"><i class="fa fa-list"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Categories</span>
+                            <span class="info-box-number">{{ \App\Models\Category::all()->count() }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
+                    <!-- /.info-box -->
+                </a>
             </div>
             <!-- /.col -->
             <div class="col-sm-4 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-dark"><i class="fa fa-list"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Posts</span>
-                        <span class="info-box-number">{{ App\Models\Post::all()->count() }}</span>
+                <a href="{{ route('post.index') }}">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-dark"><i class="fa fa-list"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Posts</span>
+                            <span class="info-box-number">{{ App\Models\Post::all()->count() }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
+                    <!-- /.info-box -->
+                </a>
             </div>
             <!-- /.col -->
             <!-- /.col -->
             <div class="col-sm-4 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-dark"><i class="fa fa-users"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total subscribers</span>
-                        <span class="info-box-number">{{ \App\Models\Subscribe::all()->count() }}</span>
+                <a href="{{ route('subscribe.list') }}">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-dark"><i class="fa fa-users"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total subscribers</span>
+                            <span class="info-box-number">{{ \App\Models\Subscribe::all()->count() }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
+                    <!-- /.info-box -->
+                </a>
             </div>
             <!-- /.col -->
             <div class="col-sm-4 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-dark"><i class="fa fa-send"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Contact messanges</span>
-                        <span class="info-box-number">{{ \App\Models\ContactMessage::all()->count() }}</span>
+                <a href="{{ route('contact_messages.index') }}">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-dark"><i class="fa fa-send"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Contact messanges</span>
+                            <span class="info-box-number">{{ \App\Models\ContactMessage::all()->count() }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
+                    <!-- /.info-box -->
+                </a>
             </div>
         </div>
         <div class="row">
@@ -105,7 +117,6 @@
                                         <th scope="col">Category</th>
                                         <th scope="col">title</th>
                                         <th scope="col">Status</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -114,7 +125,11 @@
                                             <td>{{ $loop->index + 1 }}</td>
                                             <td> <img src="{{ @$lapost->image_url }}" width="50" height="50" /> </td>
                                             <td>{{ @$lapost->category->name }}</td>
-                                            <td>{{ $lapost->title }}</td>
+                                            <td>
+                                                <a href="{{route('post.details',[$lapost->id,$lapost->slug])}}" target="_blank">
+                                                    {{ $lapost->title }}
+                                                </a>
+                                            </td>
                                             <td> {!! @$lapost->my_status !!} </td>
                                         </tr>
                                     @endforeach
@@ -149,7 +164,11 @@
                                             <td> <img src="{{ @$lvpost->image_url }}" width="50" height="50" />
                                             </td>
                                             <td>{{ @$lvpost->category->name }}</td>
-                                            <td>{{ $lvpost->title }}</td>
+                                            <td>
+                                                <a href="{{route('post.details',[$lvpost->id,$lvpost->slug])}}" target="_blank">
+                                                    {{ $lvpost->title }}
+                                                </a>
+                                            </td>
                                             <td> {!! @$lvpost->my_status !!} </td>
                                         </tr>
                                     @endforeach

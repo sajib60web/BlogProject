@@ -18,6 +18,7 @@
         <div class="row g-3 justify-content-center">
             <div class="col-sm-8">
                 <div class="box-border-dark-1 bg-color-scandal padding-29 px-xs-0 radius-default transition-default">
+                    <h3 style="text-align: center; margin: 0;padding: 0;">Sing In</h3>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group mb-2">
@@ -59,7 +60,7 @@
                         <div class="form-group mb-0 " style="margin-top: 5px">
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('We have emailed your password reset link.') }}
+                                    {{ __('Forget forget password') }}
                                 </a>
                             @endif
                         </div>
