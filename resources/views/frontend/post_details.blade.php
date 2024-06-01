@@ -135,13 +135,15 @@
                     @endguest
                     <div class="mb-4 box-border-dark-1 radius-default transition-default post-image">
                         <div class="figure-holder position-relative radius-default">
-                            @if ($post->post_type == App\Enums\PostType::VIDEO)
-                                <a href="{{@$post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>
-                            @endif
-                            <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100"><img width="1150" height="660" src="{{$post->image_url}}" alt="Post"></a>
+                                {{-- @if ($post->post_type == App\Enums\PostType::VIDEO)
+                                    <a href="{{@$post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>
+                                @endif
+                                <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100">
+                                    <img width="1150" height="660" src="{{$post->image_url}}" alt="Post">
+                                </a> --}}
                             </div>
                         </div>
-                    <div class="post-content">
+                    <div class="post-content" style="text-align: justify;">
                         {!! $post->content !!}
                     </div>
                     <div class="tag-share-wrap">
@@ -249,9 +251,11 @@
             <div id="post-slider-3" class="post-slider-3 gutter-30 outer-top-5 initially-none">
                 @foreach ($related_posts as $rel_post)
                 <div class="single-slide">
-                    <div class="post-box-layout6 box-border-dark-1 radius-default padding-20 bg-color-scandal box-shadow-large shadow-style-2 transition-default">
+                    <div class="post-box-layout6 box-border-dark-1 radius-default padding-20 bg-color-scandal box-shadow-large shadow-style-2 transition-default" style="height: 400px;">
                         <div class="figure-holder radius-default">
-                            <a href="{{route('post.details',[$rel_post->id,$rel_post->slug])}}" class="link-wrap img-height-100"><img width="660" height="470" src="{{ $rel_post->image_url}}" alt="Post"></a>
+                            <a href="{{route('post.details',[$rel_post->id,$rel_post->slug])}}" class="link-wrap img-height-100">
+                                <img style="height: 200px;" src="{{ $rel_post->image_url}}" alt="Post">
+                            </a>
                         </div>
                         <div class="content-holder">
                             <div class="entry-category style-2 color-dark-1-fixed">

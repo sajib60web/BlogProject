@@ -32,30 +32,6 @@
                     <h3 class="title h3-regular">{{ $profile->name }}</h3>
                     <div class="designation">Join as a content writer</div>
                     <p class="description">{{ $profile->about }}</p>
-                    <div class="axil-social social-layout-1 size-small gap-12">
-                        <ul>
-                            <li class="facebook">
-                                <a aria-label="Learn more from Facebook" href="https://facebook.com/">
-                                    <i class="solid-facebook2"></i>
-                                </a>
-                            </li>
-                            <li class="instagram">
-                                <a aria-label="Learn more from Instagram" href="https://instagram.com/">
-                                    <i class="regular-instagram"></i>
-                                </a>
-                            </li>
-                            <li class="mail-fast">
-                                <a aria-label="Learn more from Mail fast" href="https://mail-fast.com/">
-                                    <i class="regular-mail-fast"></i>
-                                </a>
-                            </li>
-                            <li class="pinterest">
-                                <a aria-label="Learn more from Pinterest" href="https://pinterest.com/">
-                                    <i class="regular-pinterest"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
             <div class="card mt-3">

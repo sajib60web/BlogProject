@@ -18,6 +18,26 @@
         </div>
     </div>
 </section>
+ <!--=====================================-->
+<!--=          Contact Area Start       =-->
+<!--=====================================-->
+<section class="author-wrap-layout-1 bg-color-light-1 transition-default">
+    <div class="pt-5 pb-5 bg-color-light-2 transition-default">
+        <div class="container">
+            <div class="author-box-layout1">
+                <div class="figure-holder img-height-100">
+                    <img style="height: 178px; width: 178px;" src="{{ $author->image }}" alt="{{ $author->name }}">
+                </div>
+                <div class="content-holder">
+                    <h3 class="title h3-regular">{{ $author->name }}</h3>
+                    <div class="designation">Join as a content writer</div>
+                    <p class="description">{{ $author->address }}</p>
+                    <p class="description">{{ $author->about }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!--=====================================-->
 <!--=          Contact Area Start       =-->
 <!--=====================================-->

@@ -41,7 +41,57 @@ class CategorySeeder extends Seeder
                 'name'   => 'Artists Books',
                 'parent_id'   => 0,
                 'description'   => 'Artists Books'
-            ]
+            ],
+            [
+                'name'   => 'Artists Books',
+                'parent_id'   => 0,
+                'description'   => 'Artists Books'
+            ],
+            [
+                'name'   => 'Artists Books',
+                'parent_id'   => 0,
+                'description'   => 'Artists Books'
+            ],
+            [
+                'name'   => 'Artists Books',
+                'parent_id'   => 0,
+                'description'   => 'Artists Books'
+            ],
+            [
+                'name'   => 'Artists Books',
+                'parent_id'   => 0,
+                'description'   => 'Artists Books'
+            ],
+            [
+                'name'   => 'Artists Books',
+                'parent_id'   => 0,
+                'description'   => 'Artists Books'
+            ],
+            [
+                'name'   => 'Artists Books',
+                'parent_id'   => 0,
+                'description'   => 'Artists Books'
+            ],
+            [
+                'name'   => 'Artists Books',
+                'parent_id'   => 0,
+                'description'   => 'Artists Books'
+            ],
+            [
+                'name'   => 'Artists Books',
+                'parent_id'   => 0,
+                'description'   => 'Artists Books'
+            ],
+            [
+                'name'   => 'Artists Books',
+                'parent_id'   => 0,
+                'description'   => 'Artists Books'
+            ],
+            [
+                'name'   => 'Artists Books',
+                'parent_id'   => 0,
+                'description'   => 'Artists Books'
+            ],
         ];
         foreach ($categories as $key => $category) {
             $data = new Category();

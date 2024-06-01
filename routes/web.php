@@ -86,8 +86,10 @@ Route::group(['prefix' => 'admin'], function () {
 
     // Start Admin Forgot Password Controller
     Route::controller(AdminForgotPasswordController::class)->group(function () {
-        Route::get('password/reset', 'showLinkRequestForm')->name('admin.password.request');
-        Route::post('/password/reset/submit', 'reset')->name('admin.password.update');
+        Route::get('password/reset', 'showForgetPasswordForm')->name('admin.password.request');
+        Route::post('password/email', 'submitForgetPasswordForm')->name('admin.password.email');
+        Route::get('reset/password/{token}', 'showResetPasswordForm')->name('admin.reset.password.get');
+        Route::post('/password/reset/submit', 'submitResetPasswordForm')->name('admin.password.update');
     });
     // End Admin Forgot Password Controller
 

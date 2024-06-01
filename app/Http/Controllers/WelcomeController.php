@@ -12,6 +12,7 @@ use App\Models\Faq;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\Subscribe;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -76,7 +77,7 @@ class WelcomeController extends Controller
         $data['next_post']    = Post::where('id', '>', $post->id)->get()->last();
         return view('frontend.post_details', $data);
     }
-    
+
     public function comment(Request $request)
     {
         try {
@@ -121,6 +122,7 @@ class WelcomeController extends Controller
             ->published()
             ->orderByDesc('id')
             ->paginate(10);
+        $data['author'] = User::find($id);
         return view('frontend.author_posts', $data);
     }
 

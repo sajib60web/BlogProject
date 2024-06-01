@@ -59,8 +59,8 @@
         <div class="row g-3">
             <div class="col-lg-7">
                 @foreach ($main_frame as $latestOne)
-                    <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden">
-                        <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{@$latestOne->image_url}}');background-size: auto;"></div>
+                    <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden" style="height: 850px;">
+                        <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{@$latestOne->image_url}}');background-size: auto;background-repeat: repeat-y;"></div>
                         <div class="content-holder">
                             <h3 class="entry-title h3-large color-light-1-fixed underline-animation mb-0">
                                 <a href="{{route('post.details',[$latestOne->id,$latestOne->slug])}}">{{@$latestOne->title}}</a>
@@ -74,7 +74,7 @@
                     <div id="post-slider-1" class="post-slider-1 gutter-6 initially-none">
                         @foreach ($main_frame_sliders as $latestPost)
                             <div class="single-slide">
-                                <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default">
+                                <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default" style="height: 850px;">
                                     <div class="figure-holder radius-default">
                                         <a href="{{route('post.details',[$latestPost->id,$latestPost->slug])}}" class="link-wrap img-height-100">
                                             <img style="width: 100%; height: 365px;" src="{{ @$latestPost->image_url}}" alt="Post">
@@ -161,7 +161,7 @@
         <div class="row g-3">
             @foreach ($top_stories_posts as $topStoriesPost)
                 <div class="col-lg-4">
-                    <div class="post-box-layout4 box-border-dark-1 radius-default padding-20  @if($loop->index == 0) {{$color_classes[3]}} @else {{$color_classes[$loop->index]}} @endif  box-shadow-large shadow-style-2 transition-default">
+                    <div class="post-box-layout4 box-border-dark-1 radius-default padding-20  @if($loop->index == 0) {{$color_classes[3]}} @else {{$color_classes[$loop->index]}} @endif  box-shadow-large shadow-style-2 transition-default" style="height: 620px;">
                         <div class="figure-holder radius-default">
                             <a href="{{route('post.details',[$topStoriesPost->id,$topStoriesPost->slug])}}" class="link-wrap img-height-100">
                                 <img style="height: 250px; width: 100%;" src="{{ $topStoriesPost->image_url }}" alt="Post">
@@ -205,21 +205,6 @@
         </div>
     </div>
 </section>
-
-<!--=====================================-->
-<!--=         Banner Area Start         =-->
-<!--=====================================-->
-{{-- <section class="banner-wrap-layout-1 space-top-60 bg-color-light-1 transition-default">
-    <div class="container">
-        <div class="banner-box-layout1 box-border-dark-1 radius-default">
-            <div class="figure-holder radius-medium">
-                <a href="#" class="link-wrap img-height-100"><img width="1232" height="230" src="{{ asset('assets/frontend') }}/media/banner/banner1.webp" alt="Banner"></a>
-            </div>
-        </div>
-    </div>
-</section> --}}
-
-
 <!--=====================================-->
 <!--=          Post Area Start          =-->
 <!--=====================================-->
@@ -299,7 +284,7 @@
                     @foreach ($latest_stories_right_main as $latest_stories_post)
                         <div class="figure-holder radius-default">
                             <a href="{{route('post.details',[$latest_stories_post->id,$latest_stories_post->slug])}}" class="link-wrap img-height-100">
-                                <img width="660" height="470" src="{{$latest_stories_post->image_url}}" alt="Post">
+                                <img style="width: 100%; height: 265px;" src="{{$latest_stories_post->image_url}}" alt="Post">
                             </a>
                         </div>
                         <div class="content-holder">
@@ -360,7 +345,9 @@
             @if ($top_video_post)
                 <div class="figure-holder position-relative radius-default">
                     <a href="{{@$top_video_post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>
-                    <a href="{{route('post.details',[$top_video_post->id,$top_video_post->slug])}}" class="link-wrap img-height-100"><img width="1150" height="660" src="{{$top_video_post->image_url}}" alt="Post"></a>
+                    <a href="{{route('post.details',[$top_video_post->id,$top_video_post->slug])}}" class="link-wrap img-height-100">
+                        <img width="1150" height="660" src="{{$top_video_post->image_url}}" alt="Post">
+                    </a>
                 </div>
             @endif
             <div class="multi-posts-layout1">
@@ -380,7 +367,9 @@
                                     <div class="post-box-layout8 radius-default">
                                         <div class="figure-holder radius-default">
                                             <a href="{{$recommended_post->video_url}}" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                            <a href="{{route('post.details',[$recommended_post->id,$recommended_post->slug])}}" class="link-wrap img-height-100"><img width="140" height="140" src="{{ $recommended_post->image_url }}" alt="Post"></a>
+                                            <a href="{{route('post.details',[$recommended_post->id,$recommended_post->slug])}}" class="link-wrap img-height-100">
+                                                <img style="width: 100%; height: 100px;" src="{{ $recommended_post->image_url }}" alt="Post">
+                                            </a>
                                         </div>
                                         <div class="content-holder">
                                             <div class="entry-category style-3 color-dark-1-fixed">
@@ -409,7 +398,9 @@
                                 <div class="post-box-layout8 radius-default">
                                     <div class="figure-holder radius-default">
                                         <a href="{{$top_video_latest_post->video_url}}" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
-                                        <a href="{{route('post.details',[$top_video_latest_post->id,$top_video_latest_post->slug])}}" class="link-wrap img-height-100"><img width="140" height="140" src="{{ $top_video_latest_post->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$top_video_latest_post->id,$top_video_latest_post->slug])}}" class="link-wrap img-height-100">
+                                            <img style="width: 100%; height: 100px;" src="{{ $top_video_latest_post->image_url }}" alt="Post">
+                                        </a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-3 color-dark-1-fixed">
@@ -452,7 +443,9 @@
                         <div class="col-12">
                             <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation {{$color_classes[$loop->index]}} box-shadow-large shadow-style-2 transition-default">
                                 <div class="figure-holder radius-default">
-                                    <a href="{{route('post.details',[$recentArticlePost->id,$recentArticlePost->slug])}}" class="link-wrap img-height-100"><img width="500" height="500" src="{{$recentArticlePost->image_url}}" alt="Post"></a>
+                                    <a href="{{route('post.details',[$recentArticlePost->id,$recentArticlePost->slug])}}" class="link-wrap img-height-100">
+                                        <img style="width: 100%; height: 260px;" src="{{$recentArticlePost->image_url}}" alt="Post">
+                                    </a>
                                 </div>
                                 <div class="content-holder">
                                     <div>
@@ -529,7 +522,9 @@
                             @if ($loop->index == 0)
                                 <div class="post-box">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="700" height="470" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100">
+                                            <img style="width: 100%; height: 250px;" src="{{ $short_stories_post->image_url }}" alt="Post">
+                                        </a>
                                     </div>
                                     <div class="content-holder">
                                         <h3 class="entry-title color-light-1-fixed h3-small underline-animation"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
@@ -543,7 +538,9 @@
                             @else
                                 <div class="post-box">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="140" height="140" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100">
+                                            <img style="width: 100%; height: 60px;" src="{{ $short_stories_post->image_url }}" alt="Post">
+                                        </a>
                                     </div>
                                     <div class="content-holder">
                                         <h3 class="entry-title color-dark-1 underline-animation h3-extra-small"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
@@ -577,7 +574,7 @@
                                 <div class="single-item">
                                     <div class="figure-holder radius-default">
                                         <a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap img-height-100">
-                                            <img style="height: 150px; width: 100%;" src="{{ @$categoryPost->image_url }}" alt="Post">
+                                            <img style="height: 200px; width: 100%;" src="{{ @$categoryPost->image_url }}" alt="Post">
                                         </a>
                                     </div>
                                     <div class="content-holder">
@@ -588,7 +585,9 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap">{{\Str::limit($categoryPost->title,60,'...')}}</a></h3>
+                                        <h3 class="entry-title h3-small color-dark-1-fixed underline-animation">
+                                            <a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap">{{\Str::limit($categoryPost->title,60,'...')}}</a>
+                                        </h3>
                                         <ul class="entry-meta color-dark-1-fixed">
                                             @if (isset($categoryPost->user->id))
                                                 <li class="post-author">
@@ -611,7 +610,7 @@
                                 <div class="single-item">
                                     <div class="figure-holder radius-default">
                                         <a href="{{route('post.details',[$categoryPost->id,$categoryPost->slug])}}" class="link-wrap figure-overlay img-height-100">
-                                            <img  style="height: 150px; width: 100%;" src="{{ @$categoryPost->image_url }}" alt="Post">
+                                            <img  style="height: 100px; width: 100%;" src="{{ @$categoryPost->image_url }}" alt="Post">
                                         </a>
                                     </div>
                                     <div class="content-holder">
