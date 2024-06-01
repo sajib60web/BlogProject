@@ -40,17 +40,21 @@ class AdminForgotPasswordController extends Controller
             'email' => 'required|email|exists:admins',
         ]);
 
-        $token = Str::random(64);
-        DB::table('password_resets')->insert([
-            'email' => $request->email,
-            'token' => $token,
-            'created_at' => Carbon::now()
-        ]);
-        Mail::send('admin.auth.forgetPasswordEmail', ['token' => $token], function ($message) use ($request) {
-            $message->to($request->email);
-            $message->subject('Reset Password');
-        });
-        return redirect()->back()->with('message', 'We have e-mailed your password reset link!');
+        try {
+            $token = Str::random(64);
+            DB::table('password_resets')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
+            Mail::send('admin.auth.forgetPasswordEmail', ['token' => $token], function ($message) use ($request) {
+                $message->to($request->email);
+                $message->subject('Reset Password');
+            });
+            return redirect()->back()->with('message', 'We have e-mailed your password reset link!');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Someting went wrong!');
+        }
     }
 
     /**
@@ -76,15 +80,20 @@ class AdminForgotPasswordController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required'
         ]);
-        $updatePassword = DB::table('password_resets')->where([
-            'email' => $request->email,
-            'token' => $request->token
-        ])->first();
-        if (!$updatePassword) {
-            return back()->withInput()->with('error', 'Invalid token!');
+        
+        try {
+            $updatePassword = DB::table('password_resets')->where([
+                'email' => $request->email,
+                'token' => $request->token
+            ])->first();
+            if (!$updatePassword) {
+                return back()->withInput()->with('error', 'Invalid token!');
+            }
+            Admin::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
+            DB::table('password_resets')->where(['email' => $request->email])->delete();
+            return redirect()->route('admin.show.login')->with('message', 'Your password has been changed!');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Someting went wrong!');
         }
-        Admin::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
-        DB::table('password_resets')->where(['email' => $request->email])->delete();
-        return redirect()->route('admin.show.login')->with('message', 'Your password has been changed!');
     }
 }

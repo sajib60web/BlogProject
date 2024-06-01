@@ -11,6 +11,11 @@
                             {{ Session::get('message') }}
                         </div>
                     @endif
+                    @if (Session::has('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('admin.password.email') }}">
                         @csrf
                         <div class="row mb-3">
