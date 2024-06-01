@@ -93,18 +93,36 @@
                     </div>
                     <nav id="dropdown" class="template-main-menu">
                         <ul class="menu">
-                            @foreach (category()->take(7) as $category)
-                                <li class="menu-item">
+                            @php
+                                $categories = \App\Models\Category::where('parent_id', 0)->take(7)->get();
+                                $sub_menu_categories = \App\Models\Category::where('parent_id', 0)->skip(7)->take(50)->get();
+                            @endphp
+                            @foreach ($categories as $category)
+                            @php
+                                $subcategories = \App\Models\Category::where('parent_id',$category->id)->get()
+                            @endphp
+                            <li class="menu-item @if($subcategories->count() > 0) menu-item-has-children @endif">
+                                @if ($subcategories->count() > 0)
+                                    <a href="#">{{ $category->name }}</a>
+                                @else
                                     <a href="{{ route('category.posts',$category->slug) }}">{{ $category->name }}</a>
-                                </li>
+                                @endif
+                                <ul class="sub-menu">
+                                    @foreach ($subcategories as $subcategory)
+                                        <li class="menu-item">
+                                            <a href="{{ route('category.posts',$category->slug) }}">{{ $subcategory->name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
                             @endforeach
-                            @if (category()->count() > 7)
+                            @if ($categories->count() > 6)
                                 <li class="menu-item menu-item-has-children">
                                     <a href="#">More</a>
                                     <ul class="sub-menu">
-                                        @foreach (category()->skip(7)->take(50) as $subCategory)
+                                        @foreach ($sub_menu_categories as $sub_menu_category)
                                             <li class="menu-item">
-                                                <a href="{{ route('category.posts',$subCategory->slug) }}">{{ $subCategory->name }}</a>
+                                                <a href="{{ route('category.posts',$category->slug) }}">{{ $category->name }}</a>
                                             </li>
                                         @endforeach
                                     </ul>

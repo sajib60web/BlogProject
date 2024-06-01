@@ -18,79 +18,44 @@ class CategorySeeder extends Seeder
         Model::unguard();
         $categories = [
             [
-                'name'   => 'Fiction',
+                'name'   => 'Beauty & Fashion',
                 'parent_id'   => 0,
-                'description'   => 'Fiction'
+                'description'   => 'Beauty & Fashion'
             ],
             [
-                'name'   => 'Mystery',
+                'name'   => 'Technology',
                 'parent_id'   => 0,
-                'description'   => 'Mystery'
+                'description'   => 'Technology'
             ],
             [
-                'name'   => 'Young',
+                'name'   => 'Comic book',
                 'parent_id'   => 0,
-                'description'   => 'Young'
+                'description'   => 'Comic book'
             ],
             [
-                'name'   => 'Science',
+                'name'   => 'Health',
                 'parent_id'   => 0,
-                'description'   => 'Western fiction'
+                'description'   => 'Health'
             ],
             [
-                'name'   => 'Artists Books',
+                'name'   => 'Sports',
                 'parent_id'   => 0,
-                'description'   => 'Artists Books'
+                'description'   => 'Sports'
             ],
             [
-                'name'   => 'Artists Books',
+                'name'   => 'Shopping',
                 'parent_id'   => 0,
-                'description'   => 'Artists Books'
+                'description'   => 'Shopping'
             ],
             [
-                'name'   => 'Artists Books',
+                'name'   => 'Gaming',
                 'parent_id'   => 0,
-                'description'   => 'Artists Books'
+                'description'   => 'Gaming'
             ],
             [
-                'name'   => 'Artists Books',
+                'name'   => 'Relationship',
                 'parent_id'   => 0,
-                'description'   => 'Artists Books'
-            ],
-            [
-                'name'   => 'Artists Books',
-                'parent_id'   => 0,
-                'description'   => 'Artists Books'
-            ],
-            [
-                'name'   => 'Artists Books',
-                'parent_id'   => 0,
-                'description'   => 'Artists Books'
-            ],
-            [
-                'name'   => 'Artists Books',
-                'parent_id'   => 0,
-                'description'   => 'Artists Books'
-            ],
-            [
-                'name'   => 'Artists Books',
-                'parent_id'   => 0,
-                'description'   => 'Artists Books'
-            ],
-            [
-                'name'   => 'Artists Books',
-                'parent_id'   => 0,
-                'description'   => 'Artists Books'
-            ],
-            [
-                'name'   => 'Artists Books',
-                'parent_id'   => 0,
-                'description'   => 'Artists Books'
-            ],
-            [
-                'name'   => 'Artists Books',
-                'parent_id'   => 0,
-                'description'   => 'Artists Books'
+                'description'   => 'Relationship'
             ],
         ];
         foreach ($categories as $key => $category) {
