@@ -27,7 +27,7 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => 'required|max:191',
             'email' => 'required|email|unique:users,email,' . auth()->id(),
-            'password' => 'confirmed'
+            'address' => 'required|max:255',
         ]);
 
         $profile = User::find(auth()->id());
@@ -53,6 +53,22 @@ class ProfileController extends Controller
         $profile->save();
         $notification = array(
             'message' => 'Profile Update Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function passwordUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        $profile = User::find(auth()->id());
+        $profile->password = Hash::make($request->password);
+        $profile->save();
+        $notification = array(
+            'message' => 'Password Update Successfully',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);

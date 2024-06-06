@@ -91,7 +91,7 @@
                             <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}
                         </li>
                         <li>
-                            <i class="regular-eye"></i>{{$post->total_views}}
+                            <i class="regular-eye"></i>{{ $post->total_views }}
                         </li>
                         {{-- <li>
                             <i class="regular-chatting"></i>{{$post->comments->count()}} Comments
@@ -127,20 +127,22 @@
                         </ul>
                     </div>
                     @guest
-                            
+                        <div class="print">
+                            <a href="{{ route('login') }}"><i class="fa-solid fa-download" style="font-size: 30px;color: black;"></i></a>
+                        </div>   
                     @else
                         <div class="print">
-                            <a role="button" id="print_post"><i class="fa-solid fa-print" style="font-size: 30px;color: black;"></i></a>
+                            <a role="button" id="print_post" style="cursor: pointer;"><i class="fa-solid fa-download" style="font-size: 30px;color: black;"></i></a>
                         </div>
                     @endguest
                     <div class="mb-4 box-border-dark-1 radius-default transition-default post-image">
                         <div class="figure-holder position-relative radius-default">
-                                {{-- @if ($post->post_type == App\Enums\PostType::VIDEO)
-                                    <a href="{{@$post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>
+                                @if ($post->post_type == App\Enums\PostType::VIDEO)
+                                    <a href="{{@$post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>                                  
                                 @endif
                                 <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100">
-                                    <img width="1150" height="660" src="{{$post->image_url}}" alt="Post">
-                                </a> --}}
+                                    <img src="{{$post->image_url}}" alt="Post" style="height: 350px; width: 100%;">
+                                </a>
                             </div>
                         </div>
                     <div class="post-content" style="text-align: justify;">
@@ -271,7 +273,7 @@
                                     <li class="post-author">
                                         <a href="{{ route('post.author',@$rel_post->user->id) }}">
                                             <img src="{{@$rel_post->user->image?? asset('default/user.webp')}}" alt="Author">
-                                                {{@$rel_post->user->name}}
+                                            {{@$rel_post->user->name}}
                                         </a>
                                     </li>
                                 @endif

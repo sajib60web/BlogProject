@@ -60,7 +60,7 @@
             <div class="col-lg-7">
                 @foreach ($main_frame as $latestOne)
                     <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden" style="height: 850px;">
-                        <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{@$latestOne->image_url}}');background-size: auto;background-repeat: repeat-y;"></div>
+                        <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{@$latestOne->image_url}}');background-repeat: no-repeat;height: 100%;"></div>
                         <div class="content-holder">
                             <h3 class="entry-title h3-large color-light-1-fixed underline-animation mb-0">
                                 <a href="{{route('post.details',[$latestOne->id,$latestOne->slug])}}">{{@$latestOne->title}}</a>
@@ -307,25 +307,24 @@
                         </div>
                     @endforeach
                     @foreach ($latest_stories_right_sub as $latest_stories_post_s)
-                            <div class="content-holder">
-                                <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post_s->id,$latest_stories_post_s->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_post_s->title,60,'...')}}</a></h3>
-                                <ul class="entry-meta color-dark-1-fixed">
-                                    @if (isset($latest_stories_post_s->user->id))
-                                        <li class="post-author">
-                                            <a href="{{ route('post.author',@$latest_stories_post_s->user->id) }}">
-                                                {{@$latest_stories_post_s->user->name}}
-                                            </a>
-                                        </li>
-                                    @endif
-                                    <li>
-                                        <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latest_stories_post_s->created_at)->diffForHumans()}}
+                        <div class="content-holder">
+                            <h3 class="entry-title h3-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$latest_stories_post_s->id,$latest_stories_post_s->slug])}}" class="link-wrap">{{\Str::limit($latest_stories_post_s->title,60,'...')}}</a></h3>
+                            <ul class="entry-meta color-dark-1-fixed">
+                                @if (isset($latest_stories_post_s->user->id))
+                                    <li class="post-author">
+                                        <a href="{{ route('post.author',@$latest_stories_post_s->user->id) }}">
+                                            {{@$latest_stories_post_s->user->name}}
+                                        </a>
                                     </li>
-                                    <li>
-                                        <i class="regular-eye"></i>{{@$latest_stories_post_s->total_views}}
-                                    </li>
-                                </ul>
-                            </div>
-
+                                @endif
+                                <li>
+                                    <i class="regular-clock-circle"></i>{{\Carbon\Carbon::parse($latest_stories_post_s->created_at)->diffForHumans()}}
+                                </li>
+                                <li>
+                                    <i class="regular-eye"></i>{{@$latest_stories_post_s->total_views}}
+                                </li>
+                            </ul>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -366,7 +365,7 @@
                                 <div class="col">
                                     <div class="post-box-layout8 radius-default">
                                         <div class="figure-holder radius-default">
-                                            <a href="{{$recommended_post->video_url}}" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
+                                            {{-- <a href="{{$recommended_post->video_url}}" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a> --}}
                                             <a href="{{route('post.details',[$recommended_post->id,$recommended_post->slug])}}" class="link-wrap img-height-100">
                                                 <img style="width: 100%; height: 100px;" src="{{ $recommended_post->image_url }}" alt="Post">
                                             </a>
@@ -397,7 +396,7 @@
                             <div class="col">
                                 <div class="post-box-layout8 radius-default">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{$top_video_latest_post->video_url}}" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a>
+                                        {{-- <a href="{{$top_video_latest_post->video_url}}" aria-label="Youtube Video" class="play-btn size-small popup-youtube not-animation"><i class="solid-play"></i></a> --}}
                                         <a href="{{route('post.details',[$top_video_latest_post->id,$top_video_latest_post->slug])}}" class="link-wrap img-height-100">
                                             <img style="width: 100%; height: 100px;" src="{{ $top_video_latest_post->image_url }}" alt="Post">
                                         </a>

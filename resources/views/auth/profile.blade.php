@@ -30,12 +30,13 @@
                 </div>
                 <div class="content-holder">
                     <h3 class="title h3-regular">{{ $profile->name }}</h3>
-                    <div class="designation">Join as a content writer</div>
-                    <p class="description">{{ $profile->about }}</p>
+                    <p class="m-0 p-0">{{ $profile->email }}</p>
+                    <p class="m-0 p-0">{{ $profile->address }}</p>
                 </div>
             </div>
             <div class="card mt-3">
                 <div class="card-body">
+                    <h3 class="text-center m-0 p-0">Profile Information Update</h3>
                     <form method="POST" action="{{ route('user.profile.update') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
@@ -91,6 +92,23 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-sm-12 mt-2">
+                                <div class="form-group mb-0">
+                                    <button type="submit" class="axil-btn axil-btn-fill axil-btn-large btn-color-alter btn-bold">
+                                        Profile Update <i class="solid-login"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h3 class="text-center m-0 p-0">Password Update</h3>
+                    <form method="POST" action="{{ route('user.password.update') }}">
+                        @csrf
+                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group mb-2">
                                     <label for="password" class="col-form-label text-md-end">{{ __('Password') }}</label>
@@ -111,7 +129,7 @@
                             <div class="col-sm-12 mt-2">
                                 <div class="form-group mb-0">
                                     <button type="submit" class="axil-btn axil-btn-fill axil-btn-large btn-color-alter btn-bold">
-                                        Profile Update <i class="solid-login"></i>
+                                        Update Password
                                     </button>
                                 </div>
                             </div>

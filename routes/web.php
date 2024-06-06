@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', [UserProfileController::class, 'index'])->name('home');
     Route::get('/profile', [UserProfileController::class, 'profile'])->name('user.profile');
     Route::post('/profile/update', [UserProfileController::class, 'profileUpdate'])->name('user.profile.update');
+    Route::post('/password/update', [UserProfileController::class, 'passwordUpdate'])->name('user.password.update');
     Route::controller(UserPostController::class)->group(function () {
         Route::get('/post/list', 'postList')->name('post.list');
         Route::get('/post/create', 'postCreate')->name('user.post.create');
@@ -64,6 +65,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 Route::get('/email/verify', function () {
+    if (Auth::check()) {
+        $user = Auth::user();
+        if ($user->email_verified_at) {
+            return redirect('/');
+        }
+    }
     return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
 Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
