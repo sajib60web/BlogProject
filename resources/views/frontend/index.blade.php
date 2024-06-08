@@ -59,8 +59,9 @@
         <div class="row g-3">
             <div class="col-lg-7">
                 @foreach ($main_frame as $latestOne)
-                    <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden" style="height: 850px;">
-                        <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{@$latestOne->image_url}}');background-repeat: no-repeat;height: 100%;"></div>
+                    <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden" style="height: 550px;">
+                        {{-- <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{@$latestOne->image_url}}');background-repeat: no-repeat;height: 100%; width: 100%;"></div> --}}
+                        <img style="width: 100%; height: 100%; !important;" src="{{ @$latestOne->image_url}}" alt="Post">
                         <div class="content-holder">
                             <h3 class="entry-title h3-large color-light-1-fixed underline-animation mb-0">
                                 <a href="{{route('post.details',[$latestOne->id,$latestOne->slug])}}">{{@$latestOne->title}}</a>
@@ -74,22 +75,24 @@
                     <div id="post-slider-1" class="post-slider-1 gutter-6 initially-none">
                         @foreach ($main_frame_sliders as $latestPost)
                             <div class="single-slide">
-                                <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default" style="height: 850px;">
+                                <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default" style="height: 550px;">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$latestPost->id,$latestPost->slug])}}" class="link-wrap img-height-100">
-                                            <img style="width: 100%; height: 365px;" src="{{ @$latestPost->image_url}}" alt="Post">
+                                        <a href="{{route('post.details',[$latestPost->id,$latestPost->slug])}}" class="link-wrap">
+                                            <img style="width: 100%; height: 250px !important;" src="{{ @$latestPost->image_url}}" alt="Post">
                                         </a>
                                     </div>
                                     <div class="content-holder">
                                         <div class="entry-category style-1 color-dark-1-fixed">
                                             <ul>
                                                 <li>
-                                                    <a href="{{route('category.posts',[@$latestPost->category_id,$latestPost->category->slug])}}">{{@$latestPost->category->name}}</a>
+                                                    <a href="{{route('category.posts',[@$latestPost->category_id,$latestPost->category->slug])}}">
+                                                        {{@$latestPost->category->name}}
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
                                         <h3 class="entry-title color-dark-1-fixed underline-animation"><a href="{{route('post.details',[@$latestPost->id,@$latestPost->slug])}}" class="link-wrap">{{\Str::limit(@$latestPost->title,60,' ...')}}</a></h3>
-                                        <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$latestPost->content), 250, ' ...') !!}</p>
+                                        <p class="entry-description color-dark-1-fixed">{!! \Str::limit(strip_tags(@$latestPost->content), 150, ' ...') !!}</p>
                                         <ul class="entry-meta color-dark-1-fixed">
                                             @if ($latestPost->user->id)
                                                 <li class="post-author">
@@ -254,9 +257,6 @@
                         @endforeach
                     </div>
                     @foreach ($latest_stories_sub as $latest_stories_two_post)
-                    @if ($latest_stories_main_id == $latest_stories_two_post->id)
-                        @continue
-                    @endif
                     <div class="col-lg-6">
                         <div class="post-box-layout5 box-border-dark-1 radius-default padding-20 @if($loop->index == 0) {{$color_classes[2]}} @else {{$color_classes[3]}} @endif box-shadow-large shadow-style-2 transition-default">
                             <div class="figure-holder radius-default">

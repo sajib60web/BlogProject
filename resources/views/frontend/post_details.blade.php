@@ -128,21 +128,24 @@
                     </div>
                     @guest
                         <div class="print">
-                            <a href="{{ route('login') }}"><i class="fa-solid fa-download" style="font-size: 30px;color: black;"></i></a>
+                            <a href="{{ route('login') }}"><i class="fa-solid fa-download" style="font-size: 30px;color: black;"></i> Download</a>
                         </div>   
                     @else
                         <div class="print">
-                            <a role="button" id="print_post" style="cursor: pointer;"><i class="fa-solid fa-download" style="font-size: 30px;color: black;"></i></a>
+                            <a role="button" id="print_post" style="cursor: pointer;"><i class="fa-solid fa-download" style="font-size: 30px;color: black;"></i> Download</a>
                         </div>
                     @endguest
                     <div class="mb-4 box-border-dark-1 radius-default transition-default post-image">
                         <div class="figure-holder position-relative radius-default">
                                 @if ($post->post_type == App\Enums\PostType::VIDEO)
-                                    <a href="{{@$post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>                                  
+                                    <a href="{{@$post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>       
+                                    <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100">
+                                        <img src="{{ asset('default/video-thumbnail.webp') }}" alt="Post" style="height: 350px; width: 100%;">
+                                    </a>                           
                                 @endif
-                                <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100">
+                                {{-- <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100">
                                     <img src="{{$post->image_url}}" alt="Post" style="height: 350px; width: 100%;">
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     <div class="post-content" style="text-align: justify;">

@@ -39,7 +39,7 @@ class WelcomeController extends Controller
         $data['top_stories_posts']    = Post::where('top_stories', 1)->published()->orderByDesc('id')->limit(3)->get();
 
         $data['latest_stories_main'] = Post::where('latest_stories_main', 1)->published()->orderByDesc('id')->limit(1)->get();
-        $data['latest_stories_sub'] = Post::where('latest_stories_sub', 1)->published()->orderByDesc('id')->limit(2)->get();
+        $data['latest_stories_sub'] = Post::where('latest_stories_sub', 1)->published()->orderByDesc('id')->limit(4)->get();
         $data['latest_stories_right_main'] = Post::where('latest_stories_right_main', 1)->published()->orderByDesc('id')->limit(1)->get();
         $data['latest_stories_right_sub'] = Post::where('latest_stories_right_sub', 1)->published()->orderByDesc('id')->limit(5)->get();
 

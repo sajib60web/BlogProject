@@ -31,7 +31,7 @@
                 <div class="content-holder">
                     <h3 class="title h3-regular">{{ $profile->name }}</h3>
                     <p class="m-0 p-0">{{ $profile->email }}</p>
-                    <p class="m-0 p-0">{{ $profile->address }}</p>
+                    <p class="m-0 p-0">{{ $profile->about }}</p>
                 </div>
             </div>
             <div class="card mt-3">
