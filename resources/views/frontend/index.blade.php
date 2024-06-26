@@ -35,11 +35,17 @@
                                         <div class="entry-category style-1 color-dark-1-fixed">
                                             <ul>
                                                 <li>
-                                                    <a href="{{route('category.posts',[$treading_topic->category_id,$treading_topic->category->slug])}}">{{@$treading_topic->category->name}}</a>
+                                                    <a href="{{route('category.posts',[$treading_topic->category_id,$treading_topic->category->slug])}}">
+                                                        {{@$treading_topic->category->name}}
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3 class="entry-title h3-extra-small color-dark-1-fixed underline-animation"><a href="{{route('post.details',[$treading_topic->id,$treading_topic->slug])}}" class="link-wrap">{{ \Str::limit(@$treading_topic->title, 50, ' ...') }}</a></h3>
+                                        <h3 class="entry-title h3-extra-small color-dark-1-fixed underline-animation">
+                                            <a href="{{route('post.details',[$treading_topic->id,$treading_topic->slug])}}" class="link-wrap">
+                                                {{ \Str::limit(@$treading_topic->title, 30, ' ...') }}
+                                            </a>
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
@@ -59,8 +65,7 @@
         <div class="row g-3">
             <div class="col-lg-7">
                 @foreach ($main_frame as $latestOne)
-                    <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden" style="height: 550px;">
-                        {{-- <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium" style="background-image: url('{{@$latestOne->image_url}}');background-repeat: no-repeat;height: 100%; width: 100%;"></div> --}}
+                    <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden" style="height: 580px;">
                         <img style="width: 100%; height: 100%; !important;" src="{{ @$latestOne->image_url}}" alt="Post">
                         <div class="content-holder">
                             <h3 class="entry-title h3-large color-light-1-fixed underline-animation mb-0">
@@ -75,10 +80,10 @@
                     <div id="post-slider-1" class="post-slider-1 gutter-6 initially-none">
                         @foreach ($main_frame_sliders as $latestPost)
                             <div class="single-slide">
-                                <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default" style="height: 550px;">
+                                <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default" style="height: 580px;">
                                     <div class="figure-holder radius-default">
                                         <a href="{{route('post.details',[$latestPost->id,$latestPost->slug])}}" class="link-wrap">
-                                            <img style="width: 100%; height: 250px !important;" src="{{ @$latestPost->image_url}}" alt="Post">
+                                            <img style="width: 100%; height: 200px !important;" src="{{ @$latestPost->image_url}}" alt="Post">
                                         </a>
                                     </div>
                                     <div class="content-holder">
@@ -139,7 +144,11 @@
                                 </a>
                             </div>
                             <div class="content-holder">
-                                <h3 class="entry-title h3-medium color-light-1-fixed underline-animation"><a href="{{route('post.details',[$sliderPost->id,$sliderPost->slug])}}">{{\Str::limit($sliderPost->title,60,'...')}}</a></h3>
+                                <h3 class="entry-title h3-medium color-light-1-fixed underline-animation">
+                                    <a href="{{route('post.details',[$sliderPost->id,$sliderPost->slug])}}">
+                                        {{\Str::limit($sliderPost->title,60,'...')}}
+                                    </a>
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -342,7 +351,7 @@
         </div>
         <div class="padding-40 pxy-md-30 pxy-sm-20 bg-color-mimosa box-border-dark-1 radius-default">
             @if ($top_video_post)
-                <div class="figure-holder position-relative radius-default">
+                <div class="figure-holder position-relative radius-default" style="text-align: center;">
                     <a href="{{@$top_video_post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>
                     <a href="{{route('post.details',[$top_video_post->id,$top_video_post->slug])}}" class="link-wrap img-height-100">
                         <img width="1150" height="660" src="{{$top_video_post->image_url}}" alt="Post">
@@ -634,19 +643,5 @@
 <!--=====================================-->
 <!--=        Newsletter Area Start      =-->
 <!--=====================================-->
-<section class="newsletter-wrap-layout1 space-top-60 space-bottom-60 bg-color-light-1 transition-default">
-    <div class="container">
-        <div class="newsletter-box-layout1 box-border-dark-1 radius-default bg-color-perano">
-            <h2 class="entry-title h2-medium f-w-700 color-dark-1-fixed">SUBSCRIBE TO OUR NEWSLETTER</h2>
-            <p class="entry-description color-dark-1-fixed">Kurihara Harumi, born March 5, 1947, Shimoda, Shizuoka prefecture, Japan</p>
-            <form action="{{ route('user.subscribe') }}" method="POST" class="newsletter-form box-border-dark-1 box-shadow-large shadow-style-2 shadow-fixed transition-default radius-default">
-                @csrf
-                <input type="email" name="email" class="email-input" placeholder="Email Address">
-                <button type="submit" class="axil-btn">
-                    Subscribe<i class="solid-navigation"></i>
-                </button>
-            </form>
-        </div>
-    </div>
-</section>
+@include('frontend.layouts.newsletter')
 @endsection

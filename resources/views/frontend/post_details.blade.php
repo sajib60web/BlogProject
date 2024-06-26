@@ -126,15 +126,17 @@
                             </li>
                         </ul>
                     </div>
-                    @guest
-                        <div class="print">
-                            <a href="{{ route('login') }}"><i class="fa-solid fa-download" style="font-size: 30px;color: black;"></i> Download</a>
-                        </div>   
-                    @else
-                        <div class="print">
-                            <a role="button" id="print_post" style="cursor: pointer;"><i class="fa-solid fa-download" style="font-size: 30px;color: black;"></i> Download</a>
-                        </div>
-                    @endguest
+                    @if ($post->category->download_status == 1)
+                        @guest
+                            <div class="print">
+                                <a href="{{ route('login') }}"><i class="fa-solid fa-download" style="font-size: 30px;color: black;"></i> Download</a>
+                            </div>   
+                        @else
+                            <div class="print">
+                                <a role="button" id="print_post" style="cursor: pointer;"><i class="fa-solid fa-download" style="font-size: 30px;color: black;"></i> Download</a>
+                            </div>
+                        @endguest
+                    @endif
                     <div class="mb-4 box-border-dark-1 radius-default transition-default post-image">
                         <div class="figure-holder position-relative radius-default">
                                 @if ($post->post_type == App\Enums\PostType::VIDEO)
@@ -299,6 +301,10 @@
         </div>
     </div>
 </section>
+<!--=====================================-->
+<!--=        Newsletter Area Start      =-->
+<!--=====================================-->
+@include('frontend.layouts.newsletter')
 @endsection
 
 @push('scripts')

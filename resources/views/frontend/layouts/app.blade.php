@@ -20,7 +20,6 @@
     <link rel="apple-touch-icon" href="{{ setting()->icon }}">
     <!-- All Device Favicon -->
     <link rel="icon" href="{{ setting()->icon }}">
-
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/fonts/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/slick/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/slick/slick-theme.css') }}">
@@ -28,7 +27,7 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/bootstrap.min.css') }}">
     <!-- Site Stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/app.css') }}">
-    <link href="{{ asset('assets/admin') }}/css/toastr.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/admin/css/toastr.min.css') }}" rel="stylesheet" type="text/css">
     <style>
         .breadcrumb-item+.breadcrumb-item::before {
             display: inline-block;
@@ -63,7 +62,8 @@
                 <div class="circle-holder"></div>
                 <div class="shadow-holder"></div>
             </div> --}}
-            <img width="131" height="47" src="{{ setting()->logo }}" alt="logo">
+            {{-- <img width="131" height="47" src="{{ setting()->logo }}" alt="logo"> --}}
+            <p>Loodring…</p>
         </div>
     </div>
 
@@ -74,13 +74,10 @@
     <div id="main-wrapper" class="main-wrapper">
         <!---- header ---->
         @include('frontend.layouts.header')
-
         <!---- Main content ----->
         @yield('mainContent')
-
         <!---- Footer ---->
         @include('frontend.layouts.footer')
-
     </div>
     <!-- Search Start -->
     <div id="search-trigger" class="search-input-wrap">

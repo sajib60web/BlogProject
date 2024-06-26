@@ -30,9 +30,8 @@
                 </div>
                 <div class="content-holder">
                     <h3 class="title h3-regular">{{ $author->name }}</h3>
-                    <div class="designation">Join as a content writer</div>
-                    <p class="description">{{ $author->address }}</p>
-                    <p class="description">{{ $author->about }}</p>
+                    <p class="m-0 p-0">{{ $author->email }}</p>
+                    <p class="m-0 p-0">{{ $author->about }}</p>
                 </div>
             </div>
         </div>
@@ -85,4 +84,8 @@
         </div>
     </div>
 </section>
+<!--=====================================-->
+<!--=        Newsletter Area Start      =-->
+<!--=====================================-->
+@include('frontend.layouts.newsletter')
 @endsection

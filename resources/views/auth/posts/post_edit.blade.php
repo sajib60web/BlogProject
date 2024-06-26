@@ -137,6 +137,10 @@
         </div>
     </div>
 </section>
+<!--=====================================-->
+<!--=        Newsletter Area Start      =-->
+<!--=====================================-->
+@include('frontend.layouts.newsletter')
 @endsection
 @push('styles')
     <link src="{{ asset('css/tags.css') }}" />

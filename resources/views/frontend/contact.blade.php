@@ -91,10 +91,6 @@
         <div class="map-wrap">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="section-heading heading-style-9">
-                        <h2 class="title">Our Location</h2>
-                        <p class="description">Visit our location for your query</p>
-                    </div>
                     <div class="map-box box-border-dark-1 radius-default">
                         <div class="figure-holder radius-medium img-height-100">
                             {{-- <img width="810" height="400" src="{{ asset('assets/frontend') }}/media/elements/map.webp" alt="Map"> --}}
@@ -131,4 +127,8 @@
         </div>
     </div>
 </section>
+<!--=====================================-->
+<!--=        Newsletter Area Start      =-->
+<!--=====================================-->
+@include('frontend.layouts.newsletter')
 @endsection

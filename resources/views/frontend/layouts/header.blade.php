@@ -7,11 +7,13 @@
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between gap-1">
                     <div class="news-feed-wrap">
-                        <div class="news-feed-label">BREAKING:</div>
+                        <div class="news-feed-label">NEWEST:</div>
                         <div id="news-feed-slider" class="news-feed-slider initially-none">
                             @foreach ($breaking_posts as $breaking_post)
                                 <div class="single-slide">
-                                    <a href="{{route('post.details',[$breaking_post->id,$breaking_post->slug])}}" class="link-wrap">{{$breaking_post->title}}</a>
+                                    <a href="{{route('post.details',[$breaking_post->id,$breaking_post->slug])}}" class="link-wrap">
+                                        {{$breaking_post->title}}
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
@@ -136,55 +138,6 @@
                 </div>
                 <!-- End Mainmanu Nav -->
                 <div class="d-flex align-items-center gap-3">
-                    {{-- <div class="d-lg-block d-none">
-                        <div class="search-trigger-wrap">
-                            <a href="#search-trigger" title="search">
-                                <i class="regular-search-02"></i>
-                            </a>
-                        </div>
-                    </div> --}}
-                    {{-- @guest
-                        <div class="d-lg-block d-none">
-                            <a href="{{ route('login') }}" title="Sign in" role="button" class="btn btn-success customBtn">Sign in</a> |
-                            <a href="{{ route('register') }}" title="Join Naw" role="button" class="btn btn-success customBtn">Sign Up</a>
-                        </div>
-                    @else
-                        <div class="d-lg-block d-none">
-                            <div class="profile-wrap dropdown-item-wrap">
-                                <div class="navbar navbar-expand-md">
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle text-black" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Profile">
-                                            <span class="thumble-holder img-height-100"><img width="40" height="40" src="{{ $profile->image?? asset('default/user.webp') }}" alt="Profile"></span> {{auth()->user()->name}}
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end animate slideIn" aria-labelledby="navbarDropdown2">
-                                            <div class="dropdown-menu-inner">
-                                                <div class="profile-content with-icon">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="{{ route('user.profile') }}">
-                                                                <div class="icon-holder"><i class="regular-user"></i></div>Profile
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ route('post.list') }}">
-                                                                <div class="icon-holder"><i class="regular-activity"></i></div>Posts
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="mt-3">
-                                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="w-100 axil-btn axil-btn-ghost btn-color-alter axil-btn-small">Sign Out</a>
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                        @csrf
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endguest --}}
                     <div class="d-lg-none d-block">
                         <div class="my_switcher">
                             <ul>

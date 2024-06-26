@@ -33,4 +33,8 @@
         </div>
     </div>
 </section>
+<!--=====================================-->
+<!--=        Newsletter Area Start      =-->
+<!--=====================================-->
+@include('frontend.layouts.newsletter')
 @endsection

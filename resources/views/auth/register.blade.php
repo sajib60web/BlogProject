@@ -4,8 +4,11 @@
 @push('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
-    .fa-brands, .fab {
+    .fa-brands, .fab, .fa-regular {
         font-family: "Font Awesome 6 Brands" !important;
+    }
+    .fa-classic, .fa-regular, .fa-solid, .far, .fas {
+        font-family: "Font Awesome 6 Free" !important;
     }
 </style>
 @endpush
@@ -38,7 +41,12 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="password" class="col-form-label text-md-end">{{ __('Password') }}</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Enter Password" autocomplete="current-password">
+                            <div class="input-group mb-3">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Enter Password" autocomplete="current-password">
+                                <span class="input-group-text togglePassword" style="cursor: pointer;">
+                                    <i id="eyeIcon" class="fa-solid fa-eye-slash"></i>
+                                </span>
+                            </div>
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -94,4 +102,26 @@
         </div>
     </div>
 </section>
+<!--=====================================-->
+<!--=        Newsletter Area Start      =-->
+<!--=====================================-->
+@include('frontend.layouts.newsletter')
+@push('scripts')
+<script>
+    $(".togglePassword").click(function (e) {
+    e.preventDefault();
+    var type = $("#password").attr("type");
+    if(type == "password"){
+        $("#eyeIcon").removeClass("fa-solid fa-eye-slash");
+        $("#eyeIcon").addClass("fa-solid fa-eye");
+        $("#password").attr("type","text");
+        $("#password-confirm").attr("type","text");
+    }else if(type == "text"){
+        $("#eyeIcon").removeClass("fa-solid fa-eye");
+        $("#eyeIcon").addClass("fa-solid fa-eye-slash");
+        $("#password").attr("type","password");
+        $("#password-confirm").attr("type","password");
+    }});
+</script>
+@endpush
 @endsection
