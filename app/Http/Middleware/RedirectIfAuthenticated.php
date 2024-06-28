@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\UserType;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
@@ -17,17 +18,16 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        switch ($guard) {
-            case 'admin':
-                if (Auth::guard($guard)->check()) {
-                    return redirect(RouteServiceProvider::ADMIN_DASHBOARD);
-                }
-                break;
-            default:
-                if (Auth::guard($guard)->check()) {
-                    return redirect(RouteServiceProvider::HOME);
-                }
-                break;
+        if (Auth::guard($guard)->check()) {
+            $user_type = Auth::user()->user_type;
+            switch ($user_type) {
+                case UserType::ADMIN:
+                    return redirect('/admin');
+                    break;
+                default:
+                    return redirect('/');
+                    break;
+            }
         }
         return $next($request);
     }

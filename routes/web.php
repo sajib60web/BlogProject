@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AboutController;
-use App\Http\Controllers\Admin\Auth\AdminForgotPasswordController;
-use App\Http\Controllers\Admin\Auth\AdminLoginController;
+use App\Enums\UserType;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -19,6 +17,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\WelcomeController;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -49,7 +48,7 @@ Route::controller(WelcomeController::class)->group(function () {
 });
 
 Auth::routes(['verfiy' => true]);
-Route::group(['middleware' => ['auth', 'verified']], function () {
+Route::group(['middleware' => ['auth', 'verified', 'user']], function () {
     Route::get('/home', [UserProfileController::class, 'index'])->name('home');
     Route::get('/profile', [UserProfileController::class, 'profile'])->name('user.profile');
     Route::post('/profile/update', [UserProfileController::class, 'profileUpdate'])->name('user.profile.update');
@@ -68,7 +67,11 @@ Route::get('/email/verify', function () {
     if (Auth::check()) {
         $user = Auth::user();
         if ($user->email_verified_at) {
-            return redirect('/');
+            if (Auth::user()->user_type == UserType::ADMIN) {
+                return redirect(RouteServiceProvider::ADMIN_DASHBOARD);
+            } else {
+                return redirect(RouteServiceProvider::HOME);
+            }
         }
     }
     return view('auth.verify');
@@ -82,25 +85,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 // Admin route
 Route::group(['prefix' => 'admin'], function () {
-
-    // Start Admin Login Controller
-    Route::controller(AdminLoginController::class)->group(function () {
-        Route::get('login', 'showLoginForm')->name('admin.show.login');
-        Route::post('login/submit', 'login')->name('admin.login');
-        Route::post('logout/submit', 'logout')->name('admin.logout');
-    });
-    // End Admin Login Controller
-
-    // Start Admin Forgot Password Controller
-    Route::controller(AdminForgotPasswordController::class)->group(function () {
-        Route::get('password/reset', 'showForgetPasswordForm')->name('admin.password.request');
-        Route::post('password/email', 'submitForgetPasswordForm')->name('admin.password.email');
-        Route::get('reset/password/{token}', 'showResetPasswordForm')->name('admin.reset.password.get');
-        Route::post('/password/reset/submit', 'submitResetPasswordForm')->name('admin.password.update');
-    });
-    // End Admin Forgot Password Controller
-
-    Route::group(['middleware' => ['auth:admin']], function () {
+    Route::group(['middleware' => ['auth']], function () {
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/', 'index')->name('admin.dashboard');
         });

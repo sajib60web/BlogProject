@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -44,7 +45,7 @@ class RoleController extends Controller
     {
         $data['page_name'] = 'Create Role';
         $data['all_permissions']  = Permission::all();
-        $data['permission_groups'] = Admin::getpermissionGroups();
+        $data['permission_groups'] = User::getpermissionGroups();
         return view('admin.roles.create', $data);
     }
 
@@ -87,7 +88,7 @@ class RoleController extends Controller
         $data['page_name'] = 'View Role';
         $data['role'] = Role::findById($id);
         $data['all_permissions'] = Permission::all();
-        $data['permission_groups'] = Admin::getpermissionGroups();
+        $data['permission_groups'] = User::getpermissionGroups();
         return view('admin.roles.show', $data);
     }
 
@@ -102,7 +103,7 @@ class RoleController extends Controller
         $data['page_name'] = 'Update Role';
         $data['role'] = Role::findById($id);
         $data['all_permissions'] = Permission::all();
-        $data['permission_groups'] = Admin::getpermissionGroups();
+        $data['permission_groups'] = User::getpermissionGroups();
         return view('admin.roles.edit', $data);
     }
 

@@ -60,7 +60,7 @@
 
                                     <div class="col-sm-9 role-{{ $i }}-management-checkbox">
                                         @php
-                                            $permissions = \App\Models\Admin::getpermissionsByGroupName($group->name);
+                                            $permissions = \App\Models\User::getpermissionsByGroupName($group->name);
                                             $j = 1;
                                         @endphp
                                         @foreach ($permissions as $permission)

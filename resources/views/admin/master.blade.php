@@ -113,14 +113,14 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{ asset('assets/admin') }}/dist/img/logo.png" class="user-image" alt="User Image">
-                            <span class="hidden-xs">{{ auth('admin')->user()->name }}</span>
+                            <span class="hidden-xs">{{ auth()->user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="{{ asset('assets/admin') }}/dist/img/logo.png" class="img-circle" alt="User Image">
                                 <p>
-                                    {{ auth('admin')->user()->name }}
+                                    {{ auth()->user()->name }}
                                     <small>Admin</small>
                                 </p>
                             </li>
@@ -130,9 +130,9 @@
                                     <a href="{{ route('profile') }}" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('admin-logout-form').submit();" class="btn btn-default btn-flat">Logout</a>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Logout</a>
                                 </div>
-                                <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </li>
@@ -152,7 +152,7 @@
                     <img src="{{ asset('assets/admin') }}/dist/img/logo.png" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>{{ auth('admin')->user()->name }}</p>
+                    <p>{{ auth()->user()->name }}</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -231,7 +231,7 @@
                 @endcan
 
 
-                @if(auth('admin')->user()->can('user-list') || auth('admin')->user()->can('role-list'))
+                @if(auth()->user()->can('user-list') || auth()->user()->can('role-list'))
                 <li class="treeview  {{ Request::is('admin/users') || Request::is('admin/users/*') ||   Request::is('admin/roles') || Request::is('admin/roles/*')?'active':'' }}">
                         <a href="#">
                             <i class="fa fa-users"></i> <span>User Management</span>

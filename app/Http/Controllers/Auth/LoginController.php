@@ -45,7 +45,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($user->status == Status::INACTIVE) {
-            Auth::guard('web')->logout();
+            Auth::logout();
             $notification = array(
                 'message' => 'Your account status is InActive',
                 'alert-type' => 'error'
@@ -53,12 +53,19 @@ class LoginController extends Controller
             return redirect('/login')->with($notification);
         }
         if ($user->block_status == BlockStatus::BLOCK) {
-            Auth::guard('web')->logout();
+            Auth::logout();
             $notification = array(
                 'message' => 'Your account status is block',
                 'alert-type' => 'error'
             );
             return redirect('/login')->with($notification);
+        }
+        if (Auth::check()) {
+            if (Auth::user()->user_type == 1) {
+                return redirect(RouteServiceProvider::ADMIN_DASHBOARD);
+            } else {
+                return redirect(RouteServiceProvider::HOME);
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\BlockStatus;
 use App\Enums\Status;
+use App\Enums\UserType;
 use App\Http\Controllers\Controller;
 use App\Mail\Newsletter;
 use App\Models\Admin;
@@ -40,7 +41,7 @@ class UserController extends Controller
     public function index()
     {
         $data['page_name'] = 'User List';
-        $data['users'] = Admin::all();
+        $data['users'] = User::IsAdmin()->get();
         return view('admin.users.index', $data);
     }
 
@@ -59,7 +60,7 @@ class UserController extends Controller
     public function signupUsers()
     {
         $data['page_name'] = 'Authors';
-        $data['users']     =  User::all();
+        $data['users']     =  User::IsUser()->get();
         return view('admin.users.signup_users', $data);
     }
 
@@ -125,7 +126,9 @@ class UserController extends Controller
         $input['name'] = $input['first_name'] . ' ' . $input['last_name'];
         $input['username'] = $input['name'] . str_pad(mt_rand(1, 99999999), 8, '0', STR_PAD_LEFT);
         $input['password'] = Hash::make($input['password']);
-        $admin = Admin::create($input);
+        $input['user_type'] = UserType::ADMIN;
+        $input['email_verified_at'] = now();
+        $admin = User::create($input);
         $admin->assignRole($request->input('roles'));
         $notification = array(
             'message' => 'User Create Successfully',
@@ -142,7 +145,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $data['user'] = Admin::find($id);
+        $data['user'] = User::find($id);
         $data['page_name'] = 'User View';
         return view('admin.users.show', $data);
     }
@@ -156,7 +159,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $data['page_name'] = 'User Edit';
-        $data['user'] = Admin::find($id);
+        $data['user'] = User::find($id);
         $data['roles'] = Role::all();
         return view('admin.users.edit', $data);
     }
@@ -178,7 +181,7 @@ class UserController extends Controller
             'password' => 'confirmed'
         ]);
 
-        $admin = Admin::find($id);
+        $admin = User::find($id);
         $input = $request->all();
         $input['name'] = $input['first_name'] . ' ' . $input['last_name'];
         if (!empty($input['password'])) {
@@ -204,7 +207,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        Admin::find($id)->delete();
+        User::find($id)->delete();
         $notification = array(
             'message' => 'User Delete Successfully',
             'alert-type' => 'success'
@@ -213,24 +216,27 @@ class UserController extends Controller
     }
 
 
-    public function subscribeList(){
+    public function subscribeList()
+    {
         $data['page_name']   = 'Subscriber list';
         $data['subscribers'] =  Subscribe::get();
-        return view('admin.subscribe.subscribe_list',$data);
+        return view('admin.subscribe.subscribe_list', $data);
     }
 
-    public function sendNewsletter(){
+    public function sendNewsletter()
+    {
         $data['page_name']   = 'Send newsletter';
-        return view('admin.subscribe.send_newsletter',$data);
+        return view('admin.subscribe.send_newsletter', $data);
     }
 
-    public function sendNewsletterSubscriber(Request $request){
+    public function sendNewsletterSubscriber(Request $request)
+    {
         try {
             $this->validate($request, [
                 'post_id' => 'required',
                 'message' => 'required',
             ]);
-            $posts = Post::whereIn('id',$request->post_id)->get();
+            $posts = Post::whereIn('id', $request->post_id)->get();
             $subscribers =  Subscribe::pluck('email')->toArray();
             $data['posts'] = $posts;
             $data['message'] = $request->message;
@@ -241,7 +247,6 @@ class UserController extends Controller
                 'alert-type' => 'success'
             );
             return redirect()->route('subscribe.list')->with($notification);
-
         } catch (\Throwable $th) {
 
             $notification = array(
@@ -250,23 +255,21 @@ class UserController extends Controller
             );
             return redirect()->back()->with($notification);
         }
-
     }
 
-
-
-    public function NewsletterPostSearch(Request $request){
+    public function NewsletterPostSearch(Request $request)
+    {
         try {
             $response = [];
             $search   = $request->search;
-            if($request->ajax()):
+            if ($request->ajax()) :
 
                 $response = [];
-                $posts = Post::where('title','like','%'.$search.'%')->where('status',Status::PUBLISH)->get();
+                $posts = Post::where('title', 'like', '%' . $search . '%')->where('status', Status::PUBLISH)->get();
                 foreach ($posts as   $post) {
                     $response[] = [
                         'id' => $post->id,
-                        'text'=> $post->title
+                        'text' => $post->title
                     ];
                 }
             endif;
@@ -275,6 +278,4 @@ class UserController extends Controller
             return response()->json([]);
         }
     }
-
-
 }

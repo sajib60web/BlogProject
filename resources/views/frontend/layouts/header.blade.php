@@ -46,12 +46,21 @@
                                 <a href="{{ route('register') }}" style="color: white;">Sign Up</a>
                             </div>
                         @else
-                            <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
-                                <a href="{{ route('user.profile') }}" style="color: white;">Profile</a>
-                            </div>
-                            <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
-                                <a href="{{ route('post.list') }}" style="color: white;">Posts</a>
-                            </div>
+                            @if (auth()->user()->user_type == \App\Enums\UserType::ADMIN)
+                                <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
+                                    <a href="{{ url('admin/profile') }}" style="color: white;">Profile</a>
+                                </div>
+                                <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
+                                    <a href="{{ route('post.index') }}" style="color: white;">Posts</a>
+                                </div>
+                            @else
+                                <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
+                                    <a href="{{ route('user.profile') }}" style="color: white;">Profile</a>
+                                </div>
+                                <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
+                                    <a href="{{ route('post.list') }}" style="color: white;">Posts</a>
+                                </div>
+                            @endif
                             <div class="current-date d-lg-block d-none" style="white-space: nowrap;">
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color: white;">Sign Out</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

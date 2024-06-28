@@ -2,6 +2,7 @@
 
 use App\Enums\BlockStatus;
 use App\Enums\Status;
+use App\Enums\UserType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->text('about')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('user_type')->default(UserType::USER);
             $table->string('role_id', 50)->nullable();
             $table->string('picture')->nullable();
             $table->string('designation')->nullable();

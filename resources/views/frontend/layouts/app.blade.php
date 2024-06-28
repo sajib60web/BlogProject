@@ -44,8 +44,8 @@
     <!--[if lte IE 9]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   	<![endif]-->
-    <div id="preloader" class="preloader">
-        <div class="loader-wrap">
+    {{-- <div id="preloader" class="preloader">
+        <div class="loader-wrap"> --}}
             {{-- <div class="single-box">
                 <div class="circle-holder"></div>
                 <div class="shadow-holder"></div>
@@ -63,9 +63,9 @@
                 <div class="shadow-holder"></div>
             </div> --}}
             {{-- <img width="131" height="47" src="{{ setting()->logo }}" alt="logo"> --}}
-            <p>Loodring…</p>
-        </div>
-    </div>
+            {{-- <p>Loodring…</p> --}}
+        {{-- </div>
+    </div> --}}
 
     <a href="#main-wrapper" id="backto-top" class="back-to-top" aria-label="Back To Top">
         <i class="regular-direction-up"></i>
