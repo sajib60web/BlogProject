@@ -141,13 +141,13 @@
                         <div class="figure-holder position-relative radius-default">
                                 @if ($post->post_type == App\Enums\PostType::VIDEO)
                                     <a href="{{@$post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>       
-                                    <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100">
+                                    {{-- <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100">
                                         <img src="{{ asset('default/video-thumbnail.webp') }}" alt="Post" style="height: 350px; width: 100%;">
-                                    </a>                           
+                                    </a>                            --}}
                                 @endif
-                                {{-- <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100">
-                                    <img src="{{$post->image_url}}" alt="Post" style="height: 350px; width: 100%;">
-                                </a> --}}
+                                <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100">
+                                    <img width="1150" height="660" src="{{$post->image_url}}" alt="Post">
+                                </a>
                             </div>
                         </div>
                     <div class="post-content" style="text-align: justify;">

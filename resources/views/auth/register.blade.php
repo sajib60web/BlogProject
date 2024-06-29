@@ -62,6 +62,11 @@
                                 Sign Up <i class="solid-login"></i>
                             </button>
                         </div>
+                        <div class="form-group mb-0">
+                            @if (Route::has('login'))
+                                Have an account? <a href="{{ route('login') }}">Sign In</a>
+                            @endif
+                        </div>
                         {{-- <div class="form-group mb-0 text-center" style="margin-top: 5px">
                             <div class="axil-social social-layout-1 size-small gap-12">
                                 <ul>

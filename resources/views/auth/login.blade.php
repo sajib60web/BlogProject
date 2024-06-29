@@ -58,10 +58,11 @@
                             </button>
                         </div>
                         <div class="form-group mb-0 " style="margin-top: 5px">
+                            Don't have an account? <a href="{{ route('register') }}">Sign Up</a>
+                        </div>
+                        <div class="form-group mb-0">
                             @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forget forget password') }}
-                                </a>
+                                <a href="{{ route('password.request') }}">Forget forget password</a>
                             @endif
                         </div>
                         {{-- <div class="form-group mb-0 text-center" style="margin-top: 5px">

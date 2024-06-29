@@ -65,8 +65,11 @@
         <div class="row g-3">
             <div class="col-lg-7">
                 @foreach ($main_frame as $latestOne)
-                    <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden" style="height: 580px;">
-                        <img style="width: 100%; height: 100%; !important;" src="{{ @$latestOne->image_url}}" alt="Post">
+                    <div class="post-box-layout1 box-border-dark-1 radius-default transition-default overflow-hidden">
+                        {{-- <img style="width: 100%; height: 100%; !important;" src="{{ @$latestOne->image_url }}" alt="Post"> --}}
+                        <div id="videoPlayer-1" class="image-mask videoPlayer-1 radius-medium">
+                            <img style="width: 100%; height: 100%; !important;" src="{{ @$latestOne->image_url }}" alt="Post">
+                        </div>
                         <div class="content-holder">
                             <h3 class="entry-title h3-large color-light-1-fixed underline-animation mb-0">
                                 <a href="{{route('post.details',[$latestOne->id,$latestOne->slug])}}">{{@$latestOne->title}}</a>
@@ -80,7 +83,7 @@
                     <div id="post-slider-1" class="post-slider-1 gutter-6 initially-none">
                         @foreach ($main_frame_sliders as $latestPost)
                             <div class="single-slide">
-                                <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default" style="height: 580px;">
+                                <div class="post-box-layout2 box-border-dark-1 radius-default padding-30 bg-color-old-lace box-shadow-large shadow-style-1 transition-default">
                                     <div class="figure-holder radius-default">
                                         <a href="{{route('post.details',[$latestPost->id,$latestPost->slug])}}" class="link-wrap">
                                             <img style="width: 100%; height: 200px !important;" src="{{ @$latestPost->image_url}}" alt="Post">

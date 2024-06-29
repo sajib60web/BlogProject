@@ -3439,8 +3439,8 @@ ul.inline-list li {
 
 @media (max-width: 767px) {
     .play-btn {
-        top: 15px;
-        right: 15px;
+        top: 35%;
+        right: 43%;
         left: inherit;
         -webkit-transform: translateY(0) translateX(0);
         -ms-transform: translateY(0) translateX(0);
