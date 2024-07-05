@@ -116,7 +116,7 @@ class UserController extends Controller
         $this->validate($request, [
             'first_name' => 'required|max:191',
             'last_name' => 'required|max:191',
-            'email' => 'required|email|unique:admins,email',
+            'email' => 'required|email|unique:users,email',
             'roles' => 'required',
             'password' => 'required|confirmed|min:6',
         ]);
@@ -175,7 +175,7 @@ class UserController extends Controller
         $this->validate($request, [
             'first_name' => 'required|max:191',
             'last_name' => 'required|max:191',
-            'email' => 'required|email|unique:admins,email,' . $id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'roles' => 'required',
             'password' => 'confirmed'
         ]);
