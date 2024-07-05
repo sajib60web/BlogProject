@@ -7,7 +7,6 @@ use App\Enums\Status;
 use App\Enums\UserType;
 use App\Http\Controllers\Controller;
 use App\Mail\Newsletter;
-use App\Models\Admin;
 use App\Models\Post;
 use App\Models\Subscribe;
 use App\Models\User;
@@ -208,6 +207,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
+        Post::where('user_id', $id)->delete();
         $notification = array(
             'message' => 'User Delete Successfully',
             'alert-type' => 'success'
