@@ -58,10 +58,15 @@
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Enter Confirm Password" autocomplete="new-password">
                         </div>
                         <div class="form-group mb-2">
-                            <input class="form-check-input" type="checkbox" name="agree" value="1" id="agree">
+                            <input class="form-check-input" type="checkbox" name="agree" value="1" id="agree" required>
                             <label class="form-check-label" for="agree">
                                 I agree to the terms and conditions also the <a href="{{ route('privacy_policy') }}">privacy policy</a>.
                             </label>
+                            @error('agree')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>I agree to the terms and conditions is a required</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group mb-2">
                             <button type="submit" class="axil-btn axil-btn-fill axil-btn-large btn-color-alter btn-bold">
