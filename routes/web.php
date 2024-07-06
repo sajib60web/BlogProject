@@ -85,7 +85,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 // Admin route
 Route::group(['prefix' => 'admin'], function () {
-    Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth','admin']], function () {
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/', 'index')->name('admin.dashboard');
         });

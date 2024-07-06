@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('facebook_id')->unique()->nullable();
             $table->string('github_id')->unique()->nullable();
             $table->string('linkedin_id')->unique()->nullable();
+            $table->tinyInteger('agree')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
