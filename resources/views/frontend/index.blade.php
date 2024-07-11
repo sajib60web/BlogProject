@@ -454,6 +454,9 @@
                         <div class="col-12">
                             <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation {{$color_classes[$loop->index]}} box-shadow-large shadow-style-2 transition-default">
                                 <div class="figure-holder radius-default">
+                                    @if ($recentArticlePost->post_type == App\Enums\PostType::VIDEO)
+                                    <a href="{{@$recentArticlePost->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>
+                                    @endif
                                     <a href="{{route('post.details',[$recentArticlePost->id,$recentArticlePost->slug])}}" class="link-wrap img-height-100">
                                         <img style="width: 100%; height: 260px;" src="{{$recentArticlePost->image_url}}" alt="Post">
                                     </a>
@@ -498,7 +501,12 @@
                         <div class="col-12 mb-3">
                             <div class="post-box-layout9 box-border-dark-1 radius-default padding-20 figure-scale-animation {{$color_classes[$loop->index]}} box-shadow-large shadow-style-2 transition-default">
                                 <div class="figure-holder radius-default">
-                                    <a href="{{route('post.details',[$recentArticlePostt->id,$recentArticlePostt->slug])}}" class="link-wrap img-height-100"><img width="500" height="500" src="{{$recentArticlePostt->image_url}}" alt="Post"></a>
+                                    @if ($recentArticlePostt->post_type == App\Enums\PostType::VIDEO)
+                                    <a href="{{@$recentArticlePostt->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>
+                                    @endif
+                                    <a href="{{route('post.details',[$recentArticlePostt->id,$recentArticlePostt->slug])}}" class="link-wrap img-height-100">
+                                        <img width="500" height="500" src="{{$recentArticlePostt->image_url}}" alt="Post">
+                                    </a>
                                 </div>
                                 <div class="content-holder">
                                     <div>

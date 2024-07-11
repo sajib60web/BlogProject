@@ -19,10 +19,8 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-
         $data['page_name'] = 'Home';
         $data['color_classes'] = [];
-
         for ($i = 0; $i < 5; $i++) {
             $data['color_classes'][] =  'bg-color-scandal';
             $data['color_classes'][] = 'bg-color-mimosa';
@@ -47,7 +45,8 @@ class WelcomeController extends Controller
         $data['top_video_recc_posts']   = Post::where('post_type', PostType::VIDEO)->published()->where('top_video_recommended', 1)->orderByDesc('total_views')->orderByDesc('id')->limit(6)->get();
         $data['top_video_latest_posts'] = Post::where('post_type', PostType::VIDEO)->published()->where('top_video_latest', 1)->orderByDesc('id')->limit(6)->get();
 
-        $data['recent_article_posts']           = Post::where('post_type', PostType::ARTICLE)->where('recent_article', 1)->published()->orderByDesc('id')->limit(9)->get();
+        // $data['recent_article_posts']           = Post::where('post_type', PostType::ARTICLE)->where('recent_article', 1)->published()->orderByDesc('id')->limit(9)->get();
+        $data['recent_article_posts']           = Post::where('recent_article', 1)->published()->orderByDesc('id')->limit(9)->get();
         $data['latest_short_stories_posts']     = Post::where('short_stories', 1)->published()->orderByDesc('id')->limit(7)->get();
         $data['recent_stories_article_posts']   = Post::where('post_type', PostType::ARTICLE)->published()->where('short_stories', 1)->orderByDesc('id')->limit(5)->get();
 
