@@ -79,12 +79,12 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-md-block d-none">
                     <a href="{{ route('main.index') }}" class="link-wrap desktop-logo img-height-100" aria-label="Site Logo">
-                        <img width="131" height="47" src="{{ setting()->logo }}" alt="logo">
+                        <img width="131" height="47" src="{{ setting()->logo }}" alt="{{ setting()->app_name }}">
                     </a>
                 </div>
                 <div class="d-md-none d-block">
                     <a href="{{ route('main.index') }}" class="link-wrap mobile-logo img-height-100" aria-label="Site Logo">
-                        <img width="86" height="31" src="{{ setting()->logo }}" alt="logo">
+                        <img width="86" height="31" src="{{ setting()->logo }}" alt="{{ setting()->app_name }}">
                     </a>
                 </div>
                 <!-- Start Mainmenu Nav -->
@@ -92,10 +92,10 @@
                     <div class="mobile-logo-wrap d-lg-none d-block">
                         <div class="logo-holder">
                             <a href="{{ route('main.index') }}" class="link-wrap single-logo light-mode img-height-100" aria-label="Site Logo">
-                                <img width="131" height="47" src="{{ setting()->logo }}" alt="logo">
+                                <img width="131" height="47" src="{{ setting()->logo }}" alt="{{ setting()->app_name }}">
                             </a>
                             <a href="{{ route('main.index') }}" class="link-wrap single-logo dark-mode img-height-100" aria-label="Site Logo">
-                                <img width="131" height="47" src="{{ setting()->logo }}" alt="logo" aria-label="Site Logo">
+                                <img width="131" height="47" src="{{ setting()->logo }}" alt="{{ setting()->app_name }}" aria-label="Site Logo">
                             </a>
                         </div>
                         <button aria-label="Offcanvas" type="button" class="mobile-close" data-bs-dismiss="offcanvas">

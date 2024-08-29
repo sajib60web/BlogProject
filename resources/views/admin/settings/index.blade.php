@@ -111,6 +111,24 @@
                                     'form-control')) !!}
                                 </div>
                             </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Meta Title: <span style="color: red;">*</span></label>
+                                    {!! Form::text('meta_title', null, array('placeholder' => 'Meta Title','class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Meta Description: <span style="color: red;">*</span></label>
+                                    {!! Form::textarea('meta_description', null, array('placeholder' => 'Meta Description','class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Meta Keywords:</label>
+                                     <input class="form-control" name="meta_keywords" id="post_tags" data-role="tagsinput" placeholder="Meta Keywords" value="{{ old('meta_keywords',$settings->meta_keywords) }}" />
+                                </div>
+                            </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary pull-right">Update</button>
                             </div>
@@ -126,3 +144,39 @@
     </section>
     <!-- /.content -->
 @endsection
+@push('styles')
+<link src="{{asset('css/tags.css')}}" />
+<style>
+    .bootstrap-tagsinput{
+        background-color: #fff!important;
+        border: 1px solid #ccc!important;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)!important;
+        display: inline-block!important;
+        padding: 4px 6px!important;
+        color: #555!important;
+        vertical-align: middle!important;
+        border-radius: 4px!important;
+        width: 100%!important;
+        line-height: 22px!important;
+        cursor: text!important;
+    }
+
+
+    .bootstrap-tagsinput input{
+        border:none;
+        outline:none;
+    }
+    .bootstrap-tagsinput input:focus{
+        border:none;
+        outline:none;
+    }
+
+    .bootstrap-tagsinput .badge {
+        margin: 2px 5px !important;
+        background-color: #5969ff !important;
+    }
+</style>
+@endpush
+@push('scripts')
+    <script src="{{asset('js/tags.js')}}"></script>
+@endpush

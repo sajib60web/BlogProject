@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    <url>
+        <loc>http://127.0.0.1:8000</loc>
+        <lastmod>2024-07-11T00:00:00+06:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/author/posts/1</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/author/posts/2</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/author/posts/3</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/author/posts/4</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/category/beauty-fashion</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/category/technology</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/category/comic-book</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/category/health</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/category/sports</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/category/shopping</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/category/gaming</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/category/relationship</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/post/1/luck-is-spelled-work-indian-american-gop-candidate-ramaswamy-grinds-on-campaign-trail</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/post/2/very-remarkable-in-that-nor-did-alice-think-it-was-he-said-fifteenth-said-the-caterpillar-here-was-another</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/post/3/alice-took-up-the-fan-and-two-or-three-of-her-own-courage-its-no-use-in-saying-anything-more-till-the-puppys-bark</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/post/4/its-no-use-in-saying-anything-more-till-the-puppys-barkalice-took-up-the-fan-and-two-or-three-of-her-own-courage</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/post/5/alice-took-up-the-fan-and-two-or-three-of-her-own-courage</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/post/6/i-think-i-must-be-off-then-said-the-mock-turtle-went-on</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/about</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/contact</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/terms/conditions</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/privacy/policy</loc>
+    
+            </url>
+</urlset>

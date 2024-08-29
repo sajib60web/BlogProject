@@ -58,12 +58,16 @@
                                             <span class="badge badge-primary bg-primary">Video</span>
                                         @endif
                                     </td>
-                                    <td><img  src="{{@$post->image_url}}" width="50" height="50"  /> </td>
+                                    <td>
+                                        <img  src="{{@$post->image_url}}" width="50" height="50" alt="{{ $post->title }}" />
+                                    </td>
                                     <td>{{ @$post->video_url }} </td>
                                     <td>{!! @$post->my_visibility !!} </td>
                                     <td class="text-black">{!! @$post->my_status !!} </td>
                                     <td class="text-center">
-                                        <a href="{{ route('user.post.edit',$post->id) }}" class="btn btn-sm btn-info"><i class="regular-edit"></i></a>
+                                        @if ($post->update_count < 1)
+                                            <a href="{{ route('user.post.edit',$post->id) }}" class="btn btn-sm btn-info"><i class="regular-edit"></i></a>
+                                        @endif
                                         {!! Form::open(['method' => 'DELETE','route' => ['user.post.delete', $post->id],'style'=>'display:inline']) !!}
                                         <button class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure to Delete');"><i class="regular-trash"></i></button>
                                         {!! Form::close() !!}

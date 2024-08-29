@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ProfileController as UserProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SiteMapController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\WelcomeController;
@@ -54,12 +55,12 @@ Route::group(['middleware' => ['auth', 'verified', 'user']], function () {
     Route::post('/profile/update', [UserProfileController::class, 'profileUpdate'])->name('user.profile.update');
     Route::post('/password/update', [UserProfileController::class, 'passwordUpdate'])->name('user.password.update');
     Route::controller(UserPostController::class)->group(function () {
-        Route::get('/post/list', 'postList')->name('post.list');
-        Route::get('/post/create', 'postCreate')->name('user.post.create');
-        Route::post('/post/store', 'store')->name('user.post.store');
-        Route::get('/post/edit/{id}', 'edit')->name('user.post.edit');
-        Route::put('/post/update/{id}', 'update')->name('user.post.update');
-        Route::delete('/post/delete/{id}', 'delete')->name('user.post.delete');
+        Route::get('/posts/list', 'postList')->name('post.list');
+        Route::get('/posts/create', 'postCreate')->name('user.post.create');
+        Route::post('/posts/store', 'store')->name('user.post.store');
+        Route::get('/posts/edit/{id}', 'edit')->name('user.post.edit');
+        Route::put('/posts/update/{id}', 'update')->name('user.post.update');
+        Route::delete('/posts/delete/{id}', 'delete')->name('user.post.delete');
     });
 });
 
@@ -84,8 +85,13 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 // Admin route
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/sitemap', [SiteMapController::class, 'sitemap']);
+});
+
 Route::group(['prefix' => 'admin'], function () {
-    Route::group(['middleware' => ['auth','admin']], function () {
+    Route::group(['middleware' => ['auth', 'admin']], function () {
+        Route::get('/sitemap', [SiteMapController::class, 'index'])->name('sitemap');
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/', 'index')->name('admin.dashboard');
         });

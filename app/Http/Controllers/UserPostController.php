@@ -34,7 +34,7 @@ class UserPostController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $request['user_id'] = auth()->user()->id;
+        $request['user_id'] = auth()->id();
         if ($request->post_type == PostType::ARTICLE) :
             $request['video_url'] = null;
         endif;
@@ -64,13 +64,21 @@ class UserPostController extends Controller
     }
 
 
-    public function update(StoreRequest $request)
+    public function update(StoreRequest $request, $id)
     {
+        $post = Post::find($id);
+        if ($post->update_count >= 1) {
+            $notification = array(
+                'message' => 'Your post update is one time!',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
         if ($request->post_type == PostType::ARTICLE) :
             $request['video_url'] = null;
         endif;
 
-        $columns = ['treding_topic', 'stories', 'breaking', 'recommended'];
+        $columns = ['treding_topic', 'top_video_latest', 'top_stories', 'latest_stories_main', 'latest_stories_sub', 'latest_stories_right_main', 'latest_stories_right_sub', 'short_stories', 'breaking', 'top_video_recommended', 'slider', 'short_stories', 'main_frame', 'main_frame_slider', 'recent_article'];
         foreach ($columns as   $value) {
             if (!$request->$value) :
                 $request[$value] = 0;

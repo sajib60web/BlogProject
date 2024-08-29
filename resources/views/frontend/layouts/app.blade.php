@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ setting()->app_name }} | @yield('title')</title>
+    @if(isset($post))
+    <link rel="canonical" href="{{ url($post->slug) }}" />
+    @endif
     <meta name="title" content="{{ setting()->meta_title }}">
     <meta name="keywords" content="{{ setting()->meta_keywords }}">
     <meta name="description" content="{{ setting()->meta_description }}">
@@ -62,7 +65,7 @@
                 <div class="circle-holder"></div>
                 <div class="shadow-holder"></div>
             </div> --}}
-            {{-- <img width="131" height="47" src="{{ setting()->logo }}" alt="logo"> --}}
+            {{-- <img width="131" height="47" src="{{ setting()->logo }}" alt="{{ setting()->app_name }}"> --}}
             {{-- <p>Loodring…</p> --}}
         {{-- </div>
     </div> --}}

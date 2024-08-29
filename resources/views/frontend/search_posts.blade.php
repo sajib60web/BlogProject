@@ -29,7 +29,7 @@
                 <div class="post-box-layout21 box-border-dark-1 radius-default figure-scale-animation">
                     <div class="figure-holder radius-medium">
                         <a href="{{route('post.details',[$post->id,$post->title])}}" class="link-wrap figure-overlay img-height-100">
-                            <img width="540" height="350" src="{{ @$post->image_url}}" alt="Post" style="height: 350px;">
+                            <img width="540" height="350" src="{{ @$post->image_url}}" alt="{{ $post->title }}" style="height: 350px;">
                         </a>
                     </div>
                     <div class="content-holder">

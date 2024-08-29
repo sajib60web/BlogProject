@@ -93,7 +93,6 @@
                 <div class="col-lg-8">
                     <div class="map-box box-border-dark-1 radius-default">
                         <div class="figure-holder radius-medium img-height-100">
-                            {{-- <img width="810" height="400" src="{{ asset('assets/frontend') }}/media/elements/map.webp" alt="Map"> --}}
                             {!! setting()->embed_a_map !!}
                         </div>
                     </div>

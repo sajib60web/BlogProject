@@ -142,11 +142,11 @@
                                 @if ($post->post_type == App\Enums\PostType::VIDEO)
                                     <a href="{{@$post->video_url}}" aria-label="Youtube Video" class="play-btn size-large popup-youtube"><i class="solid-play"></i></a>       
                                     {{-- <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100">
-                                        <img src="{{ asset('default/video-thumbnail.webp') }}" alt="Post" style="height: 350px; width: 100%;">
+                                        <img src="{{ asset('default/video-thumbnail.webp') }}" alt="{{ $post->title }}" style="height: 350px; width: 100%;">
                                     </a>                            --}}
                                 @endif
                                 <a href="{{route('post.details',[$post->id,$post->slug])}}" class="link-wrap img-height-100">
-                                    <img width="1150" height="660" src="{{$post->image_url}}" alt="Post">
+                                    <img width="1150" height="660" src="{{$post->image_url}}" alt="{{ $post->title }}">
                                 </a>
                             </div>
                         </div>
@@ -215,7 +215,9 @@
                             @if ($loop->index == 0)
                                 <div class="post-box">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="700" height="470" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100">
+                                            <img width="700" height="470" src="{{ $short_stories_post->image_url }}" alt="{{ $short_stories_post->title }}">
+                                        </a>
                                     </div>
                                     <div class="content-holder">
                                         <h3 class="entry-title color-light-1-fixed h3-small underline-animation"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
@@ -229,7 +231,9 @@
                             @else
                                 <div class="post-box">
                                     <div class="figure-holder radius-default">
-                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100"><img width="140" height="140" src="{{ $short_stories_post->image_url }}" alt="Post"></a>
+                                        <a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap figure-overlay img-height-100">
+                                            <img width="140" height="140" src="{{ $short_stories_post->image_url }}" alt="{{ $short_stories_post->title }}">
+                                        </a>
                                     </div>
                                     <div class="content-holder">
                                         <h3 class="entry-title color-dark-1 underline-animation h3-extra-small"><a href="{{route('post.details',[$short_stories_post->id,$short_stories_post->slug])}}" class="link-wrap">{{\Str::limit($short_stories_post->title,60,'...')}}</a></h3>
@@ -261,7 +265,7 @@
                     <div class="post-box-layout6 box-border-dark-1 radius-default padding-20 bg-color-scandal box-shadow-large shadow-style-2 transition-default" style="height: 400px;">
                         <div class="figure-holder radius-default">
                             <a href="{{route('post.details',[$rel_post->id,$rel_post->slug])}}" class="link-wrap img-height-100">
-                                <img style="height: 200px; width: 100%;" src="{{ $rel_post->image_url}}" alt="Post">
+                                <img style="height: 200px; width: 100%;" src="{{ $rel_post->image_url}}" alt="{{ $rel_post->title }}">
                             </a>
                         </div>
                         <div class="content-holder">
@@ -277,7 +281,7 @@
                                 @if (isset($rel_post->user->id))
                                     <li class="post-author">
                                         <a href="{{ route('post.author',@$rel_post->user->id) }}">
-                                            <img src="{{@$rel_post->user->image?? asset('default/user.webp')}}" alt="Author">
+                                            <img src="{{@$rel_post->user->image?? asset('default/user.webp')}}" alt="{{ @$rel_post->user->name }}">
                                             {{@$rel_post->user->name}}
                                         </a>
                                     </li>

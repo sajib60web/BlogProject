@@ -6,3 +6,7 @@ j5Bh5IU!feZN
 https://premium287.web-hosting.com/cpanel
 username: ingnngfd
 password:5GI4EX85In0t
+
+* * * * * cd /usr/local/bin/php /home/ingnngfd/public_html/artisan schedule:run >> /dev/null 2>&1
+
+* * * * * cd /path-to-your-laravel-project && php artisan schedule:run >> /dev/null 2>&1

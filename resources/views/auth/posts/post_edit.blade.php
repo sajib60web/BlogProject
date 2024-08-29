@@ -84,7 +84,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 mt-2">
-                                        <img src="{{$post->image_url}}" width="50" height="50" />
+                                        <img src="{{$post->image_url}}" width="50" height="50" alt="{{ $post->title }}" />
                                     </div>
                                 </div>
                             </div>

@@ -25,8 +25,8 @@
                     <div class="footer-widget">
                         <div class="footer-about pe-lg-5">
                             <div class="logo-holder">
-                                <a href="{{ route('main.index') }}" class="link-wrap img-height-100" aria-label="Site Logo">
-                                    <img width="131" height="47" src="{{ setting()->logo }}" alt="logo">
+                                <a href="{{ route('main.index') }}" class="link-wrap img-height-100" aria-label="{{ setting()->app_name }}">
+                                    <img width="131" height="47" src="{{ setting()->logo }}" alt="{{ setting()->app_name }}">
                                 </a>
                             </div>
                             <p class="description">{{ setting()->about }}</p>

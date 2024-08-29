@@ -28,7 +28,7 @@ class WelcomeController extends Controller
             $data['color_classes'][] = 'bg-color-old-lace';
         }
 
-        $data['treding_topic_posts']  = Post::where('treding_topic', 1)->published()->orderByDesc('id')->get();
+        $data['treding_topic_posts']  = Post::where('treding_topic', 1)->published()->orderByDesc('id')->limit(12)->get();
         $data['main_frame']           = Post::where('post_type', PostType::ARTICLE)->published()->orderByDesc('id')->where('main_frame', 1)->take(1)->get();
         $data['main_frame_sliders']    = Post::published()->orderByDesc('id')->where('main_frame_slider', 1)->get();
         $data['latest_posts']         = Post::where('post_type', PostType::ARTICLE)->published()->orderByDesc('id')->limit(6)->get();
@@ -57,8 +57,10 @@ class WelcomeController extends Controller
     public function postDetails($id, $slug)
     {
         $post = Post::find($id);
-        $post->total_views = $post->total_views+1;
-        $post->save();
+        if ($post) {
+            $post->total_views = $post->total_views + 1;
+            $post->save();
+        }
         if (!$post) :
             abort(400);
         endif;

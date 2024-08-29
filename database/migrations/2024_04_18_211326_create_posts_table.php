@@ -18,6 +18,7 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('slug');
+            $table->text('canonical_url')->nullable();
             $table->longText('content')->nullable();
             $table->bigInteger('user_id')->nullable();
             $table->foreignId('category_id')->nullable();
@@ -53,6 +54,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('status')->default(Status::PUBLISH);
             $table->bigInteger('total_views')->default(0);
+            $table->integer('update_count')->default(0);
             $table->timestamps();
         });
     }
